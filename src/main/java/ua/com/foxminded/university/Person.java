@@ -1,20 +1,35 @@
 package ua.com.foxminded.university;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Person {
+
     private int id;
     private String firstName;
     private String lastName;
-    private Date dateOfBirth;
-    private Date enrollmentDate;
+    private String dateOfBirth;
+    private String enrollmentDate;
     
-    public Person(int id, String firstName, String lastName, Date dateOfBirth, Date enrollmentDate) {
+    public Person(int id, String firstName, String lastName, String dateOfBirth, String enrollmentDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.enrollmentDate = enrollmentDate;
+        
+        
+        
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+            Date dateBirth = sdf.parse(dateOfBirth);
+            Date enrollDate = sdf.parse(enrollmentDate);
+//            System.out.println("dateOfBirth : " + sdf.format(dateBirth));
+//            System.out.println("dateOfBirth : " + sdf.format(enrollDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
     
     public int getId() {
@@ -41,20 +56,28 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Date getEnrollmentDate() {
+    public String getEnrollmentDate() {
         return enrollmentDate;
     }
 
-    public void setEnrollmentDate(Date enrollmentDate) {
+    public void setEnrollmentDate(String enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
+    }
+    
+    @Override
+    public String toString() {
+        String output = "class name: " + this.getClass().getSimpleName() +  ", id: " + id + ", first name: " + firstName + ", last name: " + lastName + 
+                ", date of birth: " + dateOfBirth + ", enrollment date:" + enrollmentDate;
+        
+        return output;
     }
     
 }

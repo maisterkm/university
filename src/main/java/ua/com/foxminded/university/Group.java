@@ -1,15 +1,20 @@
 package ua.com.foxminded.university;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Group {
-    
+
     private String groupNumber;
     private Faculties faculty;
-    private List<Student> studentList;
+    private List<Student> studentList = new ArrayList<Student>();
+    
+    public Group(String groupNumber, Faculties faculty) {
+        this.groupNumber = groupNumber;
+        this.faculty = faculty;
+    }
     
     public Group(String groupNumber, Faculties faculty, List<Student> studentList) {
-        super();
         this.groupNumber = groupNumber;
         this.faculty = faculty;
         this.studentList = studentList;
@@ -39,6 +44,23 @@ public class Group {
         this.studentList = studentList;
     }
     
+    public void addStudent(Student student) {
+            studentList.add(student);
+    }
     
+    public void removeStudent(Student student) {
+        studentList.remove(student);
+    }
+    
+    @Override
+    public String toString() {
+        String output = "class name: " + this.getClass().getSimpleName() +  ", group number: " + groupNumber + 
+                        ", faculty: " + faculty + "\n\tlist of students:\n";
+        int i = 0;
+        for(Student item : studentList) {
+            output += "\t" + Integer.toString(++i) + ": " + item + "\n";
+        }
+        return output;
+    }
     
 }

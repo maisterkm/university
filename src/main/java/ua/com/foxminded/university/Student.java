@@ -1,14 +1,19 @@
 package ua.com.foxminded.university;
 
-import java.util.Date;
-
 public class Student extends Person{
 
     private Group group;
     private int matriculationNumber;
+
     private Schedule studentSchedule;
     
-    public Student(int id, String firstName, String lastName, Date dateOfBirth, Date enrollmentDate, 
+    public Student(int id, String firstName, String lastName, String dateOfBirth, String enrollmentDate, int matriculationNumber) {
+    super(id, firstName, lastName, dateOfBirth, enrollmentDate);
+    
+    this.matriculationNumber = matriculationNumber;
+}
+    
+    public Student(int id, String firstName, String lastName, String dateOfBirth, String enrollmentDate, 
                 Group group, int matriculationNumber) {
         super(id, firstName, lastName, dateOfBirth, enrollmentDate);
         
@@ -40,4 +45,9 @@ public class Student extends Person{
         this.studentSchedule = studentSchedule;
     }
    
+    @Override
+    public String toString() {
+        String output = super.toString() + ", matriculation number: " + matriculationNumber;
+        return output;
+    }
 }
