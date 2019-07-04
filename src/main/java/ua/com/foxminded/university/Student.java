@@ -3,22 +3,13 @@ package ua.com.foxminded.university;
 public class Student extends Person{
 
     private Group group;
-    private int matriculationNumber;
-
+    
     private Schedule studentSchedule;
     
-    public Student(int id, String firstName, String lastName, String dateOfBirth, String enrollmentDate, int matriculationNumber) {
-    super(id, firstName, lastName, dateOfBirth, enrollmentDate);
-    
-    this.matriculationNumber = matriculationNumber;
-}
-    
-    public Student(int id, String firstName, String lastName, String dateOfBirth, String enrollmentDate, 
-                Group group, int matriculationNumber) {
-        super(id, firstName, lastName, dateOfBirth, enrollmentDate);
-        
-        this.group = group;
-        this.matriculationNumber = matriculationNumber;
+    public Student(int id, String firstName, String lastName, int birthDay, int birthMonth, int birthYear,
+            int enrollmentDay, int enrollmentMonth, int enrollmentYear) {
+        super(id, firstName, lastName, birthDay, birthMonth, birthYear, enrollmentDay, enrollmentMonth, enrollmentYear);
+        group = null;
     }
     
     public Group getGroup() {
@@ -27,14 +18,6 @@ public class Student extends Person{
 
     public void setGroup(Group group) {
         this.group = group;
-    }
-
-    public int getMatriculationNumber() {
-        return matriculationNumber;
-    }
-
-    public void setMatriculationNumber(int matriculationNumber) {
-        this.matriculationNumber = matriculationNumber;
     }
     
     public Schedule getStudentSchedule() {
@@ -47,7 +30,8 @@ public class Student extends Person{
    
     @Override
     public String toString() {
-        String output = super.toString() + ", matriculation number: " + matriculationNumber;
+        String output = super.toString() +  
+                ", group: " + (group == null ? "there is no group yet" : group.getGroupNumber());
         return output;
     }
 }

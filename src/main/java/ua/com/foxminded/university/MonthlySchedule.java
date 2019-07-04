@@ -16,7 +16,7 @@ public class MonthlySchedule {
     
     public void display() {
         for(DailySchedule item : listOfDailySchedule) {
-            System.out.println(item);
+            item.display();
         }
     }
     

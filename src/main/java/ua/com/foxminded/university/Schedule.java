@@ -14,9 +14,7 @@ public class Schedule {
         this.listOfMonthlySchedule = listOfMonthlySchedule;
     }
     
-    public void display() {
-        for(MonthlySchedule item : listOfMonthlySchedule) {
-            System.out.println(item);
-        }
+    public void displayMonthlySchedule(int numberOfMonth) {
+        
     }
 }

@@ -1,24 +1,45 @@
-package ua.com.foxminded.university;
+ package ua.com.foxminded.university;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Class {
-
     private Classroom classroom;
     private Teacher teacher;
     private Subject subject;
-    private Date beginTime;
-    private Date endTime;
+    private int beginHour;
+    private int beginMin;
+    private int beginDay;
+    private int beginMonth;
+    private int beginYear;
+    private int endHour;
+    private int endMin;
+    private int endDay;
+    private int endMonth;
+    private int endYear;
+    Calendar beginTime = new GregorianCalendar();
+    Calendar endTime = new GregorianCalendar();
+    private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd-MM-yyyy");
     
-    public Class(Classroom classroom, Teacher teacher, Subject subject, Date beginTime, Date endTime) {
-        
+    public Class(Classroom classroom, Teacher teacher, Subject subject, int beginHour, int beginMin, int beginDay, int beginMonth, int beginYear,
+             int endHour, int endMin, int endDay, int endMonth, int endYear) {
         this.classroom = classroom;
         this.teacher = teacher;
         this.subject = subject;
-        this.beginTime = beginTime;
-        this.endTime = endTime;
+        beginTime.set(Calendar.HOUR, beginHour);
+        beginTime.set(Calendar.MINUTE, beginMin);
+        beginTime.set(Calendar.DAY_OF_MONTH, beginDay);
+        beginTime.set(Calendar.MONTH, beginMonth-1);
+        beginTime.set(Calendar.YEAR, beginYear);
+        endTime.set(Calendar.HOUR, endHour);
+        endTime.set(Calendar.MINUTE, endMin);
+        endTime.set(Calendar.DAY_OF_MONTH, endDay);
+        endTime.set(Calendar.MONTH, endMonth-1);
+        endTime.set(Calendar.YEAR, endYear);
+        
     }
-    
+
     public Classroom getClassroom() {
         return classroom;
     }
@@ -42,21 +63,13 @@ public class Class {
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
-
-    public Date getBeginTime() {
-        return beginTime;
-    }
-
-    public void setBeginTime(Date beginTime) {
-        this.beginTime = beginTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
+    
+    public void display() {
+        System.out.println("class name: " + this.getClass().getSimpleName() +  ", classroom: " + classroom.getRoomNumber() + 
+                        ", teacher: " + teacher.getFirstName() + " " + teacher.getLastName() +  ", subject: " + subject.getSubject() + 
+                        ", begin time: " + sdf.format(beginTime.getTime()) + ", end time: " + sdf.format(endTime.getTime()));
     }
      
 }
+
+

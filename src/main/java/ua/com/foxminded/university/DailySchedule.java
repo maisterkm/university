@@ -14,17 +14,17 @@ public class DailySchedule {
         this.listsOfClass = listsOfClass;
     }
     
-    public void display() {
-        for(Class item : listsOfClass) {
-            System.out.println(item);
-        }
-    }
-    
     public void addClass(Class clas) {
         listsOfClass.add(clas);
     }
     
     public void removeClass(Class clas) {
         listsOfClass.remove(clas);
+    }
+    
+    public void display() {
+        for(Class item : listsOfClass) {
+            item.display();
+        }
     }
 }

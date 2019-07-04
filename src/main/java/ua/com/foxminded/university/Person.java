@@ -1,35 +1,35 @@
 package ua.com.foxminded.university;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Person {
 
     private int id;
     private String firstName;
     private String lastName;
-    private String dateOfBirth;
-    private String enrollmentDate;
+    private int birthDay; 
+    private int birthMonth; 
+    private int birthYear; 
+    private int enrollmentDay; 
+    private int enrollmentMonth; 
+    private int enrollmentYear; 
+    Calendar dateOfBirth = new GregorianCalendar();
+    Calendar enrollmentDate = new GregorianCalendar();
+    SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyy");
     
-    public Person(int id, String firstName, String lastName, String dateOfBirth, String enrollmentDate) {
+    public Person(int id, String firstName, String lastName, int birthDay, int birthMonth, int birthYear,
+            int enrollmentDay, int enrollmentMonth, int enrollmentYear) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.enrollmentDate = enrollmentDate;
-        
-        
-        
-        try {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-            Date dateBirth = sdf.parse(dateOfBirth);
-            Date enrollDate = sdf.parse(enrollmentDate);
-//            System.out.println("dateOfBirth : " + sdf.format(dateBirth));
-//            System.out.println("dateOfBirth : " + sdf.format(enrollDate));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        dateOfBirth.set(Calendar.YEAR, birthYear);
+        dateOfBirth.set(Calendar.MONTH, birthMonth-1);
+        dateOfBirth.set(Calendar.DAY_OF_MONTH, birthDay);
+        enrollmentDate.set(Calendar.YEAR, enrollmentYear);
+        enrollmentDate.set(Calendar.MONTH, enrollmentMonth-1);
+        enrollmentDate.set(Calendar.DAY_OF_MONTH, enrollmentDay);
     }
     
     public int getId() {
@@ -55,29 +55,12 @@ public class Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-    public String getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getEnrollmentDate() {
-        return enrollmentDate;
-    }
-
-    public void setEnrollmentDate(String enrollmentDate) {
-        this.enrollmentDate = enrollmentDate;
-    }
     
     @Override
     public String toString() {
         String output = "class name: " + this.getClass().getSimpleName() +  ", id: " + id + ", first name: " + firstName + ", last name: " + lastName + 
-                ", date of birth: " + dateOfBirth + ", enrollment date:" + enrollmentDate;
+                ", date of birth: " + sdf.format(dateOfBirth.getTime()) + ", enrollment date: " + sdf.format(enrollmentDate.getTime());
         
         return output;
-    }
-    
+    }  
 }

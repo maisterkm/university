@@ -46,21 +46,21 @@ public class Group {
     
     public void addStudent(Student student) {
             studentList.add(student);
+            student.setGroup(this);
     }
     
     public void removeStudent(Student student) {
         studentList.remove(student);
     }
     
-    @Override
-    public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() +  ", group number: " + groupNumber + 
-                        ", faculty: " + faculty + "\n\tlist of students:\n";
+
+    public void display() {
+        System.out.println("class name: " + this.getClass().getSimpleName() +  ", group number: " + groupNumber + 
+                        ", faculty: " + faculty + "\n\tlist of students:");
         int i = 0;
         for(Student item : studentList) {
-            output += "\t" + Integer.toString(++i) + ": " + item + "\n";
+            System.out.println("\t" + Integer.toString(++i) + ": " + item );
         }
-        return output;
     }
     
 }

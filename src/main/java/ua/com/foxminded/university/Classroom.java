@@ -1,16 +1,14 @@
 package ua.com.foxminded.university;
 
 public class Classroom {
-
     private Campus campus;
     private int capacity;
     private int roomNumber;
     
-    public Classroom(Campus campus, int capacity, int roomNumber) {
-        super();
+    public Classroom(Campus campus, int roomNumber, int capacity) {
         this.campus = campus;
-        this.capacity = capacity;
         this.roomNumber = roomNumber;
+        this.capacity = capacity;
     }
     
     public Campus getCampus() {
@@ -37,4 +35,10 @@ public class Classroom {
         this.roomNumber = roomNumber;
     }
      
+    @Override
+    public String toString() {
+        String output = "class name: " + this.getClass().getSimpleName() +  ", campus: " + campus + 
+                    ", room number: " + roomNumber +  ", capacity: " + capacity;
+        return output;
+    }
 }
