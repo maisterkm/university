@@ -37,9 +37,9 @@ public class MonthlySchedule {
         return numberOfMonth;
     }
 
-    public void display() {
+    public void displayMonth() {
         for(DailySchedule item : listOfDailySchedule) {
-            item.display();
+            item.displayDay();
         }
     }
     

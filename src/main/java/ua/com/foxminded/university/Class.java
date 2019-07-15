@@ -8,16 +8,6 @@ public class Class {
     private Classroom classroom;
     private Teacher teacher;
     private Subject subject;
-//    private int beginHour;
-//    private int beginMin;
-//    private int beginDay;
-//    private int beginMonth;
-//    private int beginYear;
-//    private int endHour;
-//    private int endMin;
-//    private int endDay;
-//    private int endMonth;
-//    private int endYear;
     private Calendar beginTime = new GregorianCalendar();
     private Calendar endTime = new GregorianCalendar();
     private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd-MM-yyyy");
@@ -27,12 +17,12 @@ public class Class {
         this.classroom = classroom;
         this.teacher = teacher;
         this.subject = subject;
-        beginTime.set(Calendar.HOUR, beginHour);
+        beginTime.set(Calendar.HOUR_OF_DAY, beginHour);
         beginTime.set(Calendar.MINUTE, beginMin);
         beginTime.set(Calendar.DAY_OF_MONTH, beginDay);
         beginTime.set(Calendar.MONTH, beginMonth-1);
         beginTime.set(Calendar.YEAR, beginYear);
-        endTime.set(Calendar.HOUR, endHour);
+        endTime.set(Calendar.HOUR_OF_DAY, endHour);
         endTime.set(Calendar.MINUTE, endMin);
         endTime.set(Calendar.DAY_OF_MONTH, endDay);
         endTime.set(Calendar.MONTH, endMonth-1);
@@ -72,7 +62,7 @@ public class Class {
         this.subject = subject;
     }
     
-    public void display() {
+    public void displayClass() {
         System.out.println("class name: " + this.getClass().getSimpleName() + ", begin time: " + sdf.format(beginTime.getTime()) + ", end time: " + sdf.format(endTime.getTime()) + 
                         ", subject: " + subject.getSubject() + ", classroom: " + classroom.getRoomNumber() + 
                         ", teacher: " + teacher.getFirstName() + " " + teacher.getLastName());

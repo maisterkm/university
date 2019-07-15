@@ -21,23 +21,23 @@ public class Schedule {
         this.listOfMonthlySchedule = listOfMonthlySchedule;
     }
     
-    public void removeClass(Class c) {
-        for(int i = 0; i < listOfMonthlySchedule.size(); i++) {
-            List<DailySchedule> listOfDailySchedule = listOfMonthlySchedule.get(i).getListOfDailySchedule();
-            for(int j  = 0; j < listOfDailySchedule.size(); j++) {
-                for(Class item : listOfDailySchedule.get(j).getListsOfClasses()) {
-                    if(c == item) {
-                        listOfDailySchedule.get(j).removeClass(c);
-                    }
-                }
-            }
-        }
-    }
+//    public void removeClass(Class c) {
+//        for(int i = 0; i < listOfMonthlySchedule.size(); i++) {
+//            List<DailySchedule> listOfDailySchedule = listOfMonthlySchedule.get(i).getListOfDailySchedule();
+//            for(int j  = 0; j < listOfDailySchedule.size(); j++) {
+//                for(Class item : listOfDailySchedule.get(j).getListsOfClasses()) {
+//                    if(c == item) {
+//                        listOfDailySchedule.get(j).removeClass(c);
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     //////////////////////////////////////////*****************************////////////////////////////////////////
     public void addClass(Class c) {
         int month = c.getBeginTime().get(Calendar.MONTH);
-        int day = c.getBeginTime().get(Calendar.DAY_OF_MONTH) - 1;
+        int day = c.getBeginTime().get(Calendar.DAY_OF_MONTH)-1;
         
         listOfMonthlySchedule.get(month).getListOfDailySchedule().get(day).getListsOfClasses().add(c);
         
@@ -51,9 +51,9 @@ public class Schedule {
         listOfMonthlySchedule.get(month).listOfDailySchedule.get(day).removeClass(c);
     }
     
-    public void displayMonth(int month) {
+    public void display(int month) {
         System.out.println("\n----- Display Month -----");
-        listOfMonthlySchedule.get(month-1).display();
+        listOfMonthlySchedule.get(month-1).displayMonth();
     }
     
 //    public void displayDay(int month, int day) {
