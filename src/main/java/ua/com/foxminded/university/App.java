@@ -78,12 +78,12 @@ public class App
         statisticClass_lecture_II.displayClass();
         
         Schedule schedule = new Schedule();
+        schedule.addClass(statisticClass_lecture);
+        schedule.addClass(physicClass_seminar);
         schedule.addClass(mathClass_seminar);
         schedule.addClass(mathClass_lecture);
-        schedule.addClass(physicClass_seminar);
         schedule.addClass(physicClass_lecture);
         schedule.addClass(statisticClass_seminar);
-        schedule.addClass(statisticClass_lecture);
         schedule.addClass(statisticClass_lecture_II);
         schedule.display(9);
     }

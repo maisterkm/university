@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class Class {
+public class Class implements Comparable<Class>{
     private Classroom classroom;
     private Teacher teacher;
     private Subject subject;
@@ -66,6 +66,10 @@ public class Class {
         System.out.println("class name: " + this.getClass().getSimpleName() + ", begin time: " + sdf.format(beginTime.getTime()) + ", end time: " + sdf.format(endTime.getTime()) + 
                         ", subject: " + subject.getSubject() + ", classroom: " + classroom.getRoomNumber() + 
                         ", teacher: " + teacher.getFirstName() + " " + teacher.getLastName());
+    }
+
+    public int compareTo(Class o) {
+        return this.beginTime.getTime().compareTo(o.beginTime.getTime());
     }
      
 }

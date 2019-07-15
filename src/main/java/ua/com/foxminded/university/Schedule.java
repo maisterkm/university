@@ -2,6 +2,7 @@ package ua.com.foxminded.university;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class Schedule {
@@ -21,26 +22,13 @@ public class Schedule {
         this.listOfMonthlySchedule = listOfMonthlySchedule;
     }
     
-//    public void removeClass(Class c) {
-//        for(int i = 0; i < listOfMonthlySchedule.size(); i++) {
-//            List<DailySchedule> listOfDailySchedule = listOfMonthlySchedule.get(i).getListOfDailySchedule();
-//            for(int j  = 0; j < listOfDailySchedule.size(); j++) {
-//                for(Class item : listOfDailySchedule.get(j).getListsOfClasses()) {
-//                    if(c == item) {
-//                        listOfDailySchedule.get(j).removeClass(c);
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     //////////////////////////////////////////*****************************////////////////////////////////////////
     public void addClass(Class c) {
         int month = c.getBeginTime().get(Calendar.MONTH);
         int day = c.getBeginTime().get(Calendar.DAY_OF_MONTH)-1;
-        
         listOfMonthlySchedule.get(month).getListOfDailySchedule().get(day).getListsOfClasses().add(c);
-        
+        Collections.sort(listOfMonthlySchedule.get(month).getListOfDailySchedule().get(day).getListsOfClasses());
     }
     
     ///////////////////////////////////////////////////
