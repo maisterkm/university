@@ -9,12 +9,12 @@ public class Person {
     private int id;
     private String firstName;
     private String lastName;
-    private int birthDay; 
-    private int birthMonth; 
-    private int birthYear; 
-    private int enrollmentDay; 
-    private int enrollmentMonth; 
-    private int enrollmentYear; 
+//    private int birthDay; 
+//    private int birthMonth; 
+//    private int birthYear; 
+//    private int enrollmentDay; 
+//    private int enrollmentMonth; 
+//    private int enrollmentYear; 
     Calendar dateOfBirth = new GregorianCalendar();
     Calendar enrollmentDate = new GregorianCalendar();
     SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyy");
@@ -32,13 +32,13 @@ public class Person {
         enrollmentDate.set(Calendar.DAY_OF_MONTH, enrollmentDay);
     }
     
-    public int getId() {
-        return id;
-    }
+//    public int getId() {
+//        return id;
+//    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
 
     public String getFirstName() {
         return firstName;
@@ -60,7 +60,6 @@ public class Person {
     public String toString() {
         String output = "class name: " + this.getClass().getSimpleName() +  ", id: " + id + ", first name: " + firstName + ", last name: " + lastName + 
                 ", date of birth: " + sdf.format(dateOfBirth.getTime()) + ", enrollment date: " + sdf.format(enrollmentDate.getTime());
-        
         return output;
     }  
 }

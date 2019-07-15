@@ -12,7 +12,7 @@ public class Teacher extends Person{
         
         this.position = position;
         this.salary = salary;
-        
+        teacherSchedule = new Schedule();
     }
 
     public Position getPosition() {
@@ -37,6 +37,22 @@ public class Teacher extends Person{
 
     public void setTeacherSchedule(Schedule teacherSchedule) {
         this.teacherSchedule = teacherSchedule;
+    }
+    
+    public void addClassToSchedule(Class c) {
+        teacherSchedule.addClass(c);
+    }
+    
+    public void removeClassFromSchedule(Class c) {
+        teacherSchedule.removeClass(c);    
+    }
+    
+    public void displayMonthSchedule(int month) {
+        teacherSchedule.displayMonth(month);
+    }
+    
+    public void displayDaySchedule(int month, int day) {
+        teacherSchedule.displayDay(month, day);
     }
     
     @Override

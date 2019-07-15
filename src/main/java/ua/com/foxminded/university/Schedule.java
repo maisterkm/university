@@ -32,9 +32,6 @@ public class Schedule {
     public void removeClass(Class c) {
         int month = c.getBeginTime().get(Calendar.MONTH);
         int day = c.getBeginTime().get(Calendar.DAY_OF_MONTH);
-//        int index = listOfMonthlySchedule.get(month).listOfDailySchedule.get(day).getListsOfClasses().indexOf(c);
-        System.out.println("month = " + month + " day = " + day);
-        
         listOfMonthlySchedule.get(month).listOfDailySchedule.get(day-1).removeClass(c);
     }
     

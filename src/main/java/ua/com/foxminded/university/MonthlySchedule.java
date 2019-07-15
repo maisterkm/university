@@ -13,18 +13,6 @@ public class MonthlySchedule {
         }
     }
 
-//    public void addDayToMonthlySchedule(DailySchedule ds) {
-//        if(ds.getListsOfClasses().size() != 0) {
-//            if(listOfDailySchedule.size() != 0 && 
-//                    ds.getListsOfClasses().get(0).getBeginTime().get(Calendar.MONTH) == listOfDailySchedule.get(0).getListsOfClasses().get(0).getBeginTime().get(Calendar.MONTH) && 
-//                    ds.getListsOfClasses().get(0).getBeginTime().get(Calendar.YEAR) == listOfDailySchedule.get(0).getListsOfClasses().get(0).getBeginTime().get(Calendar.YEAR)) {
-//                listOfDailySchedule.add(ds);
-//            } else if(listOfDailySchedule.size() == 0) {
-//                listOfDailySchedule.add(ds);
-//            }
-//        }
-//    }
-    
     public List<DailySchedule> getListOfDailySchedule() {
         return listOfDailySchedule;
     }
