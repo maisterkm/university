@@ -22,8 +22,6 @@ public class Schedule {
         this.listOfMonthlySchedule = listOfMonthlySchedule;
     }
     
-
-    //////////////////////////////////////////*****************************////////////////////////////////////////
     public void addClass(Class c) {
         int month = c.getBeginTime().get(Calendar.MONTH);
         int day = c.getBeginTime().get(Calendar.DAY_OF_MONTH)-1;
@@ -31,7 +29,6 @@ public class Schedule {
         Collections.sort(listOfMonthlySchedule.get(month).getListOfDailySchedule().get(day).getListsOfClasses());
     }
     
-    ///////////////////////////////////////////////////
     public void rmoveClass(Class c) {
         int month = c.getBeginTime().get(Calendar.MONTH);
         int day = c.getBeginTime().get(Calendar.DAY_OF_MONTH);
@@ -39,12 +36,13 @@ public class Schedule {
         listOfMonthlySchedule.get(month).listOfDailySchedule.get(day).removeClass(c);
     }
     
-    public void display(int month) {
-        System.out.println("\n----- Display Month -----");
-        listOfMonthlySchedule.get(month-1).displayMonth();
+    public void displayMonth(int month) {
+        System.out.println("\n---------- Display Month ----------");
+        listOfMonthlySchedule.get(month-1).displayMonthlySchedule();
     }
     
-//    public void displayDay(int month, int day) {
-//        listOfMonthlySchedule.get(month).listOfDailySchedule.get(day).display();
-//    }
+    public void displayDay(int month, int day) {
+        System.out.println("\n---------- Display Day ----------");
+        listOfMonthlySchedule.get(month-1).listOfDailySchedule.get(day-1).displayDay();
+    }
 }

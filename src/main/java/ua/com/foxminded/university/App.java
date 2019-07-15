@@ -85,7 +85,8 @@ public class App
         schedule.addClass(physicClass_lecture);
         schedule.addClass(statisticClass_seminar);
         schedule.addClass(statisticClass_lecture_II);
-        schedule.display(9);
+        schedule.displayMonth(9);
+        schedule.displayDay(9, 1);
     }
     
 }
