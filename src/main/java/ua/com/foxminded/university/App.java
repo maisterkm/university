@@ -1,17 +1,16 @@
 package ua.com.foxminded.university;
 
-public class App 
-{
-    public static void main( String[] args )
-    {
-        
+public class App {
+    public static void main(String[] args) {
+
         Teacher teacher1 = new Teacher(1, "Joe", "Black", 25, 10, 1965, 12, 11, 2001, Position.PROFESSOR, 5000);
         Teacher teacher2 = new Teacher(2, "Martin", "Seal", 2, 5, 1976, 9, 3, 2011, Position.LECTURER, 2500);
-        Teacher teacher3 = new Teacher(2, "firstName_3", "lastName_3", 12, 10, 1958, 1, 8, 1987, Position.PROFESSOR, 6000);
+        Teacher teacher3 = new Teacher(2, "firstName_3", "lastName_3", 12, 10, 1958, 1, 8, 1987, Position.PROFESSOR,
+                6000);
         System.out.println(teacher1.toString());
         System.out.println(teacher2.toString());
         System.out.println(teacher3.toString());
-        
+
         Student student1 = new Student(1, "Eric", "Moore", 7, 2, 1999, 1, 9, 2016);
         Student student2 = new Student(2, "Whilliam", "Hill", 19, 6, 1999, 1, 9, 2016);
         Student student3 = new Student(3, "firstName_3", "lastName_3", 3, 2, 1999, 1, 9, 2016);
@@ -28,7 +27,7 @@ public class App
         System.out.println(student6.toString());
         System.out.println(student7.toString());
         System.out.println();
-        
+
         Group group1 = new Group("mt-1", Faculties.FACULTY_OF_MATHEMATICS);
         group1.addStudent(student1);
         group1.addStudent(student2);
@@ -36,15 +35,14 @@ public class App
         group1.addStudent(student4);
         System.out.println();
         group1.display();
-        
-        
+
         Group group2 = new Group("cs-1", Faculties.FACULTY_OF_COMPUTER_SCIENCE);
         group2.addStudent(student5);
         group2.addStudent(student6);
         group2.addStudent(student7);
         System.out.println();
         group2.display();
-        
+
         Subject subject1 = new Subject(Subjects.MATHEMATICS, teacher1, "description_1");
         Subject subject2 = new Subject(Subjects.PHYSICS, teacher2, "description_2");
         Subject subject3 = new Subject(Subjects.STATISTICS, teacher3, "description_3");
@@ -52,7 +50,7 @@ public class App
         System.out.println(subject1.toString());
         System.out.println(subject2.toString());
         System.out.println(subject3.toString());
-        
+
         Classroom room1 = new Classroom(Campus.CAMPUS_A, 101, 30);
         Classroom room2 = new Classroom(Campus.CAMPUS_B, 202, 40);
         Classroom room3 = new Classroom(Campus.CAMPUS_C, 303, 60);
@@ -60,7 +58,7 @@ public class App
         System.out.println(room1.toString());
         System.out.println(room2.toString());
         System.out.println(room3.toString());
-        
+
         Class mathClass_seminar = new Class(room1, teacher1, subject1, 8, 0, 1, 9, 2019, 9, 30, 1, 9, 2019);
         Class mathClass_lecture = new Class(room3, teacher1, subject1, 10, 0, 2, 9, 2019, 11, 30, 2, 9, 2019);
         Class physicClass_seminar = new Class(room2, teacher2, subject2, 10, 0, 1, 9, 2019, 11, 30, 1, 9, 2019);
@@ -76,7 +74,7 @@ public class App
         statisticClass_seminar.displayClass();
         statisticClass_lecture.displayClass();
         statisticClass_lecture_II.displayClass();
-        
+
         Schedule schedule = new Schedule();
         schedule.addClass(statisticClass_lecture);
         schedule.addClass(physicClass_seminar);
@@ -87,10 +85,23 @@ public class App
         schedule.addClass(statisticClass_lecture_II);
         schedule.displayMonth(9);
         schedule.displayDay(9, 1);
-        
+
         schedule.removeClass(statisticClass_seminar);
         schedule.removeClass(statisticClass_lecture);
         schedule.displayMonth(9);
+
+        System.out.println("\nAdd classes to student's schedule");
+        student1.addClassToSchedule(mathClass_seminar);
+        student1.addClassToSchedule(mathClass_lecture);
+        student1.addClassToSchedule(statisticClass_seminar);
+        student1.addClassToSchedule(statisticClass_lecture);
+        student1.displayMonthSchedule(9);
+        System.out.println("\nRemove classes from student's schedule");
+        student1.removeClassFromSchedule(mathClass_lecture);
+        student1.removeClassFromSchedule(statisticClass_lecture);
+        student1.displayMonthSchedule(9);
+        student1.displayDaySchedule(9, 1);
+
     }
-    
+
 }
