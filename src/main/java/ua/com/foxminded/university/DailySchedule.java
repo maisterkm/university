@@ -2,6 +2,7 @@ package ua.com.foxminded.university;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DailySchedule {
@@ -20,6 +21,9 @@ public class DailySchedule {
     }
 
     public void removeClass(Class clas) {
+        int month = clas.getBeginTime().get(Calendar.MONTH);
+        int day = clas.getBeginTime().get(Calendar.DAY_OF_MONTH);
+        System.out.println("Remove day " + day + " month " + month);
         listsOfClasses.remove(clas);
     }
     
@@ -32,12 +36,4 @@ public class DailySchedule {
                 }
         }
     }
-    
-//    public void display(Class c) {
-//        for(Class item : listsOfClasses) {
-//            if(item == c) {
-//                item.display();
-//            }
-//        }
-//    }
 }

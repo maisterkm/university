@@ -62,7 +62,7 @@ public class App
         System.out.println(room3.toString());
         
         Class mathClass_seminar = new Class(room1, teacher1, subject1, 8, 0, 1, 9, 2019, 9, 30, 1, 9, 2019);
-        Class mathClass_lecture = new Class(room3, teacher1, subject1, 10, 0, 2, 9, 2019, 11, 30, 1, 9, 2019);
+        Class mathClass_lecture = new Class(room3, teacher1, subject1, 10, 0, 2, 9, 2019, 11, 30, 2, 9, 2019);
         Class physicClass_seminar = new Class(room2, teacher2, subject2, 10, 0, 1, 9, 2019, 11, 30, 1, 9, 2019);
         Class physicClass_lecture = new Class(room3, teacher2, subject2, 13, 0, 2, 9, 2019, 14, 30, 2, 9, 2019);
         Class statisticClass_seminar = new Class(room1, teacher3, subject3, 10, 0, 4, 9, 2019, 11, 30, 4, 9, 2019);
@@ -87,6 +87,10 @@ public class App
         schedule.addClass(statisticClass_lecture_II);
         schedule.displayMonth(9);
         schedule.displayDay(9, 1);
+        
+        schedule.removeClass(statisticClass_seminar);
+        schedule.removeClass(statisticClass_lecture);
+        schedule.displayMonth(9);
     }
     
 }
