@@ -34,14 +34,14 @@ public class App {
         group1.addStudent(student3);
         group1.addStudent(student4);
         System.out.println();
-        group1.display();
+        group1.displayGroup();
 
         Group group2 = new Group("cs-1", Faculties.FACULTY_OF_COMPUTER_SCIENCE);
         group2.addStudent(student5);
         group2.addStudent(student6);
         group2.addStudent(student7);
         System.out.println();
-        group2.display();
+        group2.displayGroup();
 
         Subject subject1 = new Subject(Subjects.MATHEMATICS, teacher1, "description_1");
         Subject subject2 = new Subject(Subjects.PHYSICS, teacher2, "description_2");
@@ -58,6 +58,16 @@ public class App {
         System.out.println(room1.toString());
         System.out.println(room2.toString());
         System.out.println(room3.toString());
+        
+        System.out.println("\nAdd group to student");
+        student1.setGroup(group1);
+        student2.setGroup(group1);
+        student3.setGroup(group2);
+        student4.setGroup(group2);
+        System.out.println(student1.toString());
+        System.out.println(student2.toString());
+        System.out.println(student3.toString());
+        System.out.println(student4.toString());
 
         Class mathClass_seminar = new Class(room1, teacher1, subject1, 8, 0, 1, 9, 2019, 9, 30, 1, 9, 2019);
         Class mathClass_lecture = new Class(room3, teacher1, subject1, 10, 0, 2, 9, 2019, 11, 30, 2, 9, 2019);
@@ -101,7 +111,6 @@ public class App {
         student1.removeClassFromSchedule(statisticClass_lecture);
         student1.displayMonthSchedule(9);
         student1.displayDaySchedule(9, 1);
-
     }
 
 }

@@ -54,23 +54,16 @@ public class Class implements Comparable<Class> {
         this.teacher = teacher;
     }
 
-    public Subject getSubject() {
-        return subject;
-    }
-
-    public void setSubject(Subject subject) {
-        this.subject = subject;
-    }
-
-    public void displayClass() {
-        System.out.println("class name: " + this.getClass().getSimpleName() + ", begin time: "
+    public String displayClass() {
+        String output = "class name: " + this.getClass().getSimpleName() + ", begin time: "
                 + sdf.format(beginTime.getTime()) + ", end time: " + sdf.format(endTime.getTime()) + ", subject: "
                 + subject.getSubject() + ", classroom: " + classroom.getRoomNumber() + ", teacher: "
-                + teacher.getFirstName() + " " + teacher.getLastName());
+                + teacher.getFirstName() + " " + teacher.getLastName();
+        System.out.println(output);
+        return output;
     }
 
     public int compareTo(Class o) {
         return this.beginTime.getTime().compareTo(o.beginTime.getTime());
     }
-
 }

@@ -23,13 +23,15 @@ public class DailySchedule {
         listsOfClasses.remove(clas);
     }
 
-    public void displayDay() {
+    public String displayDay() {
+        String output = "";
         if (!listsOfClasses.isEmpty()) {
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMMM");
-            System.out.println(sdf.format(listsOfClasses.get(0).getBeginTime().getTime()));
+            output += sdf.format(listsOfClasses.get(0).getBeginTime().getTime());
             for (Class item : listsOfClasses) {
-                item.displayClass();
+                output += item.displayClass();
             }
         }
+        return output;
     }
 }

@@ -15,30 +15,6 @@ public class Teacher extends Person {
         teacherSchedule = new Schedule();
     }
 
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public Schedule getTeacherSchedule() {
-        return teacherSchedule;
-    }
-
-    public void setTeacherSchedule(Schedule teacherSchedule) {
-        this.teacherSchedule = teacherSchedule;
-    }
-
     public void addClassToSchedule(Class c) {
         teacherSchedule.addClass(c);
     }

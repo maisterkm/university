@@ -9,6 +9,7 @@ public class Student extends Person {
             int enrollmentDay, int enrollmentMonth, int enrollmentYear) {
         super(id, firstName, lastName, birthDay, birthMonth, birthYear, enrollmentDay, enrollmentMonth, enrollmentYear);
         group = null;
+//        this.group = group;
         studentSchedule = new Schedule();
     }
 
@@ -18,14 +19,6 @@ public class Student extends Person {
 
     public void setGroup(Group group) {
         this.group = group;
-    }
-
-    public Schedule getStudentSchedule() {
-        return studentSchedule;
-    }
-
-    public void setStudentSchedule(Schedule studentSchedule) {
-        this.studentSchedule = studentSchedule;
     }
 
     public void addClassToSchedule(Class c) {
