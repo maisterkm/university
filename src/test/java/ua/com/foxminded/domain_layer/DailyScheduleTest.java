@@ -29,4 +29,13 @@ public class DailyScheduleTest {
         String expected = "Sunday, 1 Septemberclass name: Class, begin time: 08:00 01-09-2019, end time: 09:30 01-09-2019, subject: MATHEMATICS, classroom: 101, teacher: Joe Blackclass name: Class, begin time: 10:00 02-09-2019, end time: 11:30 02-09-2019, subject: MATHEMATICS, classroom: 101, teacher: Joe Black";
         assertEquals(expected, result);
     }
+    
+    @Test
+    public void addClassShouldAddClassToListsOfClasses() {
+        dailySchedule.addClass(class1);
+        dailySchedule.addClass(class2);
+        int resultSize = dailySchedule.getListsOfClasses().size();
+        int expectedSize = 2;
+        assertEquals(expectedSize, resultSize);
+    }
 }
