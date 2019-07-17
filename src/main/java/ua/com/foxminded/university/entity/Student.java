@@ -1,4 +1,6 @@
-package ua.com.foxminded.university;
+package ua.com.foxminded.university.entity;
+
+import ua.com.foxminded.university.domain.Schedule;
 
 public class Student extends Person {
 

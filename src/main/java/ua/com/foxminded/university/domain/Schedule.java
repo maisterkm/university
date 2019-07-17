@@ -1,9 +1,11 @@
-package ua.com.foxminded.university;
+package ua.com.foxminded.university.domain;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
+
+import ua.com.foxminded.university.entity.Class;
 
 public class Schedule {
     private List<MonthlySchedule> listOfMonthlySchedule = new ArrayList<MonthlySchedule>();

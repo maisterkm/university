@@ -1,4 +1,15 @@
-package ua.com.foxminded.university;
+package ua.com.foxminded.university.domain;
+
+import ua.com.foxminded.university.entity.Campus;
+import ua.com.foxminded.university.entity.Class;
+import ua.com.foxminded.university.entity.Classroom;
+import ua.com.foxminded.university.entity.Faculties;
+import ua.com.foxminded.university.entity.Group;
+import ua.com.foxminded.university.entity.Position;
+import ua.com.foxminded.university.entity.Student;
+import ua.com.foxminded.university.entity.Subject;
+import ua.com.foxminded.university.entity.Subjects;
+import ua.com.foxminded.university.entity.Teacher;
 
 public class App {
     public static void main(String[] args) {

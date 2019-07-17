@@ -1,4 +1,4 @@
-package ua.com.foxminded.university;
+package ua.com.foxminded.university.entity;
 
 public class Subject {
     private Subjects subject;

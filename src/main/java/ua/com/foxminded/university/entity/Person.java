@@ -1,4 +1,4 @@
-package ua.com.foxminded.university;
+package ua.com.foxminded.university.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
