@@ -16,14 +16,6 @@ public class Schedule {
         }
     }
 
-    public List<MonthlySchedule> getListOfMonthlySchedule() {
-        return listOfMonthlySchedule;
-    }
-
-    public void setListOfMonthlySchedule(List<MonthlySchedule> listOfMonthlySchedule) {
-        this.listOfMonthlySchedule = listOfMonthlySchedule;
-    }
-
     public void addClass(Class c) {
         int month = c.getBeginTime().get(Calendar.MONTH);
         int day = c.getBeginTime().get(Calendar.DAY_OF_MONTH) - 1;

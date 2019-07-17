@@ -13,10 +13,6 @@ public class DailySchedule {
         return listsOfClasses;
     }
 
-    public void setListsOfClasses(List<Class> listsOfClasses) {
-        this.listsOfClasses = listsOfClasses;
-    }
-
     public void addClass(Class clas) {
         listsOfClasses.add(clas);
     }
