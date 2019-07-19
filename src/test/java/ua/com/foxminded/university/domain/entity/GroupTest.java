@@ -1,12 +1,8 @@
-package ua.com.foxminded.domain_layer;
+package ua.com.foxminded.university.domain.entity;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import ua.com.foxminded.university.entity.Faculties;
-import ua.com.foxminded.university.entity.Group;
-import ua.com.foxminded.university.entity.Student;
 
 public class GroupTest {
     Group group = new Group("mt-1", Faculties.FACULTY_OF_MATHEMATICS);

@@ -1,16 +1,8 @@
-package ua.com.foxminded.domain_layer;
+package ua.com.foxminded.university.domain.entity;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import ua.com.foxminded.university.entity.Campus;
-import ua.com.foxminded.university.entity.Class;
-import ua.com.foxminded.university.entity.Classroom;
-import ua.com.foxminded.university.entity.Position;
-import ua.com.foxminded.university.entity.Subject;
-import ua.com.foxminded.university.entity.Subjects;
-import ua.com.foxminded.university.entity.Teacher;
 
 public class ClassTest {
     private Teacher teacher = new Teacher(2, "firstName_3", "lastName_3", 12, 10, 1958, 1, 8, 1987, Position.PROFESSOR,

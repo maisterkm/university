@@ -1,4 +1,4 @@
-package ua.com.foxminded.university.entity;
+package ua.com.foxminded.university.domain.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class Group {
         this.groupNumber = groupNumber;
         this.faculty = faculty;
     }
-    
+
     public List<Student> getStudentList() {
         return studentList;
     }
@@ -41,8 +41,8 @@ public class Group {
 
     public String displayGroup() {
         String output = "";
-        output += "class name: " + this.getClass().getSimpleName() + ", group number: " + groupNumber
-                + ", faculty: " + faculty + "\n\tlist of students:";
+        output += "class name: " + this.getClass().getSimpleName() + ", group number: " + groupNumber + ", faculty: "
+                + faculty + "\n\tlist of students:";
         int i = 0;
         for (Student item : studentList) {
             output += "\t" + Integer.toString(++i) + ": " + item;

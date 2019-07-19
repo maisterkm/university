@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.com.foxminded.university.entity.Class;
+import ua.com.foxminded.university.domain.entity.Class;
 
 public class DailySchedule {
     private List<Class> listsOfClasses = new ArrayList<Class>();

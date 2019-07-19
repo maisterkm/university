@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import ua.com.foxminded.university.entity.Class;
+import ua.com.foxminded.university.domain.entity.Class;
 
 public class Schedule {
     private List<MonthlySchedule> listOfMonthlySchedule = new ArrayList<MonthlySchedule>();

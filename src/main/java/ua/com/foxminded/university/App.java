@@ -1,15 +1,16 @@
-package ua.com.foxminded.university.domain;
+package ua.com.foxminded.university;
 
-import ua.com.foxminded.university.entity.Campus;
-import ua.com.foxminded.university.entity.Class;
-import ua.com.foxminded.university.entity.Classroom;
-import ua.com.foxminded.university.entity.Faculties;
-import ua.com.foxminded.university.entity.Group;
-import ua.com.foxminded.university.entity.Position;
-import ua.com.foxminded.university.entity.Student;
-import ua.com.foxminded.university.entity.Subject;
-import ua.com.foxminded.university.entity.Subjects;
-import ua.com.foxminded.university.entity.Teacher;
+import ua.com.foxminded.university.domain.Schedule;
+import ua.com.foxminded.university.domain.entity.Campus;
+import ua.com.foxminded.university.domain.entity.Class;
+import ua.com.foxminded.university.domain.entity.Classroom;
+import ua.com.foxminded.university.domain.entity.Faculties;
+import ua.com.foxminded.university.domain.entity.Group;
+import ua.com.foxminded.university.domain.entity.Position;
+import ua.com.foxminded.university.domain.entity.Student;
+import ua.com.foxminded.university.domain.entity.Subject;
+import ua.com.foxminded.university.domain.entity.Subjects;
+import ua.com.foxminded.university.domain.entity.Teacher;
 
 public class App {
     public static void main(String[] args) {
@@ -69,7 +70,7 @@ public class App {
         System.out.println(room1.toString());
         System.out.println(room2.toString());
         System.out.println(room3.toString());
-        
+
         System.out.println("\nAdd group to student");
         student1.setGroup(group1);
         student2.setGroup(group1);

@@ -1,17 +1,16 @@
-package ua.com.foxminded.domain_layer;
+package ua.com.foxminded.university.domain;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import ua.com.foxminded.university.domain.DailySchedule;
-import ua.com.foxminded.university.entity.Campus;
-import ua.com.foxminded.university.entity.Class;
-import ua.com.foxminded.university.entity.Classroom;
-import ua.com.foxminded.university.entity.Position;
-import ua.com.foxminded.university.entity.Subject;
-import ua.com.foxminded.university.entity.Subjects;
-import ua.com.foxminded.university.entity.Teacher;
+import ua.com.foxminded.university.domain.entity.Campus;
+import ua.com.foxminded.university.domain.entity.Class;
+import ua.com.foxminded.university.domain.entity.Classroom;
+import ua.com.foxminded.university.domain.entity.Position;
+import ua.com.foxminded.university.domain.entity.Subject;
+import ua.com.foxminded.university.domain.entity.Subjects;
+import ua.com.foxminded.university.domain.entity.Teacher;
 
 public class DailyScheduleTest {
     Teacher teacher = new Teacher(1, "Joe", "Black", 25, 10, 1965, 12, 11, 2001, Position.PROFESSOR, 5000);
@@ -29,7 +28,7 @@ public class DailyScheduleTest {
         String expected = "Sunday, 1 Septemberclass name: Class, begin time: 08:00 01-09-2019, end time: 09:30 01-09-2019, subject: MATHEMATICS, classroom: 101, teacher: Joe Blackclass name: Class, begin time: 10:00 02-09-2019, end time: 11:30 02-09-2019, subject: MATHEMATICS, classroom: 101, teacher: Joe Black";
         assertEquals(expected, result);
     }
-    
+
     @Test
     public void addClassShouldAddClassToListsOfClasses() {
         dailySchedule.addClass(class1);

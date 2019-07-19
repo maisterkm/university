@@ -1,4 +1,4 @@
-package ua.com.foxminded.university.entity;
+package ua.com.foxminded.university.domain.entity;
 
 public class Classroom {
     private Campus campus;
