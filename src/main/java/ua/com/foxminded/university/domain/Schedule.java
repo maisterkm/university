@@ -30,12 +30,10 @@ public class Schedule {
     }
 
     public void displayMonth(int month) {
-        System.out.println("\n---------- Display Month ----------");
         listOfMonthlySchedule.get(month - 1).displayMonthlySchedule();
     }
 
     public void displayDay(int month, int day) {
-        System.out.println("\n---------- Display Day ----------");
         listOfMonthlySchedule.get(month - 1).listOfDailySchedule.get(day - 1).displayDay();
     }
 }

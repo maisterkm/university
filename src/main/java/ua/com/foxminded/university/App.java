@@ -105,11 +105,14 @@ public class App {
         schedule.addClass(physicClass_lecture);
         schedule.addClass(statisticClass_seminar);
         schedule.addClass(statisticClass_lecture_II);
+        System.out.println("\n---------- Display Month ----------");
         schedule.displayMonth(9);
+        System.out.println("\n---------- Display Day ----------");
         schedule.displayDay(9, 1);
 
         schedule.removeClass(statisticClass_seminar);
         schedule.removeClass(statisticClass_lecture);
+        System.out.println("\n---------- Display Month ----------");
         schedule.displayMonth(9);
 
         System.out.println("\nAdd classes to student's schedule");
@@ -117,11 +120,14 @@ public class App {
         student1.addClassToSchedule(mathClass_lecture);
         student1.addClassToSchedule(statisticClass_seminar);
         student1.addClassToSchedule(statisticClass_lecture);
+        System.out.println("\n---------- Display Month ----------");
         student1.displayMonthSchedule(9);
         System.out.println("\nRemove classes from student's schedule");
         student1.removeClassFromSchedule(mathClass_lecture);
         student1.removeClassFromSchedule(statisticClass_lecture);
+        System.out.println("\n---------- Display Month ----------");
         student1.displayMonthSchedule(9);
+        System.out.println("\n---------- Display Day ----------");
         student1.displayDaySchedule(9, 1);
     }
 
