@@ -1,5 +1,6 @@
 package ua.com.foxminded.university;
 
+import ua.com.foxminded.university.dao.DBConnector;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Class;
@@ -62,10 +63,17 @@ public class App {
         System.out.println(subject1.toString());
         System.out.println(subject2.toString());
         System.out.println(subject3.toString());
+        
+        Campus campus_1 = new Campus();
+        Campus campus_2 = new Campus();
+        Campus campus_3 = new Campus();
+        campus_1.setCampus("CAMPUS_A");
+        campus_2.setCampus("CAMPUS_B");
+        campus_3.setCampus("CAMPUS_C");
 
-        Classroom room1 = new Classroom(Campus.CAMPUS_A, 101, 30);
-        Classroom room2 = new Classroom(Campus.CAMPUS_B, 202, 40);
-        Classroom room3 = new Classroom(Campus.CAMPUS_C, 303, 60);
+        Classroom room1 = new Classroom(campus_1, 101, 30);
+        Classroom room2 = new Classroom(campus_1, 202, 40);
+        Classroom room3 = new Classroom(campus_1, 303, 60);
         System.out.println();
         System.out.println(room1.toString());
         System.out.println(room2.toString());

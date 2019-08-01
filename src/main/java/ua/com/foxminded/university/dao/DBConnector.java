@@ -1,4 +1,4 @@
-package ua.com.foxminded.university;
+package ua.com.foxminded.university.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -28,13 +28,13 @@ public class DBConnector {
         return connection;
     }
     
-    public void close() {
-        try {
-            if(connection != null) {
-                connection.close();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void close() {
+//        try {
+//            if(connection != null) {
+//                connection.close();
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
