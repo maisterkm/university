@@ -129,6 +129,10 @@ public class App {
         student1.displayMonthSchedule(9);
         System.out.println("\n---------- Display Day ----------");
         student1.displayDaySchedule(9, 1);
+        
+        DBConnector dbConnector = new DBConnector();
+        dbConnector.getConnection();
+        
     }
 
 }

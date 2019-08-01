@@ -10,6 +10,11 @@
   <url>http://git.foxminded.com.ua/maister/university.git</url>
   
   <dependencies>
+  <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.5</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
