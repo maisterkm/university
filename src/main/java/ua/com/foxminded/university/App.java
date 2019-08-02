@@ -1,6 +1,8 @@
 package ua.com.foxminded.university;
 
-import ua.com.foxminded.university.dao.DBConnector;
+import java.sql.SQLException;
+
+import ua.com.foxminded.university.dao.service.CampusService;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Class;
@@ -138,8 +140,17 @@ public class App {
         System.out.println("\n---------- Display Day ----------");
         student1.displayDaySchedule(9, 1);
         
-        DBConnector dbConnector = new DBConnector();
-        dbConnector.getConnection();
+        Campus campus_test = new Campus();
+        campus_test.setCampus_id(10);
+        campus_test.setCampus("CAMPUS_10");
+        CampusService campusService = new CampusService();
+        try {
+            //campusService.add(campus_test);
+            Campus campus_q = campusService.getById(10);
+            System.out.println("id=" + campus_q.getCampus_id() + " campus=" + campus_q.getCampus());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         
     }
 

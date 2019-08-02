@@ -11,7 +11,7 @@ public interface CampusDAO {
     
     //read
     List<Campus> getAll() throws SQLException;
-    Campus getById(Integer id);
+    Campus getById(Integer id) throws SQLException;
     
     //update
     void update(Campus campus) throws SQLException;

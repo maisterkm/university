@@ -12,14 +12,13 @@ import ua.com.foxminded.university.dao.CampusDAO;
 import ua.com.foxminded.university.dao.DBConnector;
 import ua.com.foxminded.university.domain.entity.Campus;
 
-public abstract class CampusService extends DBConnector implements CampusDAO {
+public class CampusService extends DBConnector implements CampusDAO {
 
-    Connection connection = null;
-
+    Connection connection = getConnection();
+    
     public void add(Campus campus) throws SQLException {
-        connection = getConnection();
         PreparedStatement preparedStatement = null;
-        String sql = "INSERT INTO CAMPUS (campus) VALUES (?)";
+        String sql = "INSERT INTO CAMPUS (campus_id, campus) VALUES (?, ?)";
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -71,22 +70,21 @@ public abstract class CampusService extends DBConnector implements CampusDAO {
         return campusList;
     }
 
-    public Campus getById(int campus_id) throws SQLException {
+    public Campus getById(Integer campus_id) throws SQLException {
         PreparedStatement preparedStatement = null;
-
         String sql = "SELECT campus_id, campus FROM CAMPUS WHERE campus_id = ?";
-
         Campus campus = new Campus();
+        
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, campus_id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-
+            resultSet.next();
             campus.setCampus_id(resultSet.getInt("campus_id"));
             campus.setCampus(resultSet.getString("campus"));
-
-            preparedStatement.executeUpdate(); /////// ???????
+            
+            //preparedStatement.executeUpdate(); 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -97,7 +95,6 @@ public abstract class CampusService extends DBConnector implements CampusDAO {
                 connection.close();
             }
         }
-
         return campus;
     }
 
@@ -146,7 +143,5 @@ public abstract class CampusService extends DBConnector implements CampusDAO {
                 connection.close();
             }
         }
-
     }
-
 }
