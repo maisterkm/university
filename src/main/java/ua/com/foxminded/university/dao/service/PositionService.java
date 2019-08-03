@@ -8,34 +8,33 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.com.foxminded.university.dao.CampusDAO;
 import ua.com.foxminded.university.dao.DBConnector;
-import ua.com.foxminded.university.domain.entity.Campus;
+import ua.com.foxminded.university.domain.entity.Position;
 
-public class CampusService implements CampusDAO {
-
-    public void add(Campus campus) throws SQLException {
+public class PositionService {
+    public void add(Position position) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
         PreparedStatement statementSelect = null;
-        String sql_insert = "INSERT INTO CAMPUS (campus_id, campus) VALUES (?, ?)";
-        String sql_select = "SELECT * FROM CAMPUS WHERE campus_id=?";
+        String sql_insert = "INSERT INTO POSITIONS (position_id, position) VALUES (?, ?)";
+        String sql_select = "SELECT * FROM POSITIONS WHERE position_id=?";
 
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, campus.getCampus_id());
+            statementSelect.setInt(1, position.getPosition_id());
 
             ResultSet resultSet = statementSelect.executeQuery();
             while (resultSet.next()) {
-                if (resultSet.getInt("campus_id") == campus.getCampus_id()) {
-                    System.out.println("campus_id=" + campus.getCampus_id() + " is already in the table CAMPUS");
+                if (resultSet.getInt("position_id") == position.getPosition_id()) {
+                    System.out
+                            .println("position_id=" + position.getPosition_id() + " is already in the table POSITIONS");
                     return;
                 }
             }
-            statementInsert.setInt(1, campus.getCampus_id());
-            statementInsert.setString(2, campus.getCampus());
+            statementInsert.setInt(1, position.getPosition_id());
+            statementInsert.setString(2, position.getPosition());
 
             statementInsert.executeUpdate();
         } catch (SQLException e) {
@@ -54,11 +53,11 @@ public class CampusService implements CampusDAO {
 
     }
 
-    public List<Campus> getAll() throws SQLException {
+    public List<Position> getAll() throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
-        List<Campus> campusList = new ArrayList<Campus>();
-        String sql = "SELECT campus_id, campus FROM CAMPUS";
+        List<Position> positionList = new ArrayList<Position>();
+        String sql = "SELECT position_id, position FROM POSITIONS";
         Statement statement = null;
 
         try {
@@ -66,11 +65,11 @@ public class CampusService implements CampusDAO {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                Campus campus = new Campus();
-                campus.setCampus_id(resultSet.getInt("campus_id"));
-                campus.setCampus(resultSet.getString("campus"));
+                Position position = new Position();
+                position.setPosition_id(resultSet.getInt("position_id"));
+                position.setPosition(resultSet.getString("position"));
 
-                campusList.add(campus);
+                positionList.add(position);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -82,24 +81,24 @@ public class CampusService implements CampusDAO {
                 connection.close();
             }
         }
-        return campusList;
+        return positionList;
     }
 
-    public Campus getById(Integer campus_id) throws SQLException {
+    public Position getById(Integer position_id) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
-        String sql = "SELECT campus_id, campus FROM CAMPUS WHERE campus_id = ?";
-        Campus campus = new Campus();
+        String sql = "SELECT position_id, position FROM POSITIONS WHERE position_id = ?";
+        Position position = new Position();
 
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, campus_id);
+            preparedStatement.setInt(1, position_id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            campus.setCampus_id(resultSet.getInt("campus_id"));
-            campus.setCampus(resultSet.getString("campus"));
+            position.setPosition_id(resultSet.getInt("position_id"));
+            position.setPosition(resultSet.getString("position"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -110,19 +109,19 @@ public class CampusService implements CampusDAO {
                 connection.close();
             }
         }
-        return campus;
+        return position;
     }
 
-    public void update(Campus campus) throws SQLException {
+    public void update(Position position) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
-        String sql_update = "UPDATE CAMPUS SET campus=? WHERE campus_id=?";
+        String sql_update = "UPDATE POSITIONS SET position=? WHERE position_id=?";
 
         try {
             preparedStatement = connection.prepareStatement(sql_update);
-            preparedStatement.setString(1, campus.getCampus());
-            preparedStatement.setInt(2, campus.getCampus_id());
+            preparedStatement.setString(1, position.getPosition());
+            preparedStatement.setInt(2, position.getPosition_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -136,14 +135,14 @@ public class CampusService implements CampusDAO {
         }
     }
 
-    public void remove(Campus campus) throws SQLException {
+    public void remove(Position position) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
-        String sql_delete = "DELETE FROM CAMPUS WHERE campus_id=?";
+        String sql_delete = "DELETE FROM POSITIONS WHERE position_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, campus.getCampus_id());
+            preStatement.setInt(1, position.getPosition_id());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
