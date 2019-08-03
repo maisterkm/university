@@ -5,8 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class ClassTest {
-    Campus campus = new Campus();
-    private Teacher teacher = new Teacher(2, "firstName_3", "lastName_3", 12, 10, 1958, 1, 8, 1987, Position.PROFESSOR,
+    private Campus campus = new Campus();
+    private Position position = new Position();
+    private Teacher teacher = new Teacher(2, "firstName_3", "lastName_3", 12, 10, 1958, 1, 8, 1987, position,
             6000);
     private Classroom room = new Classroom(campus, 101, 30);
     private Subject subject = new Subject(Subjects.MATHEMATICS, teacher, "description_1");

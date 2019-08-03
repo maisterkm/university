@@ -20,10 +20,18 @@ import ua.com.foxminded.university.domain.entity.Teacher;
 public class App {
     public static void main(String[] args) {
 
-        Teacher teacher1 = new Teacher(1, "Joe", "Black", 25, 10, 1965, 12, 11, 2001, Position.PROFESSOR, 5000);
-        Teacher teacher2 = new Teacher(2, "Martin", "Seal", 2, 5, 1976, 9, 3, 2011, Position.LECTURER, 2500);
-        Teacher teacher3 = new Teacher(2, "firstName_3", "lastName_3", 12, 10, 1958, 1, 8, 1987, Position.PROFESSOR,
-                6000);
+        Position position_1 = new Position();
+        Position position_2 = new Position();
+        Position position_3 = new Position();
+        position_1.setPosition_id(1);
+        position_1.setPosition("PROFESSOR");
+        position_2.setPosition_id(2);
+        position_2.setPosition("ASSOCIATE_PROFESSOR");
+        position_3.setPosition_id(3);
+        position_3.setPosition("PROFESSOR");
+        Teacher teacher1 = new Teacher(1, "Joe", "Black", 25, 10, 1965, 12, 11, 2001, position_1, 5000);
+        Teacher teacher2 = new Teacher(2, "Martin", "Seal", 2, 5, 1976, 9, 3, 2011, position_3, 2500);
+        Teacher teacher3 = new Teacher(2, "firstName_3", "lastName_3", 12, 10, 1958, 1, 8, 1987, position_1, 6000);
         System.out.println(teacher1.toString());
         System.out.println(teacher2.toString());
         System.out.println(teacher3.toString());
