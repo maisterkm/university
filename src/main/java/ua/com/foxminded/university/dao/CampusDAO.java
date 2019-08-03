@@ -6,16 +6,17 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Campus;
 
 public interface CampusDAO {
-    //create
+    // create
     void add(Campus campus) throws SQLException;
-    
-    //read
+
+    // read
     List<Campus> getAll() throws SQLException;
+
     Campus getById(Integer id) throws SQLException;
-    
-    //update
+
+    // update
     void update(Campus campus) throws SQLException;
-    
-    //delete
+
+    // delete
     void remove(Campus campus) throws SQLException;
 }

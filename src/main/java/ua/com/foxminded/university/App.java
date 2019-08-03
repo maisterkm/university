@@ -1,6 +1,8 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ua.com.foxminded.university.dao.service.CampusService;
 import ua.com.foxminded.university.domain.Schedule;
@@ -65,7 +67,7 @@ public class App {
         System.out.println(subject1.toString());
         System.out.println(subject2.toString());
         System.out.println(subject3.toString());
-        
+
         Campus campus_1 = new Campus();
         Campus campus_2 = new Campus();
         Campus campus_3 = new Campus();
@@ -139,19 +141,47 @@ public class App {
         student1.displayMonthSchedule(9);
         System.out.println("\n---------- Display Day ----------");
         student1.displayDaySchedule(9, 1);
-        
+
         Campus campus_test = new Campus();
-        campus_test.setCampus_id(10);
-        campus_test.setCampus("CAMPUS_10");
+        campus_test.setCampus_id(12);
+        campus_test.setCampus("CAMPUS_12");
         CampusService campusService = new CampusService();
         try {
-            //campusService.add(campus_test);
-            Campus campus_q = campusService.getById(10);
-            System.out.println("id=" + campus_q.getCampus_id() + " campus=" + campus_q.getCampus());
+            System.out.println("\n--- CampusService ---\n");
+            System.out.println("\ncampusService.add()");
+            campusService.add(campus_test);
+
+            System.out.println("\ncampusService.getById()");
+            Campus campus_getById = campusService.getById(10);
+            System.out.println("id=" + campus_getById.getCampus_id() + " campus=" + campus_getById.getCampus());
+
+            System.out.println("\ncampusService.getAll()");
+            List<Campus> campusList = new ArrayList<Campus>();
+            campusList = campusService.getAll();
+            for (Campus item : campusList) {
+                System.out.println("id=" + item.getCampus_id() + " campus=" + item.getCampus());
+            }
+
+            System.out.println("\ncampusService.update()");
+            campus_test.setCampus("NEW CAMPUS");
+            campusService.update(campus_test);
+            campusList = campusService.getAll();
+            for (Campus item : campusList) {
+                System.out.println("id=" + item.getCampus_id() + " campus=" + item.getCampus());
+            }
+
+            System.out.println("\ncampusService.remove()");
+            Campus removeCampus = new Campus();
+            removeCampus.setCampus_id(1);
+            campusService.remove(removeCampus);
+            campusList = campusService.getAll();
+            for (Campus item : campusList) {
+                System.out.println("id=" + item.getCampus_id() + " campus=" + item.getCampus());
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
     }
 
 }
