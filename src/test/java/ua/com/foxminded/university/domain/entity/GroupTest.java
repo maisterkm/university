@@ -5,7 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class GroupTest {
-    Group group = new Group("mt-1", Faculties.FACULTY_OF_MATHEMATICS);
+    Faculties faculty = new Faculties();
+    
+    Group group = new Group("mt-1", faculty);
     Student student1 = new Student(1, "Eric", "Moore", 7, 2, 1999, 1, 9, 2016);
 
     @Test

@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.com.foxminded.university.dao.service.PositionService;
+import ua.com.foxminded.university.dao.service.FacultiesService;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Class;
@@ -52,8 +52,15 @@ public class App {
         System.out.println(student6.toString());
         System.out.println(student7.toString());
         System.out.println();
-
-        Group group1 = new Group("mt-1", Faculties.FACULTY_OF_MATHEMATICS);
+        
+        Faculties faculty_1 = new Faculties();
+        Faculties faculty_2 = new Faculties();
+        faculty_1.setFaculty_id(1);
+        faculty_1.setFaculty("FACULTY_OF_MATHEMATICS");
+        faculty_2.setFaculty_id(2);
+        faculty_2.setFaculty("FACULTY_OF_COMPUTER_SCIENCE");
+        
+        Group group1 = new Group("mt-1", faculty_1);
         group1.addStudent(student1);
         group1.addStudent(student2);
         group1.addStudent(student3);
@@ -61,7 +68,7 @@ public class App {
         System.out.println();
         group1.displayGroup();
 
-        Group group2 = new Group("cs-1", Faculties.FACULTY_OF_COMPUTER_SCIENCE);
+        Group group2 = new Group("cs-1", faculty_2);
         group2.addStudent(student5);
         group2.addStudent(student6);
         group2.addStudent(student7);
@@ -154,41 +161,41 @@ public class App {
 //        campus_test.setCampus_id(12);
 //        campus_test.setCampus("CAMPUS_12");
 //        CampusService campusService = new CampusService();
-        Position positionTest = new Position();
-        positionTest.setPosition_id(10);
-        positionTest.setPosition("NEW_POSITION");
-        PositionService positionService = new PositionService();
+        Faculties facultyTest = new Faculties();
+        facultyTest.setFaculty_id(10);
+        facultyTest.setFaculty("NEW_FACULTY");
+        FacultiesService facultyService = new FacultiesService();
         try {
-            System.out.println("\n--- PositionService ---\n");
-            System.out.println("\npositionService.add()");
-            positionService.add(positionTest);
+            System.out.println("\n--- Service ---\n");
+            System.out.println("\nadd()");
+            facultyService.add(facultyTest);
 
-            System.out.println("\npositionService.getById()");
-            Position position_getById = positionService.getById(10);
-            System.out.println("id=" + position_getById.getPosition_id() + " campus=" + position_getById.getPosition());
+            System.out.println("\ngetById()");
+            Faculties faculty_getById = facultyService.getById(10);
+            System.out.println("id=" + faculty_getById.getFaculty_id() + " campus=" + faculty_getById.getFaculty());
 
-            System.out.println("\npositionService.getAll()");
-            List<Position> positionList = new ArrayList<Position>();
-            positionList = positionService.getAll();
-            for (Position item : positionList) {
-                System.out.println("id=" + item.getPosition_id() + " position=" + item.getPosition());
+            System.out.println("\ngetAll()");
+            List<Faculties> facultyList = new ArrayList<Faculties>();
+            facultyList = facultyService.getAll();
+            for (Faculties item : facultyList) {
+                System.out.println("id=" + item.getFaculty_id() + " faculty=" + item.getFaculty());
             }
 
-            System.out.println("\npositionService.update()");
-            positionTest.setPosition("NEW POSITION");
-            positionService.update(positionTest);
-            positionList = positionService.getAll();
-            for (Position item : positionList) {
-                System.out.println("id=" + item.getPosition_id() + " position=" + item.getPosition());
+            System.out.println("\nupdate()");
+            facultyTest.setFaculty("NEW FACULTY");
+            facultyService.update(facultyTest);
+            facultyList = facultyService.getAll();
+            for (Faculties item : facultyList) {
+                System.out.println("id=" + item.getFaculty_id() + " faculty=" + item.getFaculty());
             }
 
-            System.out.println("\npositionService.remove()");
-            Position removePosition = new Position();
-            removePosition.setPosition_id(1);
-            positionService.remove(removePosition);
-            positionList = positionService.getAll();
-            for (Position item : positionList) {
-                System.out.println("id=" + item.getPosition_id() + " position=" + item.getPosition());
+            System.out.println("\nremove()");
+            Faculties removeFaculty = new Faculties();
+            removeFaculty.setFaculty_id(1);
+            facultyService.remove(removeFaculty);
+            facultyList = facultyService.getAll();
+            for (Faculties item : facultyList) {
+                System.out.println("id=" + item.getFaculty_id() + " faculty=" + item.getFaculty());
             }
         } catch (SQLException e) {
             e.printStackTrace();

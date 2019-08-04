@@ -9,32 +9,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ua.com.foxminded.university.dao.DBConnector;
-import ua.com.foxminded.university.domain.entity.Position;
+import ua.com.foxminded.university.dao.FacultyDAO;
+import ua.com.foxminded.university.domain.entity.Faculties;
 
-public class PositionService {
-    public void add(Position position) throws SQLException {
+public class FacultiesService implements FacultyDAO {
+    public void add(Faculties faculty) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
         PreparedStatement statementSelect = null;
-        String sql_insert = "INSERT INTO POSITIONS (position_id, position) VALUES (?, ?)";
-        String sql_select = "SELECT * FROM POSITIONS WHERE position_id=?";
+        String sql_insert = "INSERT INTO FACULTIES (faculty_id, faculty) VALUES (?, ?)";
+        String sql_select = "SELECT * FROM FACULTIES WHERE faculty_id=?";
 
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, position.getPosition_id());
+            statementSelect.setInt(1, faculty.getFaculty_id());
 
             ResultSet resultSet = statementSelect.executeQuery();
             while (resultSet.next()) {
-                if (resultSet.getInt("position_id") == position.getPosition_id()) {
-                    System.out
-                            .println("position_id=" + position.getPosition_id() + " is already in the table POSITIONS");
+                if (resultSet.getInt("faculty_id") == faculty.getFaculty_id()) {
+                    System.out.println("faculty_id=" + faculty.getFaculty_id() + " is already in the table FACULTIES");
                     return;
                 }
             }
-            statementInsert.setInt(1, position.getPosition_id());
-            statementInsert.setString(2, position.getPosition());
+            statementInsert.setInt(1, faculty.getFaculty_id());
+            statementInsert.setString(2, faculty.getFaculty());
 
             statementInsert.executeUpdate();
         } catch (SQLException e) {
@@ -51,12 +51,12 @@ public class PositionService {
             }
         }
     }
-
-    public List<Position> getAll() throws SQLException {
+    
+    public List<Faculties> getAll() throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
-        List<Position> positionList = new ArrayList<Position>();
-        String sql = "SELECT position_id, position FROM POSITIONS";
+        List<Faculties> facultyList = new ArrayList<Faculties>();
+        String sql = "SELECT faculty_id, faculty FROM FACULTIES";
         Statement statement = null;
 
         try {
@@ -64,11 +64,11 @@ public class PositionService {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                Position position = new Position();
-                position.setPosition_id(resultSet.getInt("position_id"));
-                position.setPosition(resultSet.getString("position"));
+                Faculties faculty = new Faculties();
+                faculty.setFaculty_id(resultSet.getInt("faculty_id"));
+                faculty.setFaculty(resultSet.getString("faculty"));
 
-                positionList.add(position);
+                facultyList.add(faculty);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -80,24 +80,24 @@ public class PositionService {
                 connection.close();
             }
         }
-        return positionList;
+        return facultyList;
     }
-
-    public Position getById(Integer position_id) throws SQLException {
+    
+    public Faculties getById(Integer faculty_id) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
-        String sql = "SELECT position_id, position FROM POSITIONS WHERE position_id = ?";
-        Position position = new Position();
+        String sql = "SELECT faculty_id, faculty FROM FACULTIES WHERE faculty_id = ?";
+        Faculties faculty = new Faculties();
 
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, position_id);
+            preparedStatement.setInt(1, faculty_id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            position.setPosition_id(resultSet.getInt("position_id"));
-            position.setPosition(resultSet.getString("position"));
+            faculty.setFaculty_id(resultSet.getInt("faculty_id"));
+            faculty.setFaculty(resultSet.getString("faculty"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -108,19 +108,19 @@ public class PositionService {
                 connection.close();
             }
         }
-        return position;
+        return faculty;
     }
-
-    public void update(Position position) throws SQLException {
+    
+    public void update(Faculties faculty) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
-        String sql_update = "UPDATE POSITIONS SET position=? WHERE position_id=?";
+        String sql_update = "UPDATE FACULTIES SET faculty=? WHERE faculty_id=?";
 
         try {
             preparedStatement = connection.prepareStatement(sql_update);
-            preparedStatement.setString(1, position.getPosition());
-            preparedStatement.setInt(2, position.getPosition_id());
+            preparedStatement.setString(1, faculty.getFaculty());
+            preparedStatement.setInt(2, faculty.getFaculty_id());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,15 +133,15 @@ public class PositionService {
             }
         }
     }
-
-    public void remove(Position position) throws SQLException {
+    
+    public void remove(Faculties faculty) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
-        String sql_delete = "DELETE FROM POSITIONS WHERE position_id=?";
+        String sql_delete = "DELETE FROM FACULTIES WHERE faculty_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, position.getPosition_id());
+            preStatement.setInt(1, faculty.getFaculty_id());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
