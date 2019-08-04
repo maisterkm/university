@@ -4,6 +4,9 @@ public class Subject {
     private int subject_id;
     private String subject;
 
+    public Subject() {
+    }
+
     public Subject(int subject_id, String subject) {
         this.subject_id = subject_id;
         this.subject = subject;
@@ -27,7 +30,8 @@ public class Subject {
 
     @Override
     public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() + " subject_id=" + subject_id + ", subject: " + subject;
+        String output = "class name: " + this.getClass().getSimpleName() + " subject_id=" + subject_id + ", subject: "
+                + subject;
         return output;
     }
 
