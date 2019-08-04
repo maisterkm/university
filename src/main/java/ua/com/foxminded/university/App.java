@@ -14,7 +14,6 @@ import ua.com.foxminded.university.domain.entity.Group;
 import ua.com.foxminded.university.domain.entity.Position;
 import ua.com.foxminded.university.domain.entity.Student;
 import ua.com.foxminded.university.domain.entity.Subject;
-import ua.com.foxminded.university.domain.entity.Subjects;
 import ua.com.foxminded.university.domain.entity.Teacher;
 
 public class App {
@@ -79,9 +78,9 @@ public class App {
         System.out.println();
         group2.displayGroup();
 
-        Subject subject1 = new Subject(Subjects.MATHEMATICS, teacher1, "description_1");
-        Subject subject2 = new Subject(Subjects.PHYSICS, teacher2, "description_2");
-        Subject subject3 = new Subject(Subjects.STATISTICS, teacher3, "description_3");
+        Subject subject1 = new Subject(1, "MATHEMATICS");
+        Subject subject2 = new Subject(2, "PHYSICS");
+        Subject subject3 = new Subject(3, "STATISTICS");
         System.out.println();
         System.out.println(subject1.toString());
         System.out.println(subject2.toString());
