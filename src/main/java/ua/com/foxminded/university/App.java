@@ -1,16 +1,15 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import ua.com.foxminded.university.dao.service.SubjectService;
+import ua.com.foxminded.university.dao.service.PersonService;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Class;
 import ua.com.foxminded.university.domain.entity.Classroom;
 import ua.com.foxminded.university.domain.entity.Faculties;
 import ua.com.foxminded.university.domain.entity.Group;
+import ua.com.foxminded.university.domain.entity.Person;
 import ua.com.foxminded.university.domain.entity.Position;
 import ua.com.foxminded.university.domain.entity.Student;
 import ua.com.foxminded.university.domain.entity.Subject;
@@ -202,40 +201,50 @@ public class App {
 //        }
         
       //GroupService
-        Subject subjectTest = new Subject(10, "NEW_SUBJECT");
-        SubjectService subjectService = new SubjectService();
+//        Subject subjectTest = new Subject(10, "NEW_SUBJECT");
+//        SubjectService subjectService = new SubjectService();
+//        try {
+//            System.out.println("\n--- SubjectService ---");
+//            System.out.println("\nSubjectService.add()");
+//            subjectService.add(subjectTest);
+//
+//            System.out.println("\nSubjectService.getById()");
+//            Subject subject_getById = subjectService.getById(10);
+//            System.out.println("id=" + subject_getById.getSubject_id() + " subject=" + subject_getById.getSubject());
+//
+//            System.out.println("\nSubjectService.getAll()");
+//            List<Subject> subjectList = new ArrayList<Subject>();
+//            subjectList = subjectService.getAll();
+//            for (Subject item : subjectList) {
+//                System.out.println("id=" + item.getSubject_id() + " subject=" + item.getSubject());
+//            }
+//
+//            System.out.println("\nSubjectService.update()");
+//            subjectTest.setSubject("SUBJECT_UPDATE");
+//            subjectService.update(subjectTest);
+//            subjectList = subjectService.getAll();
+//            for (Subject item : subjectList) {
+//                System.out.println("id=" + item.getSubject_id() + " subject=" + item.getSubject());
+//            }
+//
+//            System.out.println("\nSubjectService.remove()");
+//            subjectService.remove(subjectTest);
+//            subjectList = subjectService.getAll();
+//            for (Subject item : subjectList) {
+//                System.out.println("id=" + item.getSubject_id() + " subject=" + item.getSubject());
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        
+        Person personTest = new Person(10, "FirstName_Test", "LastName_Test", 28, 02, 1955, 01, 01, 2019);
+        PersonService personService = new PersonService();
         try {
-            System.out.println("\n--- SubjectService ---");
-            System.out.println("\nSubjectService.add()");
-            subjectService.add(subjectTest);
-
-            System.out.println("\nSubjectService.getById()");
-            Subject subject_getById = subjectService.getById(10);
-            System.out.println("id=" + subject_getById.getSubject_id() + " subject=" + subject_getById.getSubject());
-
-            System.out.println("\nSubjectService.getAll()");
-            List<Subject> subjectList = new ArrayList<Subject>();
-            subjectList = subjectService.getAll();
-            for (Subject item : subjectList) {
-                System.out.println("id=" + item.getSubject_id() + " subject=" + item.getSubject());
-            }
-
-            System.out.println("\nSubjectService.update()");
-            subjectTest.setSubject("SUBJECT_UPDATE");
-            subjectService.update(subjectTest);
-            subjectList = subjectService.getAll();
-            for (Subject item : subjectList) {
-                System.out.println("id=" + item.getSubject_id() + " subject=" + item.getSubject());
-            }
-
-            System.out.println("\nSubjectService.remove()");
-            subjectService.remove(subjectTest);
-            subjectList = subjectService.getAll();
-            for (Subject item : subjectList) {
-                System.out.println("id=" + item.getSubject_id() + " subject=" + item.getSubject());
-            }
+            System.out.println("\n--- PersonService ---");
+            System.out.println("\nPersonService.add()");
+            personService.add(personTest);
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+          e.printStackTrace();
+         }
     }
 }

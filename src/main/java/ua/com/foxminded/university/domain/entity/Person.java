@@ -2,11 +2,11 @@ package ua.com.foxminded.university.domain.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Person {
-
-    private int id;
+    private int person_id;
     private String firstName;
     private String lastName;
     Calendar dateOfBirth = new GregorianCalendar();
@@ -15,7 +15,7 @@ public class Person {
 
     public Person(int id, String firstName, String lastName, int birthDay, int birthMonth, int birthYear,
             int enrollmentDay, int enrollmentMonth, int enrollmentYear) {
-        this.id = id;
+        this.person_id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         dateOfBirth.set(Calendar.YEAR, birthYear);
@@ -24,6 +24,14 @@ public class Person {
         enrollmentDate.set(Calendar.YEAR, enrollmentYear);
         enrollmentDate.set(Calendar.MONTH, enrollmentMonth - 1);
         enrollmentDate.set(Calendar.DAY_OF_MONTH, enrollmentDay);
+    }
+    
+    public int getPerson_id() {
+        return person_id;
+    }
+
+    public void setPerson_id(int id) {
+        this.person_id = id;
     }
 
     public String getFirstName() {
@@ -41,10 +49,26 @@ public class Person {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+    
+    public Date getDateOfBirth() {
+        return dateOfBirth.getTime();
+    }
+
+    public void setDateOfBirth(Calendar dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+    
+    public Date getEnrollmentDate() {
+        return enrollmentDate.getTime();
+    }
+
+    public void setEnrollmentDate(Calendar enrollmentDate) {
+        this.enrollmentDate = enrollmentDate;
+    }
 
     @Override
     public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() + ", id: " + id + ", first name: " + firstName
+        String output = "class name: " + this.getClass().getSimpleName() + ", id: " + person_id + ", first name: " + firstName
                 + ", last name: " + lastName + ", date of birth: " + sdf.format(dateOfBirth.getTime())
                 + ", enrollment date: " + sdf.format(enrollmentDate.getTime());
         return output;
