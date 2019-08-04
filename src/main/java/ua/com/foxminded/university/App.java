@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.com.foxminded.university.dao.service.FacultiesService;
+import ua.com.foxminded.university.dao.service.GroupService;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Class;
@@ -60,7 +60,9 @@ public class App {
         faculty_2.setFaculty_id(2);
         faculty_2.setFaculty("FACULTY_OF_COMPUTER_SCIENCE");
         
-        Group group1 = new Group("mt-1", faculty_1);
+        Group group1 = new Group();
+        group1.setGroupNumber("mt-1");
+        group1.setFaculty(faculty_1);
         group1.addStudent(student1);
         group1.addStudent(student2);
         group1.addStudent(student3);
@@ -68,7 +70,9 @@ public class App {
         System.out.println();
         group1.displayGroup();
 
-        Group group2 = new Group("cs-1", faculty_2);
+        Group group2 = new Group();
+        group2.setGroupNumber("cs-1");
+        group2.setFaculty(faculty_2);
         group2.addStudent(student5);
         group2.addStudent(student6);
         group2.addStudent(student7);
@@ -157,45 +161,42 @@ public class App {
         System.out.println("\n---------- Display Day ----------");
         student1.displayDaySchedule(9, 1);
 
-//        Campus campus_test = new Campus();
-//        campus_test.setCampus_id(12);
-//        campus_test.setCampus("CAMPUS_12");
-//        CampusService campusService = new CampusService();
-        Faculties facultyTest = new Faculties();
-        facultyTest.setFaculty_id(10);
-        facultyTest.setFaculty("NEW_FACULTY");
-        FacultiesService facultyService = new FacultiesService();
+        //GroupService
+        Group groupTest = new Group();
+        groupTest.setGroup_id(10);
+        groupTest.setGroupNumber("NEW_GROUP");
+        groupTest.setFaculty(faculty_1);
+        GroupService groupService = new GroupService();
         try {
-            System.out.println("\n--- Service ---\n");
-            System.out.println("\nadd()");
-            facultyService.add(facultyTest);
+            System.out.println("\n--- GroupService ---");
+            System.out.println("\nGroupService.add()");
+            groupService.add(groupTest);
 
-            System.out.println("\ngetById()");
-            Faculties faculty_getById = facultyService.getById(10);
-            System.out.println("id=" + faculty_getById.getFaculty_id() + " campus=" + faculty_getById.getFaculty());
+            System.out.println("\nGroupService.getById()");
+            Group group_getById = groupService.getById(10);
+            System.out.println("id=" + group_getById.getGroup_id() + " groupNumber=" + group_getById.getGroupNumber() + " facultyId=" + group_getById.getFaculty_id());
 
-            System.out.println("\ngetAll()");
-            List<Faculties> facultyList = new ArrayList<Faculties>();
-            facultyList = facultyService.getAll();
-            for (Faculties item : facultyList) {
-                System.out.println("id=" + item.getFaculty_id() + " faculty=" + item.getFaculty());
+            System.out.println("\nGroupService.getAll()");
+            List<Group> groupList = new ArrayList<Group>();
+            groupList = groupService.getAll();
+            for (Group item : groupList) {
+                System.out.println("id=" + item.getGroup_id() + " groupNumber=" + item.getGroupNumber() + " facultyId=" + item.getFaculty().getFaculty_id());
             }
 
-            System.out.println("\nupdate()");
-            facultyTest.setFaculty("NEW FACULTY");
-            facultyService.update(facultyTest);
-            facultyList = facultyService.getAll();
-            for (Faculties item : facultyList) {
-                System.out.println("id=" + item.getFaculty_id() + " faculty=" + item.getFaculty());
+            System.out.println("\nGroupService.update()");
+            groupTest.setGroupNumber("GROUP_UPDATE");
+            groupTest.setFaculty(faculty_2);
+            groupService.update(groupTest);
+            groupList = groupService.getAll();
+            for (Group item : groupList) {
+                System.out.println("id=" + item.getGroup_id() + " groupNumber=" + item.getGroupNumber() + " facultyId=" + item.getFaculty_id());
             }
 
-            System.out.println("\nremove()");
-            Faculties removeFaculty = new Faculties();
-            removeFaculty.setFaculty_id(1);
-            facultyService.remove(removeFaculty);
-            facultyList = facultyService.getAll();
-            for (Faculties item : facultyList) {
-                System.out.println("id=" + item.getFaculty_id() + " faculty=" + item.getFaculty());
+            System.out.println("\nGroupService.remove()");
+            groupService.remove(groupTest);
+            groupList = groupService.getAll();
+            for (Group item : groupList) {
+                System.out.println("id=" + item.getGroup_id() + " groupNumber=" + item.getGroupNumber() + " facultyId=" + item.getFaculty_id());
             }
         } catch (SQLException e) {
             e.printStackTrace();

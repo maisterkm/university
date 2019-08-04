@@ -7,6 +7,12 @@ public class Faculties {
     private int faculty_id;
     private String faculty;
     
+    public Faculties() {}
+    public Faculties(int faculty_id, String faculty) {
+        this.faculty_id = faculty_id;
+        this.faculty = faculty;
+    }
+    
     public int getFaculty_id() {
         return faculty_id;
     }
