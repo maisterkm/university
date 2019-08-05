@@ -128,7 +128,6 @@ public class TeacherService implements TeacherDAO {
         return teacherList;
     }
 
-    ///////////////////////////////////////////////// ******************************************
     public Teacher getById(Integer teacher_id) throws SQLException {
         Teacher teacher = new Teacher();
         DBConnector dbConnection = new DBConnector();
@@ -185,7 +184,32 @@ public class TeacherService implements TeacherDAO {
         return teacher;
     }
 
-////////////////////////////////////////////////////////************************************    
+    public void update(Teacher teacher) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatement = null;
+        String sql_update = "UPDATE TEACHER SET salary=?, position_id=?, teacherschedule_id=? WHERE teacher_id=?";
+
+        try {
+            preStatement = connection.prepareStatement(sql_update);
+            preStatement.setInt(1, teacher.getSalary());
+            preStatement.setInt(2, teacher.getPosition().getPosition_id());
+            preStatement.setInt(3, 1);
+            preStatement.setInt(4, teacher.getPerson_id());
+
+            preStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preStatement != null) {
+                preStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
+
     public boolean existParentTable(Teacher teacher) throws SQLException {
         boolean flag = false;
         DBConnector dbConnection = new DBConnector();

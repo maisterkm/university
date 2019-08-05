@@ -54,7 +54,9 @@ public class Teacher extends Person {
     @Override
     public String toString() {
         String strPosition = position == null ? "There is no position" : position.toString();
-        String output = super.toString() + ", position: " + strPosition + ", salary: " + salary;
+        String strSchedule = teacherSchedule == null ? "There is no schedule" : teacherSchedule.toString();
+        String output = super.toString() + ", position: " + strPosition + ", salary: " + salary + " teacherSchedule: "
+                + strSchedule;
         return output;
     }
 

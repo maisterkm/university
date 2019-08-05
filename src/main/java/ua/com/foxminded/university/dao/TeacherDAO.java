@@ -15,7 +15,7 @@ public interface TeacherDAO {
     Teacher getById(Integer id) throws SQLException;
 
     // update
-    // void update(Teacher teacher) throws SQLException;
+    void update(Teacher teacher) throws SQLException;
 
     // delete
     // void remove(Teacher teacher) throws SQLException;
