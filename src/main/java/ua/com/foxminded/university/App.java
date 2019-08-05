@@ -1,6 +1,8 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ua.com.foxminded.university.dao.service.PersonService;
 import ua.com.foxminded.university.domain.Schedule;
@@ -50,14 +52,14 @@ public class App {
         System.out.println(student6.toString());
         System.out.println(student7.toString());
         System.out.println();
-        
+
         Faculties faculty_1 = new Faculties();
         Faculties faculty_2 = new Faculties();
         faculty_1.setFaculty_id(1);
         faculty_1.setFaculty("FACULTY_OF_MATHEMATICS");
         faculty_2.setFaculty_id(2);
         faculty_2.setFaculty("FACULTY_OF_COMPUTER_SCIENCE");
-        
+
         Group group1 = new Group();
         group1.setGroupNumber("mt-1");
         group1.setFaculty(faculty_1);
@@ -159,7 +161,7 @@ public class App {
         System.out.println("\n---------- Display Day ----------");
         student1.displayDaySchedule(9, 1);
 
-        //GroupService
+        // GroupService
 //        Group groupTest = new Group();
 //        groupTest.setGroup_id(10);
 //        groupTest.setGroupNumber("NEW_GROUP");
@@ -199,8 +201,8 @@ public class App {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
-        
-      //GroupService
+
+        // GroupService
 //        Subject subjectTest = new Subject(10, "NEW_SUBJECT");
 //        SubjectService subjectService = new SubjectService();
 //        try {
@@ -236,15 +238,50 @@ public class App {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
-        
+
         Person personTest = new Person(10, "FirstName_Test", "LastName_Test", 28, 02, 1955, 01, 01, 2019);
         PersonService personService = new PersonService();
         try {
             System.out.println("\n--- PersonService ---");
             System.out.println("\nPersonService.add()");
             personService.add(personTest);
+
+            System.out.println("\nGroupService.getAll()");
+            List<Person> personList = new ArrayList<Person>();
+            personList = personService.getAll();
+            for (Person item : personList) {
+                System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
+                        + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
+                        + item.getEnrollmentDate());
+            }
+
+            System.out.println("\nPersonService.getById()");
+            Person person_getById = personService.getById(10);
+            System.out.println("id=" + person_getById.getPerson_id() + " firstname=" + person_getById.getFirstName()
+                    + " lastname=" + person_getById.getLastName() + " dateOfBirth= " + person_getById.getDateOfBirth()
+                    + " enrollmentDate=" + person_getById.getEnrollmentDate());
+
+            System.out.println("\nPersonService.update()");
+            personTest.setFirstName("FIRSTNAME_UPDATE");
+            personTest.setLastName("LASTNAME_UPDATE");
+            personService.update(personTest);
+            personList = personService.getAll();
+            for (Person item : personList) {
+                System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
+                        + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
+                        + item.getEnrollmentDate());
+            }
+
+            System.out.println("\nPersonService.remove()");
+            personService.remove(personTest);
+            personList = personService.getAll();
+            for (Person item : personList) {
+                System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
+                        + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
+                        + item.getEnrollmentDate());
+            }
         } catch (SQLException e) {
-          e.printStackTrace();
-         }
+            e.printStackTrace();
+        }
     }
 }

@@ -13,6 +13,8 @@ public class Person {
     Calendar enrollmentDate = new GregorianCalendar();
     SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyy");
 
+    public Person() {}
+    
     public Person(int id, String firstName, String lastName, int birthDay, int birthMonth, int birthYear,
             int enrollmentDay, int enrollmentMonth, int enrollmentYear) {
         this.person_id = id;
