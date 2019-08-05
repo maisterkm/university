@@ -283,20 +283,25 @@ public class App {
 //            e.printStackTrace();
 //        }
 
-        Teacher teacherTest = new Teacher(333, "Teacher_TEST333", "Teacher_TEST333", 30, 9, 1988, 21, 9, 2011, position_1,
-                3333);
+        Teacher teacherTest = new Teacher(333, "FIRSTNAME_TEST333", "LASTNAME_TEST333", 30, 9, 1988, 21, 9, 2011,
+                position_1, 3333);
         TeacherService teacherService = new TeacherService();
         try {
             System.out.println("\n--- TeacherService ---");
             System.out.println("\nTeacherService.add()");
             teacherService.add(teacherTest);
-            
+
             System.out.println("\nGroupService.getAll()");
             List<Teacher> teacherList = new ArrayList<Teacher>();
             teacherList = teacherService.getAll();
             for (Teacher item : teacherList) {
                 System.out.println(item);
             }
+
+            System.out.println("\nTeacherService.getById()");
+            Teacher teacher_getById = teacherService.getById(333);
+            System.out.println(teacher_getById);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -12,11 +12,11 @@ public interface TeacherDAO {
     // read
     List<Teacher> getAll() throws SQLException;
 
-    //Teacher getById(Integer id) throws SQLException;
+    Teacher getById(Integer id) throws SQLException;
 
     // update
-    //void update(Teacher teacher) throws SQLException;
+    // void update(Teacher teacher) throws SQLException;
 
     // delete
-    //void remove(Teacher teacher) throws SQLException;
+    // void remove(Teacher teacher) throws SQLException;
 }

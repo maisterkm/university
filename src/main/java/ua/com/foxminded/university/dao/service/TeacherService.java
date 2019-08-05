@@ -72,23 +72,6 @@ public class TeacherService implements TeacherDAO {
         }
     }
 
-    Position getPositionByIdFromDB(int position_id) throws SQLException {
-        DBConnector dbConnection = new DBConnector();
-        Connection connection = dbConnection.getConnection();
-        PreparedStatement preStatementPosition = null;
-        String sql_select_position = "SELECT position_id, position FROM POSITIONS WHERE position_id=?";
-        preStatementPosition = connection.prepareStatement(sql_select_position);
-        preStatementPosition.setInt(1, position_id);
-        ResultSet resultSetPosition = preStatementPosition.executeQuery();
-        Position position = new Position();
-
-        while (resultSetPosition.next()) {
-            position.setPosition_id(resultSetPosition.getInt("position_id"));
-            position.setPosition(resultSetPosition.getString("position"));
-        }
-        return position;
-    }
-
     public List<Teacher> getAll() throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -98,14 +81,11 @@ public class TeacherService implements TeacherDAO {
 
         String sql_select_teacher = "SELECT teacher_id, salary, position_id, teacherschedule_id FROM TEACHER";
         String sql_select_person = "SELECT person_id, firstname, lastname, dateofbirth, enrollmentdate FROM PERSON WHERE person_id=?";
-
         try {
             statementTeacher = connection.createStatement();
             ResultSet resultSetTeacher = statementTeacher.executeQuery(sql_select_teacher);
 
             while (resultSetTeacher.next()) {
-                Person person = new Person();
-
                 preStatementPerson = connection.prepareStatement(sql_select_person);
                 preStatementPerson.setInt(1, resultSetTeacher.getInt("teacher_id"));
                 ResultSet resultSetPerson = preStatementPerson.executeQuery();
@@ -126,8 +106,9 @@ public class TeacherService implements TeacherDAO {
                             calendarDateOfBirth.get(Calendar.DAY_OF_MONTH), calendarDateOfBirth.get(Calendar.MONTH),
                             calendarDateOfBirth.get(Calendar.YEAR), calendarEnrollmentDate.get(Calendar.DAY_OF_MONTH),
                             calendarEnrollmentDate.get(Calendar.MONTH), calendarEnrollmentDate.get(Calendar.YEAR),
-                            getPositionByIdFromDB(resultSetTeacher.getInt("position_id")), resultSetTeacher.getInt("salary"));
-                    
+                            getPositionByIdFromDB(resultSetTeacher.getInt("position_id")),
+                            resultSetTeacher.getInt("salary"));
+
                     teacherList.add(teacher);
                 }
             }
@@ -147,6 +128,64 @@ public class TeacherService implements TeacherDAO {
         return teacherList;
     }
 
+    ///////////////////////////////////////////////// ******************************************
+    public Teacher getById(Integer teacher_id) throws SQLException {
+        Teacher teacher = new Teacher();
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatementTeacher = null;
+        PreparedStatement preStatementPerson = null;
+
+        String sql_select_teacher = "SELECT teacher_id, salary, position_id, teacherschedule_id FROM TEACHER WHERE teacher_id = ?";
+        String sql_select_person = "SELECT person_id, firstname, lastname, dateofbirth, enrollmentdate FROM PERSON WHERE person_id=?";
+
+        try {
+            preStatementTeacher = connection.prepareStatement(sql_select_teacher);
+            preStatementTeacher.setInt(1, teacher_id);
+            ResultSet resultSetTeacher = preStatementTeacher.executeQuery();
+            while (resultSetTeacher.next()) {
+                preStatementPerson = connection.prepareStatement(sql_select_person);
+                preStatementPerson.setInt(1, teacher_id);
+                ResultSet resultSetPerson = preStatementPerson.executeQuery();
+                while (resultSetPerson.next()) {
+                    String strDateOfBirth = resultSetPerson.getString("dateofbirth");
+                    Timestamp timestampDateOfBirth = Timestamp.valueOf(strDateOfBirth);
+                    Calendar calendarDateOfBirth = Calendar.getInstance();
+                    calendarDateOfBirth.setTimeInMillis(timestampDateOfBirth.getTime());
+
+                    String strEnrollmentDate = resultSetPerson.getString("enrollmentdate");
+                    Timestamp timestampEnrollmentDate = Timestamp.valueOf(strEnrollmentDate);
+                    Calendar calendarEnrollmentDate = Calendar.getInstance();
+                    calendarEnrollmentDate.setTimeInMillis(timestampEnrollmentDate.getTime());
+
+                    Teacher tmpTeacher = new Teacher(resultSetPerson.getInt("person_id"),
+                            resultSetPerson.getString("firstname"), resultSetPerson.getString("lastname"),
+                            calendarDateOfBirth.get(Calendar.DAY_OF_MONTH), calendarDateOfBirth.get(Calendar.MONTH),
+                            calendarDateOfBirth.get(Calendar.YEAR), calendarEnrollmentDate.get(Calendar.DAY_OF_MONTH),
+                            calendarEnrollmentDate.get(Calendar.MONTH), calendarEnrollmentDate.get(Calendar.YEAR),
+                            getPositionByIdFromDB(resultSetTeacher.getInt("position_id")),
+                            resultSetTeacher.getInt("salary"));
+
+                    teacher = tmpTeacher;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preStatementTeacher != null) {
+                preStatementTeacher.close();
+            }
+            if (preStatementPerson != null) {
+                preStatementPerson.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return teacher;
+    }
+
+////////////////////////////////////////////////////////************************************    
     public boolean existParentTable(Teacher teacher) throws SQLException {
         boolean flag = false;
         DBConnector dbConnection = new DBConnector();
@@ -174,5 +213,22 @@ public class TeacherService implements TeacherDAO {
             }
         }
         return flag;
+    }
+
+    Position getPositionByIdFromDB(int position_id) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatementPosition = null;
+        String sql_select_position = "SELECT position_id, position FROM POSITIONS WHERE position_id=?";
+        preStatementPosition = connection.prepareStatement(sql_select_position);
+        preStatementPosition.setInt(1, position_id);
+        ResultSet resultSetPosition = preStatementPosition.executeQuery();
+        Position position = new Position();
+
+        while (resultSetPosition.next()) {
+            position.setPosition_id(resultSetPosition.getInt("position_id"));
+            position.setPosition(resultSetPosition.getString("position"));
+        }
+        return position;
     }
 }
