@@ -92,8 +92,8 @@ CREATE TABLE IF NOT EXISTS LESSON (
 -- 11
 CREATE TABLE IF NOT EXISTS PERSON (
   person_id   SERIAL PRIMARY KEY,
-  firstName        VARCHAR(255) UNIQUE NOT NULL,
-  lastName        VARCHAR(255) UNIQUE NOT NULL,
+  firstName        VARCHAR(255) NOT NULL,
+  lastName        VARCHAR(255) NOT NULL,
   dateOfBirth TIMESTAMP,
   enrollmentDate TIMESTAMP
 );
@@ -103,7 +103,7 @@ CREATE TABLE IF NOT EXISTS TEACHER (
   teacher_id INTEGER REFERENCES PERSON (person_id)  ON DELETE CASCADE,
   salary INTEGER,
   position_id INTEGER NOT NULL,
-  teacherSchedule_id INTEGER NOT NULL,
+  teacherSchedule_id INTEGER,
   PRIMARY KEY (teacher_id),
   FOREIGN KEY (position_id) REFERENCES POSITIONS (position_id),
   FOREIGN KEY (teacherSchedule_id) REFERENCES SCHEDULE (schedule_id)
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS STUDENT (
   student_id INTEGER NOT NULL,
   matriculationNumber INTEGER,
   group_id INTEGER NOT NULL,
-  studentSchedule_id INTEGER NOT NULL, 
+  studentSchedule_id INTEGER, 
   PRIMARY KEY (student_id),
   FOREIGN KEY (student_id) REFERENCES PERSON (person_id)  ON DELETE CASCADE,
   FOREIGN KEY (group_id) REFERENCES GRUP (group_id),
