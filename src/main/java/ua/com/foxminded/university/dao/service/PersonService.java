@@ -38,8 +38,8 @@ public class PersonService implements PersonDAO {
             statementInsert.setInt(1, person.getPerson_id());
             statementInsert.setString(2, person.getFirstName());
             statementInsert.setString(3, person.getLastName());
-            statementInsert.setTimestamp(4, new java.sql.Timestamp(person.getDateOfBirth().getTime()));
-            statementInsert.setTimestamp(5, new java.sql.Timestamp(person.getEnrollmentDate().getTime()));
+            statementInsert.setTimestamp(4, new java.sql.Timestamp(person.getDateOfBirth().getTime().getTime()));
+            statementInsert.setTimestamp(5, new java.sql.Timestamp(person.getEnrollmentDate().getTime().getTime()));
 
             statementInsert.executeUpdate();
         } catch (SQLException e) {
@@ -153,8 +153,8 @@ public class PersonService implements PersonDAO {
             preparedStatement = connection.prepareStatement(sql_update);
             preparedStatement.setString(1, person.getFirstName());
             preparedStatement.setString(2, person.getLastName());
-            preparedStatement.setTimestamp(3, new java.sql.Timestamp(person.getDateOfBirth().getTime()));
-            preparedStatement.setTimestamp(4, new java.sql.Timestamp(person.getEnrollmentDate().getTime()));
+            preparedStatement.setTimestamp(3, new java.sql.Timestamp(person.getDateOfBirth().getTime().getTime()));
+            preparedStatement.setTimestamp(4, new java.sql.Timestamp(person.getEnrollmentDate().getTime().getTime()));
             preparedStatement.setInt(5, person.getPerson_id());
 
             preparedStatement.executeUpdate();

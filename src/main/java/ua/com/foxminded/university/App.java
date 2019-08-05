@@ -4,14 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.com.foxminded.university.dao.service.PersonService;
+import ua.com.foxminded.university.dao.service.TeacherService;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Class;
 import ua.com.foxminded.university.domain.entity.Classroom;
 import ua.com.foxminded.university.domain.entity.Faculties;
 import ua.com.foxminded.university.domain.entity.Group;
-import ua.com.foxminded.university.domain.entity.Person;
 import ua.com.foxminded.university.domain.entity.Position;
 import ua.com.foxminded.university.domain.entity.Student;
 import ua.com.foxminded.university.domain.entity.Subject;
@@ -239,46 +238,64 @@ public class App {
 //            e.printStackTrace();
 //        }
 
-        Person personTest = new Person(10, "FirstName_Test", "LastName_Test", 28, 02, 1955, 01, 01, 2019);
-        PersonService personService = new PersonService();
+//        Person personTest = new Person(10, "FirstName_Test", "LastName_Test", 28, 02, 1955, 01, 01, 2019);
+//        PersonService personService = new PersonService();
+//        try {
+//            System.out.println("\n--- PersonService ---");
+//            System.out.println("\nPersonService.add()");
+//            personService.add(personTest);
+//
+//            System.out.println("\nGroupService.getAll()");
+//            List<Person> personList = new ArrayList<Person>();
+//            personList = personService.getAll();
+//            for (Person item : personList) {
+//                System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
+//                        + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
+//                        + item.getEnrollmentDate());
+//            }
+//
+//            System.out.println("\nPersonService.getById()");
+//            Person person_getById = personService.getById(10);
+//            System.out.println("id=" + person_getById.getPerson_id() + " firstname=" + person_getById.getFirstName()
+//                    + " lastname=" + person_getById.getLastName() + " dateOfBirth= " + person_getById.getDateOfBirth()
+//                    + " enrollmentDate=" + person_getById.getEnrollmentDate());
+//
+//            System.out.println("\nPersonService.update()");
+//            personTest.setFirstName("FIRSTNAME_UPDATE");
+//            personTest.setLastName("LASTNAME_UPDATE");
+//            personService.update(personTest);
+//            personList = personService.getAll();
+//            for (Person item : personList) {
+//                System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
+//                        + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
+//                        + item.getEnrollmentDate());
+//            }
+//
+//            System.out.println("\nPersonService.remove()");
+//            personService.remove(personTest);
+//            personList = personService.getAll();
+//            for (Person item : personList) {
+//                System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
+//                        + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
+//                        + item.getEnrollmentDate());
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
+        Teacher teacherTest = new Teacher(333, "Teacher_TEST333", "Teacher_TEST333", 30, 9, 1988, 21, 9, 2011, position_1,
+                3333);
+        TeacherService teacherService = new TeacherService();
         try {
-            System.out.println("\n--- PersonService ---");
-            System.out.println("\nPersonService.add()");
-            personService.add(personTest);
-
+            System.out.println("\n--- TeacherService ---");
+            System.out.println("\nTeacherService.add()");
+            teacherService.add(teacherTest);
+            
             System.out.println("\nGroupService.getAll()");
-            List<Person> personList = new ArrayList<Person>();
-            personList = personService.getAll();
-            for (Person item : personList) {
-                System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
-                        + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
-                        + item.getEnrollmentDate());
-            }
-
-            System.out.println("\nPersonService.getById()");
-            Person person_getById = personService.getById(10);
-            System.out.println("id=" + person_getById.getPerson_id() + " firstname=" + person_getById.getFirstName()
-                    + " lastname=" + person_getById.getLastName() + " dateOfBirth= " + person_getById.getDateOfBirth()
-                    + " enrollmentDate=" + person_getById.getEnrollmentDate());
-
-            System.out.println("\nPersonService.update()");
-            personTest.setFirstName("FIRSTNAME_UPDATE");
-            personTest.setLastName("LASTNAME_UPDATE");
-            personService.update(personTest);
-            personList = personService.getAll();
-            for (Person item : personList) {
-                System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
-                        + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
-                        + item.getEnrollmentDate());
-            }
-
-            System.out.println("\nPersonService.remove()");
-            personService.remove(personTest);
-            personList = personService.getAll();
-            for (Person item : personList) {
-                System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
-                        + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
-                        + item.getEnrollmentDate());
+            List<Teacher> teacherList = new ArrayList<Teacher>();
+            teacherList = teacherService.getAll();
+            for (Teacher item : teacherList) {
+                System.out.println(item);
             }
         } catch (SQLException e) {
             e.printStackTrace();

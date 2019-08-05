@@ -2,7 +2,6 @@ package ua.com.foxminded.university.domain.entity;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class Person {
@@ -52,16 +51,16 @@ public class Person {
         this.lastName = lastName;
     }
     
-    public Date getDateOfBirth() {
-        return dateOfBirth.getTime();
+    public Calendar getDateOfBirth() {
+        return dateOfBirth;
     }
 
     public void setDateOfBirth(Calendar dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
     
-    public Date getEnrollmentDate() {
-        return enrollmentDate.getTime();
+    public Calendar getEnrollmentDate() {
+        return enrollmentDate;
     }
 
     public void setEnrollmentDate(Calendar enrollmentDate) {

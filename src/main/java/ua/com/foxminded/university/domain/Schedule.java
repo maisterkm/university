@@ -8,6 +8,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Class;
 
 public class Schedule {
+    private int schedule_id;
     private List<MonthlySchedule> listOfMonthlySchedule = new ArrayList<MonthlySchedule>();
     static final int NUMBER_OF_MONTH_IN_YEAR = 12;
 
@@ -15,6 +16,14 @@ public class Schedule {
         for (int i = 0; i < NUMBER_OF_MONTH_IN_YEAR; i++) {
             listOfMonthlySchedule.add(new MonthlySchedule());
         }
+    }
+    
+    public int getSchedule_id() {
+        return schedule_id;
+    }
+
+    public void setSchedule_id(int schedule_id) {
+        this.schedule_id = schedule_id;
     }
 
     public void addClass(Class c) {

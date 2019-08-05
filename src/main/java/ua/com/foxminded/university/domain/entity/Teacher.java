@@ -3,10 +3,12 @@ package ua.com.foxminded.university.domain.entity;
 import ua.com.foxminded.university.domain.Schedule;
 
 public class Teacher extends Person {
-
     private Position position;
     private int salary;
     private Schedule teacherSchedule;
+
+    public Teacher() {
+    }
 
     public Teacher(int id, String firstName, String lastName, int birthDay, int birthMonth, int birthYear,
             int enrollmentDay, int enrollmentMonth, int enrollmentYear, Position position, int salary) {
@@ -17,12 +19,28 @@ public class Teacher extends Person {
         teacherSchedule = new Schedule();
     }
 
-    public void addClassToSchedule(Class c) {
-        teacherSchedule.addClass(c);
+    public Position getPosition() {
+        return position;
     }
 
-    public void removeClassFromSchedule(Class c) {
-        teacherSchedule.removeClass(c);
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public Schedule getTeacherSchedule() {
+        return teacherSchedule;
+    }
+
+    public void setTeacherSchedule(Schedule teacherSchedule) {
+        this.teacherSchedule = teacherSchedule;
     }
 
     public void displayMonthSchedule(int month) {
@@ -35,7 +53,7 @@ public class Teacher extends Person {
 
     @Override
     public String toString() {
-        String output = super.toString() + ", position: " + position + ", salary: " + salary;
+        String output = super.toString() + ", position: " + position.toString() + ", salary: " + salary;
         return output;
     }
 
