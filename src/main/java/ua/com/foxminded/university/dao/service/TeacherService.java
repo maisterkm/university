@@ -210,6 +210,27 @@ public class TeacherService implements TeacherDAO {
         }
     }
 
+    public void remove(Teacher teacher) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatement = null;
+        String sql_delete = "DELETE FROM TEACHER WHERE teacher_id=?";
+        try {
+            preStatement = connection.prepareStatement(sql_delete);
+            preStatement.setInt(1, teacher.getPerson_id());
+            preStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preStatement != null) {
+                preStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
+
     public boolean existParentTable(Teacher teacher) throws SQLException {
         boolean flag = false;
         DBConnector dbConnection = new DBConnector();

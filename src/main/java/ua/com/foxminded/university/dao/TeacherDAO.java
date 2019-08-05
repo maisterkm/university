@@ -18,5 +18,5 @@ public interface TeacherDAO {
     void update(Teacher teacher) throws SQLException;
 
     // delete
-    // void remove(Teacher teacher) throws SQLException;
+    void remove(Teacher teacher) throws SQLException;
 }

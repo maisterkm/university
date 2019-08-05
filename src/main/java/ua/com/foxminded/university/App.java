@@ -301,7 +301,7 @@ public class App {
             System.out.println("\nTeacherService.getById()");
             Teacher teacher_getById = teacherService.getById(333);
             System.out.println(teacher_getById);
-            
+
             System.out.println("\nTeacherService.update()");
             teacherTest.setSalary(1000000);
             teacherTest.setPosition(position_3);
@@ -309,8 +309,14 @@ public class App {
             teacherList = teacherService.getAll();
             for (Teacher item : teacherList) {
                 System.out.println(item);
-          }
+            }
 
+            System.out.println("\nTeacherService.remove()");
+            teacherService.remove(teacherTest);
+            teacherList = teacherService.getAll();
+            for (Teacher item : teacherList) {
+                System.out.println(item);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
