@@ -9,6 +9,7 @@ import ua.com.foxminded.university.domain.entity.Class;
 
 public class Schedule {
     private int schedule_id;
+    private String description;
     private List<MonthlySchedule> listOfMonthlySchedule = new ArrayList<MonthlySchedule>();
     static final int NUMBER_OF_MONTH_IN_YEAR = 12;
 
@@ -24,6 +25,14 @@ public class Schedule {
 
     public void setSchedule_id(int schedule_id) {
         this.schedule_id = schedule_id;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void addClass(Class c) {

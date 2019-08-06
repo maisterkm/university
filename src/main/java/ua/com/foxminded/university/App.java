@@ -1,11 +1,8 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import ua.com.foxminded.university.dao.service.CampusService;
-import ua.com.foxminded.university.dao.service.ClassroomService;
+import ua.com.foxminded.university.dao.service.ScheduleService;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Class;
@@ -362,50 +359,88 @@ public class App {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
-        Campus campusTest = new Campus();
-        campusTest.setCampus_id(10);
-        campusTest.setCampus("CAMPUS_TEST");
-        CampusService campusService = new CampusService();
+//        Campus campusTest = new Campus();
+//        campusTest.setCampus_id(10);
+//        campusTest.setCampus("CAMPUS_TEST");
+//        CampusService campusService = new CampusService();
+//
+//        Classroom classroomTest = new Classroom();
+//        classroomTest.setCampus(campusTest);
+//        classroomTest.setRoomNumber("room_test");
+//        classroomTest.setCapacity(70);
+//
+//        ClassroomService classroomService = new ClassroomService();
+//        try {
+//            System.out.println("\n--- ClassroomService ---");
+//            System.out.println("\nclassroomService.add()");
+//
+//            campusService.add(campusTest);
+//
+//            classroomService.add(classroomTest);
+//
+//            System.out.println("\nclassroomService.getAll()");
+//            List<Classroom> classroomList = new ArrayList<Classroom>();
+//            classroomList = classroomService.getAll();
+//            for (Classroom item : classroomList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nclassroomService.getById()");
+//            Classroom classroom_getById = classroomService.getById(10, "room_test");
+//            System.out.println(classroom_getById);
+//
+//            System.out.println("\nClassroomService.update()");
+//            classroomTest.setCapacity(120);
+//            classroomService.update(classroomTest);
+//            classroomList = classroomService.getAll();
+//            for (Classroom item : classroomList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nclassroomService.remove()");
+//            classroomService.remove(classroomTest);
+//            classroomList = classroomService.getAll();
+//            for (Classroom item : classroomList) {
+//                System.out.println(item);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
-        Classroom classroomTest = new Classroom();
-        classroomTest.setCampus(campusTest);
-        classroomTest.setRoomNumber("room_test");
-        classroomTest.setCapacity(70);
-
-        ClassroomService classroomService = new ClassroomService();
+        Schedule scheduleTest = new Schedule();
+        scheduleTest.setSchedule_id(10);
+        scheduleTest.setDescription("TEST_DESCRIPTION");
+        ScheduleService scheduleService = new ScheduleService();
         try {
-            System.out.println("\n--- ClassroomService ---");
-            System.out.println("\nclassroomService.add()");
+            System.out.println("\n--- ScheduleService ---");
+            System.out.println("\nscheduleService.add()");
+            scheduleService.add(scheduleTest);
 
-            campusService.add(campusTest);
-
-            classroomService.add(classroomTest);
-
-            System.out.println("\nclassroomService.getAll()");
-            List<Classroom> classroomList = new ArrayList<Classroom>();
-            classroomList = classroomService.getAll();
-            for (Classroom item : classroomList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\nclassroomService.getById()");
-            Classroom classroom_getById = classroomService.getById(10, "room_test");
-            System.out.println(classroom_getById);
-
-            System.out.println("\nClassroomService.update()");
-            classroomTest.setCapacity(120);
-            classroomService.update(classroomTest);
-            classroomList = classroomService.getAll();
-            for (Classroom item : classroomList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\nclassroomService.remove()");
-            classroomService.remove(classroomTest);
-            classroomList = classroomService.getAll();
-            for (Classroom item : classroomList) {
-                System.out.println(item);
-            }
+//            System.out.println("\nclassroomService.getAll()");
+//            List<Classroom> classroomList = new ArrayList<Classroom>();
+//            classroomList = classroomService.getAll();
+//            for (Classroom item : classroomList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nclassroomService.getById()");
+//            Classroom classroom_getById = classroomService.getById(10, "room_test");
+//            System.out.println(classroom_getById);
+//
+//            System.out.println("\nClassroomService.update()");
+//            classroomTest.setCapacity(120);
+//            classroomService.update(classroomTest);
+//            classroomList = classroomService.getAll();
+//            for (Classroom item : classroomList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nclassroomService.remove()");
+//            classroomService.remove(classroomTest);
+//            classroomList = classroomService.getAll();
+//            for (Classroom item : classroomList) {
+//                System.out.println(item);
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
