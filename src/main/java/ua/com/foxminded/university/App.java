@@ -352,12 +352,12 @@ public class App {
                 System.out.println(item);
             }
 
-//            System.out.println("\nTeacherService.remove()");
-//            teacherService.remove(teacherTest);
-//            teacherList = teacherService.getAll();
-//            for (Teacher item : teacherList) {
-//                System.out.println(item);
-//            }
+            System.out.println("\nstudentService.remove()");
+            studentService.remove(studentTest);
+            studentList = studentService.getAll();
+            for (Student item : studentList) {
+                System.out.println(item);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

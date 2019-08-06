@@ -190,6 +190,27 @@ public class StudentService implements StudentDAO {
         }
     }
 
+    public void remove(Student student) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatement = null;
+        String sql_delete = "DELETE FROM STUDENT WHERE student_id=?";
+        try {
+            preStatement = connection.prepareStatement(sql_delete);
+            preStatement.setInt(1, student.getPerson_id());
+            preStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preStatement != null) {
+                preStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
+
     public boolean existParentTable(Student student) throws SQLException {
         boolean flag = false;
         DBConnector dbConnection = new DBConnector();

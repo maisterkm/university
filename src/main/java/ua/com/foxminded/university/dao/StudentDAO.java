@@ -15,8 +15,8 @@ public interface StudentDAO {
     Student getById(Integer id) throws SQLException;
 
     // update
-//    void update(Student student) throws SQLException;
+    void update(Student student) throws SQLException;
 
     // delete
-//    void remove(Student student) throws SQLException;
+    void remove(Student student) throws SQLException;
 }
