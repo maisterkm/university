@@ -92,7 +92,7 @@ public class CampusService implements CampusDAO {
         Campus campus = new Campus();
 
         try {
-            preparedStatement = connection.prepareStatement(sql);
+                preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, campus_id);
 
             ResultSet resultSet = preparedStatement.executeQuery();

@@ -24,5 +24,11 @@ public class Campus {
     public void setCampus(String campus) {
         this.campus = campus;
     }
+    
+    @Override
+    public String toString() {
+        String output = "class name: " + this.getClass().getSimpleName() + " campus_id: " + campus_id + ", campus: " + campus;
+        return output;
+    }
 
 }

@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import ua.com.foxminded.university.dao.ClassroomDAO;
 import ua.com.foxminded.university.dao.DBConnector;
@@ -51,5 +54,38 @@ public class ClassroomService implements ClassroomDAO {
                 connection.close();
             }
         }
+    }
+
+    public List<Classroom> getAll() throws SQLException {
+        CampusService campusService = new CampusService();
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        List<Classroom> classroomList = new ArrayList<Classroom>();
+        String sql = "SELECT campus_id, roomnumber, capacity FROM CLASSROOM";
+        Statement statement = null;
+
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                Classroom classroom = new Classroom();
+                classroom.setCampus(campusService.getById(resultSet.getInt("campus_id")));
+                classroom.setRoomNumber(resultSet.getString("roomnumber"));
+                classroom.setCapacity(resultSet.getInt("capacity"));
+
+                classroomList.add(classroom);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return classroomList;
     }
 }

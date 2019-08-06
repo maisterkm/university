@@ -1,6 +1,8 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ua.com.foxminded.university.dao.service.CampusService;
 import ua.com.foxminded.university.dao.service.ClassroomService;
@@ -379,12 +381,12 @@ public class App {
             
             classroomService.add(classroomTest);
 
-//            System.out.println("\nStudentService.getAll()");
-//            List<Student> studentList = new ArrayList<Student>();
-//            studentList = studentService.getAll();
-//            for (Student item : studentList) {
-//                System.out.println(item);
-//            }
+            System.out.println("\nClassroomService.getAll()");
+            List<Classroom> classroomList = new ArrayList<Classroom>();
+            classroomList = classroomService.getAll();
+            for (Classroom item : classroomList) {
+                System.out.println(item);
+            }
 //
 //            System.out.println("\nStudentService.getById()");
 //            Student student_getById = studentService.getById(100);

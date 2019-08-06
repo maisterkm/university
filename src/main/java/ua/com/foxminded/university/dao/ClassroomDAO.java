@@ -1,6 +1,7 @@
 package ua.com.foxminded.university.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import ua.com.foxminded.university.domain.entity.Classroom;
 
@@ -9,7 +10,7 @@ public interface ClassroomDAO {
     void add(Classroom classroom) throws SQLException;
 
     // read
-//    List<Classroom> getAll() throws SQLException;
+    List<Classroom> getAll() throws SQLException;
 
 //    Classroom getById(Integer id) throws SQLException;
 
