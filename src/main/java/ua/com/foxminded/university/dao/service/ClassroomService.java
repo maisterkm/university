@@ -119,4 +119,28 @@ public class ClassroomService implements ClassroomDAO {
         }
         return classroom;
     }
+    
+    public void update(Classroom classroom) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preparedStatement = null;
+        String sql_update = "UPDATE CLASSROOM SET capacity=? WHERE campus_id=? AND roomnumber=?";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql_update);
+            preparedStatement.setInt(1, classroom.getCapacity());
+            preparedStatement.setInt(2, classroom.getCampus().getCampus_id());
+            preparedStatement.setString(3, classroom.getRoomNumber());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 }

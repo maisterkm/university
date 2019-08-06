@@ -15,7 +15,7 @@ public interface ClassroomDAO {
     Classroom getById(Integer id, String roomnumber) throws SQLException;
 
     // update
-    //void update(Classroom classroom) throws SQLException;
+    void update(Classroom classroom) throws SQLException;
 
     // delete
 //    void remove(Classroom classroom) throws SQLException;

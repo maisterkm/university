@@ -391,17 +391,15 @@ public class App {
             System.out.println("\nClassroomService.getById()");
             Classroom classroom_getById = classroomService.getById(10, "room_test");
             System.out.println(classroom_getById);
-//
-//            System.out.println("\nStudentService.update()");
-//            studentTest.setMatriculationnumber(999999);
-//            studentTest.setGroup(group2);
-//            studentTest.setStudentSchedule(schedule);
-//            studentService.update(studentTest);
-//            studentList = studentService.getAll();
-//            for (Student item : studentList) {
-//                System.out.println(item);
-//            }
-//
+
+            System.out.println("\nClassroomService.update()");
+            classroomTest.setCapacity(120);
+            classroomService.update(classroomTest);
+            classroomList = classroomService.getAll();
+            for (Classroom item : classroomList) {
+                System.out.println(item);
+            }
+
 //            System.out.println("\nstudentService.remove()");
 //            studentService.remove(studentTest);
 //            studentList = studentService.getAll();
