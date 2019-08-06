@@ -110,6 +110,7 @@ public class StudentService implements StudentDAO {
                     GroupService groupService = new GroupService();
                     Group group = groupService.getById(resultSetStudent.getInt("group_id"));
                     student.setGroup(group);
+                    student.setMatriculationnumber(resultSetStudent.getInt("matriculationnumber"));
                     studentList.add(student);
                 }
             }
@@ -129,27 +130,26 @@ public class StudentService implements StudentDAO {
         return studentList;
     }
 
-/////////////////////////////////////////////////////// cal.get(Calendar.MONTH)
     public Student getById(Integer student_id) throws SQLException {
         PersonService personService = new PersonService();
         GroupService groupService = new GroupService();
         Person person = personService.getById(student_id);
-        Student student = new Student(person.getPerson_id(), person.getFirstName(), person.getLastName(), 
-                            person.getDateOfBirth().get(Calendar.DAY_OF_MONTH), person.getDateOfBirth().get(Calendar.MONTH), 
-                            person.getDateOfBirth().get(Calendar.YEAR), person.getEnrollmentDate().get(Calendar.DAY_OF_MONTH), 
-                            person.getEnrollmentDate().get(Calendar.MONTH), person.getEnrollmentDate().get(Calendar.YEAR));
-        
+        Student student = new Student(person.getPerson_id(), person.getFirstName(), person.getLastName(),
+                person.getDateOfBirth().get(Calendar.DAY_OF_MONTH), person.getDateOfBirth().get(Calendar.MONTH),
+                person.getDateOfBirth().get(Calendar.YEAR), person.getEnrollmentDate().get(Calendar.DAY_OF_MONTH),
+                person.getEnrollmentDate().get(Calendar.MONTH), person.getEnrollmentDate().get(Calendar.YEAR));
+
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatementStudent = null;
-        
+
         String sql_select_student = "SELECT student_id, matriculationnumber, group_id, studentschedule_id FROM STUDENT WHERE student_id = ?";
-        
+
         try {
             preStatementStudent = connection.prepareStatement(sql_select_student);
             preStatementStudent.setInt(1, student_id);
             ResultSet resultSetStudent = preStatementStudent.executeQuery();
-            while(resultSetStudent.next()) {
+            while (resultSetStudent.next()) {
                 student.setMatriculationnumber(resultSetStudent.getInt("matriculationnumber"));
                 student.setGroup(groupService.getById(resultSetStudent.getInt("group_id")));
             }
@@ -166,7 +166,30 @@ public class StudentService implements StudentDAO {
         return student;
     }
 
-    /////////////////////////////////////////////////
+    public void update(Student student) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatement = null;
+        String sql_update = "UPDATE STUDENT SET matriculationnumber=?, group_id=?, studentschedule_id=? WHERE student_id=?";
+        try {
+            preStatement = connection.prepareStatement(sql_update);
+            preStatement.setInt(1, student.getMatriculationnumber());
+            preStatement.setInt(2, student.getGroup().getGroup_id());
+            preStatement.setInt(3, 2);
+            preStatement.setInt(4, student.getPerson_id());
+            preStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preStatement != null) {
+                preStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
+
     public boolean existParentTable(Student student) throws SQLException {
         boolean flag = false;
         DBConnector dbConnection = new DBConnector();

@@ -3,7 +3,6 @@ package ua.com.foxminded.university.domain.entity;
 import ua.com.foxminded.university.domain.Schedule;
 
 public class Student extends Person {
-
     private int matriculationnumber;
     private Group group;
     private Schedule studentSchedule;
@@ -31,6 +30,14 @@ public class Student extends Person {
         this.group = group;
     }
 
+    public Schedule getStudentSchedule() {
+        return studentSchedule;
+    }
+
+    public void setStudentSchedule(Schedule studentSchedule) {
+        this.studentSchedule = studentSchedule;
+    }
+
     public void addClassToSchedule(Class c) {
         studentSchedule.addClass(c);
     }
@@ -50,7 +57,8 @@ public class Student extends Person {
     @Override
     public String toString() {
         String output = super.toString() + ", group: "
-                + (group == null ? "there is no group yet" : group.getGroupNumber());
+                + (group == null ? "there is no group yet" : group.getGroupNumber()) + " matriculationnumber: "
+                + matriculationnumber;
         return output;
     }
 }

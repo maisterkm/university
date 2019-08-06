@@ -341,16 +341,17 @@ public class App {
             System.out.println("\nStudentService.getById()");
             Student student_getById = studentService.getById(100);
             System.out.println(student_getById);
-//
-//            System.out.println("\nTeacherService.update()");
-//            teacherTest.setSalary(1000000);
-//            teacherTest.setPosition(position_3);
-//            teacherService.update(teacherTest);
-//            teacherList = teacherService.getAll();
-//            for (Teacher item : teacherList) {
-//                System.out.println(item);
-//            }
-//
+
+            System.out.println("\nStudentService.update()");
+            studentTest.setMatriculationnumber(999999);
+            studentTest.setGroup(group2);
+            studentTest.setStudentSchedule(schedule);
+            studentService.update(studentTest);
+            studentList = studentService.getAll();
+            for (Student item : studentList) {
+                System.out.println(item);
+            }
+
 //            System.out.println("\nTeacherService.remove()");
 //            teacherService.remove(teacherTest);
 //            teacherList = teacherService.getAll();
