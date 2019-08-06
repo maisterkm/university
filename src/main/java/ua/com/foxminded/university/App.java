@@ -1,10 +1,9 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import ua.com.foxminded.university.dao.service.StudentService;
+import ua.com.foxminded.university.dao.service.CampusService;
+import ua.com.foxminded.university.dao.service.ClassroomService;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Class;
@@ -93,9 +92,9 @@ public class App {
         campus_2.setCampus("CAMPUS_B");
         campus_3.setCampus("CAMPUS_C");
 
-        Classroom room1 = new Classroom(campus_1, 101, 30);
-        Classroom room2 = new Classroom(campus_1, 202, 40);
-        Classroom room3 = new Classroom(campus_1, 303, 60);
+        Classroom room1 = new Classroom(campus_1, "101", 30);
+        Classroom room2 = new Classroom(campus_1, "202", 40);
+        Classroom room3 = new Classroom(campus_1, "303", 60);
         System.out.println();
         System.out.println(room1.toString());
         System.out.println(room2.toString());
@@ -321,43 +320,92 @@ public class App {
 //            e.printStackTrace();
 //        }
 
-        Student studentTest = new Student(100, "STUDENT_TEST", "STUDENT_TEST", 30, 9, 1988, 21, 9, 2011);
-        studentTest.setMatriculationnumber(100000);
-        group2.setGroup_id(2);
-        studentTest.setGroup(group2);
-        StudentService studentService = new StudentService();
+//        Student studentTest = new Student(100, "STUDENT_TEST", "STUDENT_TEST", 30, 9, 1988, 21, 9, 2011);
+//        studentTest.setMatriculationnumber(100000);
+//        group2.setGroup_id(2);
+//        studentTest.setGroup(group2);
+//        StudentService studentService = new StudentService();
+//        try {
+//            System.out.println("\n--- StudentService ---");
+//            System.out.println("\nStudentService.add()");
+//            studentService.add(studentTest);
+//
+//            System.out.println("\nStudentService.getAll()");
+//            List<Student> studentList = new ArrayList<Student>();
+//            studentList = studentService.getAll();
+//            for (Student item : studentList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nStudentService.getById()");
+//            Student student_getById = studentService.getById(100);
+//            System.out.println(student_getById);
+//
+//            System.out.println("\nStudentService.update()");
+//            studentTest.setMatriculationnumber(999999);
+//            studentTest.setGroup(group2);
+//            studentTest.setStudentSchedule(schedule);
+//            studentService.update(studentTest);
+//            studentList = studentService.getAll();
+//            for (Student item : studentList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nstudentService.remove()");
+//            studentService.remove(studentTest);
+//            studentList = studentService.getAll();
+//            for (Student item : studentList) {
+//                System.out.println(item);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        Campus campusTest = new Campus();
+        campusTest.setCampus_id(10);
+        campusTest.setCampus("CAMPUS_TEST");
+        CampusService campusService = new CampusService();
+        
+        Classroom classroomTest = new Classroom();
+        classroomTest.setCampus(campusTest);
+        classroomTest.setRoomNumber("room_test");
+        classroomTest.setCapacity(70);
+
+        ClassroomService classroomService = new ClassroomService();
         try {
-            System.out.println("\n--- StudentService ---");
-            System.out.println("\nStudentService.add()");
-            studentService.add(studentTest);
+            System.out.println("\n--- ClassroomService ---");
+            System.out.println("\nClassroomService.add()");
+            
+            campusService.add(campusTest);
+            
+            classroomService.add(classroomTest);
 
-            System.out.println("\nStudentService.getAll()");
-            List<Student> studentList = new ArrayList<Student>();
-            studentList = studentService.getAll();
-            for (Student item : studentList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\nStudentService.getById()");
-            Student student_getById = studentService.getById(100);
-            System.out.println(student_getById);
-
-            System.out.println("\nStudentService.update()");
-            studentTest.setMatriculationnumber(999999);
-            studentTest.setGroup(group2);
-            studentTest.setStudentSchedule(schedule);
-            studentService.update(studentTest);
-            studentList = studentService.getAll();
-            for (Student item : studentList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\nstudentService.remove()");
-            studentService.remove(studentTest);
-            studentList = studentService.getAll();
-            for (Student item : studentList) {
-                System.out.println(item);
-            }
+//            System.out.println("\nStudentService.getAll()");
+//            List<Student> studentList = new ArrayList<Student>();
+//            studentList = studentService.getAll();
+//            for (Student item : studentList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nStudentService.getById()");
+//            Student student_getById = studentService.getById(100);
+//            System.out.println(student_getById);
+//
+//            System.out.println("\nStudentService.update()");
+//            studentTest.setMatriculationnumber(999999);
+//            studentTest.setGroup(group2);
+//            studentTest.setStudentSchedule(schedule);
+//            studentService.update(studentTest);
+//            studentList = studentService.getAll();
+//            for (Student item : studentList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nstudentService.remove()");
+//            studentService.remove(studentTest);
+//            studentList = studentService.getAll();
+//            for (Student item : studentList) {
+//                System.out.println(item);
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -51,7 +51,6 @@ public class CampusService implements CampusDAO {
                 connection.close();
             }
         }
-
     }
 
     public List<Campus> getAll() throws SQLException {
