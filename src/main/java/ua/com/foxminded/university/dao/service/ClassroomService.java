@@ -119,7 +119,7 @@ public class ClassroomService implements ClassroomDAO {
         }
         return classroom;
     }
-    
+
     public void update(Classroom classroom) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -137,6 +137,28 @@ public class ClassroomService implements ClassroomDAO {
         } finally {
             if (preparedStatement != null) {
                 preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
+
+    public void remove(Classroom classroom) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatement = null;
+        String sql_delete = "DELETE FROM CLASSROOM WHERE campus_id=? AND roomnumber=?";
+        try {
+            preStatement = connection.prepareStatement(sql_delete);
+            preStatement.setInt(1, classroom.getCampus().getCampus_id());
+            preStatement.setString(2, classroom.getRoomNumber());
+            preStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preStatement != null) {
+                preStatement.close();
             }
             if (connection != null) {
                 connection.close();

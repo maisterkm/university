@@ -366,7 +366,7 @@ public class App {
         campusTest.setCampus_id(10);
         campusTest.setCampus("CAMPUS_TEST");
         CampusService campusService = new CampusService();
-        
+
         Classroom classroomTest = new Classroom();
         classroomTest.setCampus(campusTest);
         classroomTest.setRoomNumber("room_test");
@@ -375,20 +375,20 @@ public class App {
         ClassroomService classroomService = new ClassroomService();
         try {
             System.out.println("\n--- ClassroomService ---");
-            System.out.println("\nClassroomService.add()");
-            
+            System.out.println("\nclassroomService.add()");
+
             campusService.add(campusTest);
-            
+
             classroomService.add(classroomTest);
 
-            System.out.println("\nClassroomService.getAll()");
+            System.out.println("\nclassroomService.getAll()");
             List<Classroom> classroomList = new ArrayList<Classroom>();
             classroomList = classroomService.getAll();
             for (Classroom item : classroomList) {
                 System.out.println(item);
             }
 
-            System.out.println("\nClassroomService.getById()");
+            System.out.println("\nclassroomService.getById()");
             Classroom classroom_getById = classroomService.getById(10, "room_test");
             System.out.println(classroom_getById);
 
@@ -400,12 +400,12 @@ public class App {
                 System.out.println(item);
             }
 
-//            System.out.println("\nstudentService.remove()");
-//            studentService.remove(studentTest);
-//            studentList = studentService.getAll();
-//            for (Student item : studentList) {
-//                System.out.println(item);
-//            }
+            System.out.println("\nclassroomService.remove()");
+            classroomService.remove(classroomTest);
+            classroomList = classroomService.getAll();
+            for (Classroom item : classroomList) {
+                System.out.println(item);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
