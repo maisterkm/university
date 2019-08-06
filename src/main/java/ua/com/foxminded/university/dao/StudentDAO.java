@@ -12,7 +12,7 @@ public interface StudentDAO {
     // read
     List<Student> getAll() throws SQLException;
 
-//    Student getById(Integer id) throws SQLException;
+    Student getById(Integer id) throws SQLException;
 
     // update
 //    void update(Student student) throws SQLException;

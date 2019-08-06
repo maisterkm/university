@@ -337,10 +337,10 @@ public class App {
             for (Student item : studentList) {
                 System.out.println(item);
             }
-//
-//            System.out.println("\nTeacherService.getById()");
-//            Teacher teacher_getById = teacherService.getById(333);
-//            System.out.println(teacher_getById);
+
+            System.out.println("\nStudentService.getById()");
+            Student student_getById = studentService.getById(100);
+            System.out.println(student_getById);
 //
 //            System.out.println("\nTeacherService.update()");
 //            teacherTest.setSalary(1000000);

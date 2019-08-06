@@ -129,6 +129,44 @@ public class StudentService implements StudentDAO {
         return studentList;
     }
 
+/////////////////////////////////////////////////////// cal.get(Calendar.MONTH)
+    public Student getById(Integer student_id) throws SQLException {
+        PersonService personService = new PersonService();
+        GroupService groupService = new GroupService();
+        Person person = personService.getById(student_id);
+        Student student = new Student(person.getPerson_id(), person.getFirstName(), person.getLastName(), 
+                            person.getDateOfBirth().get(Calendar.DAY_OF_MONTH), person.getDateOfBirth().get(Calendar.MONTH), 
+                            person.getDateOfBirth().get(Calendar.YEAR), person.getEnrollmentDate().get(Calendar.DAY_OF_MONTH), 
+                            person.getEnrollmentDate().get(Calendar.MONTH), person.getEnrollmentDate().get(Calendar.YEAR));
+        
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatementStudent = null;
+        
+        String sql_select_student = "SELECT student_id, matriculationnumber, group_id, studentschedule_id FROM STUDENT WHERE student_id = ?";
+        
+        try {
+            preStatementStudent = connection.prepareStatement(sql_select_student);
+            preStatementStudent.setInt(1, student_id);
+            ResultSet resultSetStudent = preStatementStudent.executeQuery();
+            while(resultSetStudent.next()) {
+                student.setMatriculationnumber(resultSetStudent.getInt("matriculationnumber"));
+                student.setGroup(groupService.getById(resultSetStudent.getInt("group_id")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preStatementStudent != null) {
+                preStatementStudent.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return student;
+    }
+
+    /////////////////////////////////////////////////
     public boolean existParentTable(Student student) throws SQLException {
         boolean flag = false;
         DBConnector dbConnection = new DBConnector();
