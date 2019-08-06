@@ -4,9 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import ua.com.foxminded.university.dao.DBConnector;
 import ua.com.foxminded.university.dao.StudentDAO;
+import ua.com.foxminded.university.domain.entity.Group;
 import ua.com.foxminded.university.domain.entity.Person;
 import ua.com.foxminded.university.domain.entity.Student;
 
@@ -64,6 +70,63 @@ public class StudentService implements StudentDAO {
                 connection.close();
             }
         }
+    }
+
+    public List<Student> getAll() throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        List<Student> studentList = new ArrayList<Student>();
+        Statement statementStudent = null;
+        PreparedStatement preStatementPerson = null;
+        PreparedStatement preStatementGrup = null;
+
+        String sql_select_student = "SELECT student_id, matriculationnumber, group_id, studentschedule_id FROM STUDENT";
+        String sql_select_person = "SELECT person_id, firstname, lastname, dateofbirth, enrollmentdate FROM PERSON WHERE person_id=?";
+        try {
+            statementStudent = connection.createStatement();
+            ResultSet resultSetStudent = statementStudent.executeQuery(sql_select_student);
+
+            while (resultSetStudent.next()) {
+                preStatementPerson = connection.prepareStatement(sql_select_person);
+                preStatementPerson.setInt(1, resultSetStudent.getInt("student_id"));
+                ResultSet resultSetPerson = preStatementPerson.executeQuery();
+
+                while (resultSetPerson.next()) {
+                    String strDateOfBirth = resultSetPerson.getString("dateofbirth");
+                    Timestamp timestampDateOfBirth = Timestamp.valueOf(strDateOfBirth);
+                    Calendar calendarDateOfBirth = Calendar.getInstance();
+                    calendarDateOfBirth.setTimeInMillis(timestampDateOfBirth.getTime());
+
+                    String strEnrollmentDate = resultSetPerson.getString("enrollmentdate");
+                    Timestamp timestampEnrollmentDate = Timestamp.valueOf(strEnrollmentDate);
+                    Calendar calendarEnrollmentDate = Calendar.getInstance();
+                    calendarEnrollmentDate.setTimeInMillis(timestampEnrollmentDate.getTime());
+
+                    Student student = new Student(resultSetPerson.getInt("person_id"),
+                            resultSetPerson.getString("firstname"), resultSetPerson.getString("lastname"),
+                            calendarDateOfBirth.get(Calendar.DAY_OF_MONTH), calendarDateOfBirth.get(Calendar.MONTH),
+                            calendarDateOfBirth.get(Calendar.YEAR), calendarEnrollmentDate.get(Calendar.DAY_OF_MONTH),
+                            calendarEnrollmentDate.get(Calendar.MONTH), calendarEnrollmentDate.get(Calendar.YEAR));
+                    GroupService groupService = new GroupService();
+                    Group group = groupService.getById(resultSetStudent.getInt("group_id"));
+                    student.setGroup(group);
+                    studentList.add(student);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (statementStudent != null) {
+                statementStudent.close();
+            }
+            if (preStatementPerson != null) {
+                preStatementPerson.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return studentList;
     }
 
     public boolean existParentTable(Student student) throws SQLException {
