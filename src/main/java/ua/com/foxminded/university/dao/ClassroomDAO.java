@@ -12,10 +12,10 @@ public interface ClassroomDAO {
     // read
     List<Classroom> getAll() throws SQLException;
 
-//    Classroom getById(Integer id) throws SQLException;
+    Classroom getById(Integer id, String roomnumber) throws SQLException;
 
     // update
-//    void update(Classroom classroom) throws SQLException;
+    //void update(Classroom classroom) throws SQLException;
 
     // delete
 //    void remove(Classroom classroom) throws SQLException;

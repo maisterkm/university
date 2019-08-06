@@ -387,10 +387,10 @@ public class App {
             for (Classroom item : classroomList) {
                 System.out.println(item);
             }
-//
-//            System.out.println("\nStudentService.getById()");
-//            Student student_getById = studentService.getById(100);
-//            System.out.println(student_getById);
+
+            System.out.println("\nClassroomService.getById()");
+            Classroom classroom_getById = classroomService.getById(10, "room_test");
+            System.out.println(classroom_getById);
 //
 //            System.out.println("\nStudentService.update()");
 //            studentTest.setMatriculationnumber(999999);

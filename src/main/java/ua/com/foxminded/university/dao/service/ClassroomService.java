@@ -88,4 +88,35 @@ public class ClassroomService implements ClassroomDAO {
         }
         return classroomList;
     }
+
+    public Classroom getById(Integer campus_id, String roomnumber) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preparedStatement = null;
+        String sql = "SELECT campus_id, roomnumber, capacity FROM CLASSROOM WHERE campus_id=? AND roomnumber=?";
+        Classroom classroom = new Classroom();
+        CampusService campusService = new CampusService();
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, campus_id);
+            preparedStatement.setString(2, roomnumber);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            classroom.setCampus(campusService.getById(campus_id));
+            classroom.setRoomNumber(resultSet.getString("roomnumber"));
+            classroom.setCapacity(resultSet.getInt("capacity"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return classroom;
+    }
 }
