@@ -1,10 +1,8 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import ua.com.foxminded.university.dao.service.TeacherService;
+import ua.com.foxminded.university.dao.service.StudentService;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Class;
@@ -283,40 +281,80 @@ public class App {
 //            e.printStackTrace();
 //        }
 
-        Teacher teacherTest = new Teacher(333, "FIRSTNAME_TEST333", "LASTNAME_TEST333", 30, 9, 1988, 21, 9, 2011,
-                position_1, 3333);
-        TeacherService teacherService = new TeacherService();
+//        Teacher teacherTest = new Teacher(333, "FIRSTNAME_TEST333", "LASTNAME_TEST333", 30, 9, 1988, 21, 9, 2011,
+//                position_1, 3333);
+//        TeacherService teacherService = new TeacherService();
+//        try {
+//            System.out.println("\n--- TeacherService ---");
+//            System.out.println("\nTeacherService.add()");
+//            teacherService.add(teacherTest);
+//
+//            System.out.println("\nGroupService.getAll()");
+//            List<Teacher> teacherList = new ArrayList<Teacher>();
+//            teacherList = teacherService.getAll();
+//            for (Teacher item : teacherList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nTeacherService.getById()");
+//            Teacher teacher_getById = teacherService.getById(333);
+//            System.out.println(teacher_getById);
+//
+//            System.out.println("\nTeacherService.update()");
+//            teacherTest.setSalary(1000000);
+//            teacherTest.setPosition(position_3);
+//            teacherService.update(teacherTest);
+//            teacherList = teacherService.getAll();
+//            for (Teacher item : teacherList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nTeacherService.remove()");
+//            teacherService.remove(teacherTest);
+//            teacherList = teacherService.getAll();
+//            for (Teacher item : teacherList) {
+//                System.out.println(item);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
+        Student studentTest = new Student(100, "STUDENT_TEST", "STUDENT_TEST", 30, 9, 1988, 21, 9, 2011);
+        studentTest.setMatriculationnumber(100000);
+        group2.setGroup_id(2);
+        studentTest.setGroup(group2);
+        StudentService studentService = new StudentService();
         try {
-            System.out.println("\n--- TeacherService ---");
-            System.out.println("\nTeacherService.add()");
-            teacherService.add(teacherTest);
+            System.out.println("\n--- StudentService ---");
+            System.out.println("\nStudentService.add()");
+            studentService.add(studentTest);
 
-            System.out.println("\nGroupService.getAll()");
-            List<Teacher> teacherList = new ArrayList<Teacher>();
-            teacherList = teacherService.getAll();
-            for (Teacher item : teacherList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\nTeacherService.getById()");
-            Teacher teacher_getById = teacherService.getById(333);
-            System.out.println(teacher_getById);
-
-            System.out.println("\nTeacherService.update()");
-            teacherTest.setSalary(1000000);
-            teacherTest.setPosition(position_3);
-            teacherService.update(teacherTest);
-            teacherList = teacherService.getAll();
-            for (Teacher item : teacherList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\nTeacherService.remove()");
-            teacherService.remove(teacherTest);
-            teacherList = teacherService.getAll();
-            for (Teacher item : teacherList) {
-                System.out.println(item);
-            }
+//            System.out.println("\nGroupService.getAll()");
+//            List<Teacher> teacherList = new ArrayList<Teacher>();
+//            teacherList = teacherService.getAll();
+//            for (Teacher item : teacherList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nTeacherService.getById()");
+//            Teacher teacher_getById = teacherService.getById(333);
+//            System.out.println(teacher_getById);
+//
+//            System.out.println("\nTeacherService.update()");
+//            teacherTest.setSalary(1000000);
+//            teacherTest.setPosition(position_3);
+//            teacherService.update(teacherTest);
+//            teacherList = teacherService.getAll();
+//            for (Teacher item : teacherList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nTeacherService.remove()");
+//            teacherService.remove(teacherTest);
+//            teacherList = teacherService.getAll();
+//            for (Teacher item : teacherList) {
+//                System.out.println(item);
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

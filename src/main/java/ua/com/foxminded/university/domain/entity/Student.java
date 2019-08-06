@@ -4,6 +4,7 @@ import ua.com.foxminded.university.domain.Schedule;
 
 public class Student extends Person {
 
+    private int matriculationnumber;
     private Group group;
     private Schedule studentSchedule;
 
@@ -11,8 +12,15 @@ public class Student extends Person {
             int enrollmentDay, int enrollmentMonth, int enrollmentYear) {
         super(id, firstName, lastName, birthDay, birthMonth, birthYear, enrollmentDay, enrollmentMonth, enrollmentYear);
         group = null;
-//        this.group = group;
         studentSchedule = new Schedule();
+    }
+
+    public int getMatriculationnumber() {
+        return matriculationnumber;
+    }
+
+    public void setMatriculationnumber(int matriculationnumber) {
+        this.matriculationnumber = matriculationnumber;
     }
 
     public Group getGroup() {
