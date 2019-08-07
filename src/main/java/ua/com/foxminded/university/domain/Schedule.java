@@ -18,7 +18,7 @@ public class Schedule {
             listOfMonthlySchedule.add(new MonthlySchedule());
         }
     }
-    
+
     public int getSchedule_id() {
         return schedule_id;
     }
@@ -26,7 +26,7 @@ public class Schedule {
     public void setSchedule_id(int schedule_id) {
         this.schedule_id = schedule_id;
     }
-    
+
     public String getDescription() {
         return description;
     }
@@ -55,4 +55,12 @@ public class Schedule {
     public void displayDay(int month, int day) {
         listOfMonthlySchedule.get(month - 1).listOfDailySchedule.get(day - 1).displayDay();
     }
+
+    @Override
+    public String toString() {
+        String output = "class name: " + this.getClass().getSimpleName() + ", schedule_id: " + schedule_id
+                + ", description: " + description;
+        return output;
+    }
+
 }

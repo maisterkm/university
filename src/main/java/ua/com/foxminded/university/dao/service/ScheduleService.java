@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import ua.com.foxminded.university.dao.DBConnector;
 import ua.com.foxminded.university.dao.ScheduleDAO;
@@ -47,5 +50,36 @@ public class ScheduleService implements ScheduleDAO {
                 connection.close();
             }
         }
+    }
+
+    public List<Schedule> getAll() throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        List<Schedule> scheduleList = new ArrayList<Schedule>();
+        String sql = "SELECT schedule_id, description FROM SCHEDULE";
+        Statement statement = null;
+
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                Schedule schedule = new Schedule();
+                schedule.setSchedule_id(resultSet.getInt("schedule_id"));
+                schedule.setDescription(resultSet.getString("description"));
+
+                scheduleList.add(schedule);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return scheduleList;
     }
 }
