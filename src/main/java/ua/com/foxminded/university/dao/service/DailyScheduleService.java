@@ -149,4 +149,27 @@ public class DailyScheduleService implements DailyScheduleDAO {
             }
         }
     }
+
+    public void remove(DailySchedule dailySchedule) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatement = null;
+        String sql_delete = "DELETE FROM DAILYSCHEDULE WHERE dailyschedule_id=? AND monthlyschedule_id=? AND schedule_id=?";
+        try {
+            preStatement = connection.prepareStatement(sql_delete);
+            preStatement.setInt(1, dailySchedule.getDailySchedule_id());
+            preStatement.setInt(2, dailySchedule.getMonthlySchedule_id());
+            preStatement.setInt(3, dailySchedule.getSchedule_id());
+            preStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preStatement != null) {
+                preStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 }

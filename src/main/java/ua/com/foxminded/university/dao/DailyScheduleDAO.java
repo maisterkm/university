@@ -19,5 +19,5 @@ public interface DailyScheduleDAO {
     void update(DailySchedule dailySchedule) throws SQLException;
 
     // delete
-//    void remove(DailySchedule dailySchedule) throws SQLException;
+    void remove(DailySchedule dailySchedule) throws SQLException;
 }

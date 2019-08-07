@@ -517,12 +517,12 @@ public class App {
                 System.out.println(item);
             }
 
-//            System.out.println("\nmonthlyScheduleService.remove()");
-//            monthlyScheduleService.remove(monthlyScheduleTest);
-//            monthlyScheduleList = monthlyScheduleService.getAll();
-//            for (MonthlySchedule item : monthlyScheduleList) {
-//                System.out.println(item);
-//            }
+            System.out.println("\ndailyScheduleService.remove()");
+            dailyScheduleService.remove(dailyScheduleTest);
+            dailyScheduleList = dailyScheduleService.getAll();
+            for (DailySchedule item : dailyScheduleList) {
+                System.out.println(item);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
