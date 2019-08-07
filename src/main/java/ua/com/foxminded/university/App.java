@@ -1,6 +1,8 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import ua.com.foxminded.university.dao.service.DailyScheduleService;
 import ua.com.foxminded.university.domain.DailySchedule;
@@ -496,13 +498,13 @@ public class App {
             System.out.println("\ndailyScheduleService.add()");
             dailyScheduleService.add(dailyScheduleTest);
 
-//            System.out.println("\nmonthlyScheduleService.getAll()");
-//            List<MonthlySchedule> monthlyScheduleList = new ArrayList<MonthlySchedule>();
-//            monthlyScheduleList = monthlyScheduleService.getAll();
-//            for (MonthlySchedule item : monthlyScheduleList) {
-//                System.out.println(item);
-//            }
-//
+            System.out.println("\nmonthlyScheduleService.getAll()");
+            List<DailySchedule> dailyScheduleList = new ArrayList<DailySchedule>();
+            dailyScheduleList = dailyScheduleService.getAll();
+            for (DailySchedule item : dailyScheduleList) {
+                System.out.println(item);
+            }
+
 //            System.out.println("\nmonthlyScheduleService.getById()");
 //            MonthlySchedule monthlySchedule_getById = monthlyScheduleService.getById(10, 2);
 //            System.out.println(monthlySchedule_getById);

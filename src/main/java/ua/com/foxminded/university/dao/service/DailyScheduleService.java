@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import ua.com.foxminded.university.dao.DBConnector;
 import ua.com.foxminded.university.dao.DailyScheduleDAO;
@@ -55,5 +58,37 @@ public class DailyScheduleService implements DailyScheduleDAO {
                 connection.close();
             }
         }
+    }
+
+    public List<DailySchedule> getAll() throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        List<DailySchedule> dailyScheduleList = new ArrayList<DailySchedule>();
+        String sql = "SELECT dailySchedule_id, monthlyschedule_id, schedule_id, description FROM DAILYSCHEDULE";
+        Statement statement = null;
+
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                DailySchedule dailySchedule = new DailySchedule();
+                dailySchedule.setDailySchedule_id(resultSet.getInt("dailyschedule_id"));
+                dailySchedule.setMonthlySchedule_id(resultSet.getInt("monthlyschedule_id"));
+                dailySchedule.setSchedule_id(resultSet.getInt("schedule_id"));
+                dailySchedule.setDescription(resultSet.getString("description"));
+                dailyScheduleList.add(dailySchedule);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return dailyScheduleList;
     }
 }
