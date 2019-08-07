@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
-import ua.com.foxminded.university.domain.entity.Class;
+import ua.com.foxminded.university.domain.entity.Lesson;
 
 public class Schedule {
     private int schedule_id;
@@ -35,14 +35,14 @@ public class Schedule {
         this.description = description;
     }
 
-    public void addClass(Class c) {
+    public void addClass(Lesson c) {
         int month = c.getBeginTime().get(Calendar.MONTH);
         int day = c.getBeginTime().get(Calendar.DAY_OF_MONTH) - 1;
         listOfMonthlySchedule.get(month).getListOfDailySchedule().get(day).getListsOfClasses().add(c);
         Collections.sort(listOfMonthlySchedule.get(month).getListOfDailySchedule().get(day).getListsOfClasses());
     }
 
-    public void removeClass(Class c) {
+    public void removeClass(Lesson c) {
         int month = c.getBeginTime().get(Calendar.MONTH);
         int day = c.getBeginTime().get(Calendar.DAY_OF_MONTH);
         listOfMonthlySchedule.get(month).listOfDailySchedule.get(day - 1).removeClass(c);

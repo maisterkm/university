@@ -38,11 +38,11 @@ public class Student extends Person {
         this.studentSchedule = studentSchedule;
     }
 
-    public void addClassToSchedule(Class c) {
+    public void addClassToSchedule(Lesson c) {
         studentSchedule.addClass(c);
     }
 
-    public void removeClassFromSchedule(Class c) {
+    public void removeClassFromSchedule(Lesson c) {
         studentSchedule.removeClass(c);
     }
 

@@ -4,14 +4,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.com.foxminded.university.domain.entity.Class;
+import ua.com.foxminded.university.domain.entity.Lesson;
 
 public class DailySchedule {
     private int dailySchedule_id;
     private int monthlySchedule_id;
     private int schedule_id;
     private String description;
-    private List<Class> listsOfClasses = new ArrayList<Class>();
+    private List<Lesson> listsOfClasses = new ArrayList<Lesson>();
 
     public int getDailySchedule_id() {
         return dailySchedule_id;
@@ -45,15 +45,15 @@ public class DailySchedule {
         this.description = description;
     }
 
-    public List<Class> getListsOfClasses() {
+    public List<Lesson> getListsOfClasses() {
         return listsOfClasses;
     }
 
-    public void addClass(Class clas) {
+    public void addClass(Lesson clas) {
         listsOfClasses.add(clas);
     }
 
-    public void removeClass(Class clas) {
+    public void removeClass(Lesson clas) {
         listsOfClasses.remove(clas);
     }
 
@@ -62,7 +62,7 @@ public class DailySchedule {
         if (!listsOfClasses.isEmpty()) {
             SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMMM");
             output += sdf.format(listsOfClasses.get(0).getBeginTime().getTime());
-            for (Class item : listsOfClasses) {
+            for (Lesson item : listsOfClasses) {
                 output += item.displayClass();
             }
         }
