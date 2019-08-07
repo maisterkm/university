@@ -89,7 +89,6 @@ public class ScheduleService implements ScheduleDAO {
         PreparedStatement preparedStatement = null;
         String sql = "SELECT schedule_id, description FROM SCHEDULE WHERE schedule_id=?";
         Schedule schedule = new Schedule();
-//        ScheduleService scheduleService = new ScheduleService();
 
         try {
             preparedStatement = connection.prepareStatement(sql);

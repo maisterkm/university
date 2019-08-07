@@ -464,11 +464,11 @@ public class App {
             for (MonthlySchedule item : monthlyScheduleList) {
                 System.out.println(item);
             }
-//
-//            System.out.println("\nscheduleService.getById()");
-//            Schedule schedule_getById = scheduleService.getById(10);
-//            System.out.println(schedule_getById);
-//
+
+            System.out.println("\nmonthlyScheduleService.getById()");
+            MonthlySchedule monthlySchedule_getById = monthlyScheduleService.getById(10, 2);
+            System.out.println(monthlySchedule_getById);
+
 //            System.out.println("\nScheduleService.update()");
 //            scheduleTest.setDescription("UPDATE_DESCRIPTION");
 //            scheduleService.update(scheduleTest);

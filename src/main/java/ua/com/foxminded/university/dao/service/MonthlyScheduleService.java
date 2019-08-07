@@ -87,4 +87,34 @@ public class MonthlyScheduleService implements MonthlyScheduleDAO {
         }
         return monthlyScheduleList;
     }
+
+    public MonthlySchedule getById(Integer monthlySchedule_id, Integer schedule_id) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement predStatement = null;
+        String sql = "SELECT monthlyschedule_id, schedule_id, description FROM MONTHLYSCHEDULE WHERE monthlyschedule_id=? AND schedule_id=?";
+        MonthlySchedule monthlySchedule = new MonthlySchedule();
+
+        try {
+            predStatement = connection.prepareStatement(sql);
+            predStatement.setInt(1, monthlySchedule_id);
+            predStatement.setInt(2, schedule_id);
+
+            ResultSet resultSet = predStatement.executeQuery();
+            resultSet.next();
+            monthlySchedule.setMonthlySchedule_id(resultSet.getInt("monthlyschedule_id"));
+            monthlySchedule.setSchedule_id(resultSet.getInt("schedule_id"));
+            monthlySchedule.setDescription(resultSet.getString("description"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (predStatement != null) {
+                predStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return monthlySchedule;
+    }
 }
