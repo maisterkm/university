@@ -429,14 +429,14 @@ public class App {
             Schedule schedule_getById = scheduleService.getById(10);
             System.out.println(schedule_getById);
 
-//            System.out.println("\nClassroomService.update()");
-//            classroomTest.setCapacity(120);
-//            classroomService.update(classroomTest);
-//            classroomList = classroomService.getAll();
-//            for (Classroom item : classroomList) {
-//                System.out.println(item);
-//            }
-//
+            System.out.println("\nScheduleService.update()");
+            scheduleTest.setDescription("UPDATE_DESCRIPTION");
+            scheduleService.update(scheduleTest);
+            scheduleList = scheduleService.getAll();
+            for (Schedule item : scheduleList) {
+                System.out.println(item);
+            }
+
 //            System.out.println("\nclassroomService.remove()");
 //            classroomService.remove(classroomTest);
 //            classroomList = classroomService.getAll();

@@ -89,7 +89,7 @@ public class ScheduleService implements ScheduleDAO {
         PreparedStatement preparedStatement = null;
         String sql = "SELECT schedule_id, description FROM SCHEDULE WHERE schedule_id=?";
         Schedule schedule = new Schedule();
-        ScheduleService scheduleService = new ScheduleService();
+//        ScheduleService scheduleService = new ScheduleService();
 
         try {
             preparedStatement = connection.prepareStatement(sql);
@@ -110,5 +110,28 @@ public class ScheduleService implements ScheduleDAO {
             }
         }
         return schedule;
+    }
+
+    public void update(Schedule schedule) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preparedStatement = null;
+        String sql_update = "UPDATE SCHEDULE SET description=? WHERE schedule_id=?";
+
+        try {
+            preparedStatement = connection.prepareStatement(sql_update);
+            preparedStatement.setString(1, schedule.getDescription());
+            preparedStatement.setInt(2, schedule.getSchedule_id());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
     }
 }

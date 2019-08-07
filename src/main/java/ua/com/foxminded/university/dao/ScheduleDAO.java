@@ -15,7 +15,7 @@ public interface ScheduleDAO {
     Schedule getById(Integer id) throws SQLException;
 
     // update
-//    void update(Schedule schedule) throws SQLException;
+    void update(Schedule schedule) throws SQLException;
 
     // delete
 //    void remove(Schedule schedule) throws SQLException;
