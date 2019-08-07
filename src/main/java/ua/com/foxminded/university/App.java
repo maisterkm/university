@@ -498,17 +498,17 @@ public class App {
             System.out.println("\ndailyScheduleService.add()");
             dailyScheduleService.add(dailyScheduleTest);
 
-            System.out.println("\nmonthlyScheduleService.getAll()");
+            System.out.println("\ndailyScheduleService.getAll()");
             List<DailySchedule> dailyScheduleList = new ArrayList<DailySchedule>();
             dailyScheduleList = dailyScheduleService.getAll();
             for (DailySchedule item : dailyScheduleList) {
                 System.out.println(item);
             }
 
-//            System.out.println("\nmonthlyScheduleService.getById()");
-//            MonthlySchedule monthlySchedule_getById = monthlyScheduleService.getById(10, 2);
-//            System.out.println(monthlySchedule_getById);
-//
+            System.out.println("\ndailyScheduleService.getById()");
+            DailySchedule dailySchedule_getById = dailyScheduleService.getById(10, 2, 1);
+            System.out.println(dailySchedule_getById);
+
 //            System.out.println("\nmonthlyScheduleService.update()");
 //            monthlyScheduleTest.setDescription("UPDATE_DESCRIPTION");
 //            monthlyScheduleService.update(monthlyScheduleTest);
