@@ -1,11 +1,9 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import ua.com.foxminded.university.dao.service.MonthlyScheduleService;
-import ua.com.foxminded.university.domain.MonthlySchedule;
+import ua.com.foxminded.university.dao.service.DailyScheduleService;
+import ua.com.foxminded.university.domain.DailySchedule;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Class;
@@ -448,41 +446,81 @@ public class App {
 //            e.printStackTrace();
 //        }
 
-        MonthlySchedule monthlyScheduleTest = new MonthlySchedule();
-        monthlyScheduleTest.setMonthlySchedule_id(10);
-        monthlyScheduleTest.setSchedule_id(2);
-        monthlyScheduleTest.setDescription("TEST_DESCRIPTION");
-        MonthlyScheduleService monthlyScheduleService = new MonthlyScheduleService();
+//        MonthlySchedule monthlyScheduleTest = new MonthlySchedule();
+//        monthlyScheduleTest.setMonthlySchedule_id(10);
+//        monthlyScheduleTest.setSchedule_id(2);
+//        monthlyScheduleTest.setDescription("TEST_DESCRIPTION");
+//        MonthlyScheduleService monthlyScheduleService = new MonthlyScheduleService();
+//        try {
+//            System.out.println("\n--- MonthlyScheduleService ---");
+//            System.out.println("\nmonthlyScheduleService.add()");
+//            monthlyScheduleService.add(monthlyScheduleTest);
+//
+//            System.out.println("\nmonthlyScheduleService.getAll()");
+//            List<MonthlySchedule> monthlyScheduleList = new ArrayList<MonthlySchedule>();
+//            monthlyScheduleList = monthlyScheduleService.getAll();
+//            for (MonthlySchedule item : monthlyScheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nmonthlyScheduleService.getById()");
+//            MonthlySchedule monthlySchedule_getById = monthlyScheduleService.getById(10, 2);
+//            System.out.println(monthlySchedule_getById);
+//
+//            System.out.println("\nmonthlyScheduleService.update()");
+//            monthlyScheduleTest.setDescription("UPDATE_DESCRIPTION");
+//            monthlyScheduleService.update(monthlyScheduleTest);
+//            monthlyScheduleList = monthlyScheduleService.getAll();
+//            for (MonthlySchedule item : monthlyScheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nmonthlyScheduleService.remove()");
+//            monthlyScheduleService.remove(monthlyScheduleTest);
+//            monthlyScheduleList = monthlyScheduleService.getAll();
+//            for (MonthlySchedule item : monthlyScheduleList) {
+//                System.out.println(item);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
+        DailySchedule dailyScheduleTest = new DailySchedule();
+        dailyScheduleTest.setDailySchedule_id(10);
+        dailyScheduleTest.setMonthlySchedule_id(2);
+        dailyScheduleTest.setSchedule_id(1);
+        dailyScheduleTest.setDescription("TEST_DESCRIPTION");
+        DailyScheduleService dailyScheduleService = new DailyScheduleService();
         try {
-            System.out.println("\n--- MonthlyScheduleService ---");
-            System.out.println("\nmonthlyScheduleService.add()");
-            monthlyScheduleService.add(monthlyScheduleTest);
+            System.out.println("\n--- DailyScheduleService ---");
+            System.out.println("\ndailyScheduleService.add()");
+            dailyScheduleService.add(dailyScheduleTest);
 
-            System.out.println("\nmonthlyScheduleService.getAll()");
-            List<MonthlySchedule> monthlyScheduleList = new ArrayList<MonthlySchedule>();
-            monthlyScheduleList = monthlyScheduleService.getAll();
-            for (MonthlySchedule item : monthlyScheduleList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\nmonthlyScheduleService.getById()");
-            MonthlySchedule monthlySchedule_getById = monthlyScheduleService.getById(10, 2);
-            System.out.println(monthlySchedule_getById);
-
-            System.out.println("\nmonthlyScheduleService.update()");
-            monthlyScheduleTest.setDescription("UPDATE_DESCRIPTION");
-            monthlyScheduleService.update(monthlyScheduleTest);
-            monthlyScheduleList = monthlyScheduleService.getAll();
-            for (MonthlySchedule item : monthlyScheduleList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\nmonthlyScheduleService.remove()");
-            monthlyScheduleService.remove(monthlyScheduleTest);
-            monthlyScheduleList = monthlyScheduleService.getAll();
-            for (MonthlySchedule item : monthlyScheduleList) {
-                System.out.println(item);
-            }
+//            System.out.println("\nmonthlyScheduleService.getAll()");
+//            List<MonthlySchedule> monthlyScheduleList = new ArrayList<MonthlySchedule>();
+//            monthlyScheduleList = monthlyScheduleService.getAll();
+//            for (MonthlySchedule item : monthlyScheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nmonthlyScheduleService.getById()");
+//            MonthlySchedule monthlySchedule_getById = monthlyScheduleService.getById(10, 2);
+//            System.out.println(monthlySchedule_getById);
+//
+//            System.out.println("\nmonthlyScheduleService.update()");
+//            monthlyScheduleTest.setDescription("UPDATE_DESCRIPTION");
+//            monthlyScheduleService.update(monthlyScheduleTest);
+//            monthlyScheduleList = monthlyScheduleService.getAll();
+//            for (MonthlySchedule item : monthlyScheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nmonthlyScheduleService.remove()");
+//            monthlyScheduleService.remove(monthlyScheduleTest);
+//            monthlyScheduleList = monthlyScheduleService.getAll();
+//            for (MonthlySchedule item : monthlyScheduleList) {
+//                System.out.println(item);
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

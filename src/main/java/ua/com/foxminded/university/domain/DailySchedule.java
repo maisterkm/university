@@ -10,6 +10,7 @@ public class DailySchedule {
     private int dailySchedule_id;
     private int monthlySchedule_id;
     private int schedule_id;
+    private String description;
     private List<Class> listsOfClasses = new ArrayList<Class>();
 
     public int getDailySchedule_id() {
@@ -36,6 +37,14 @@ public class DailySchedule {
         this.schedule_id = schedule_id;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public List<Class> getListsOfClasses() {
         return listsOfClasses;
     }
@@ -57,6 +66,14 @@ public class DailySchedule {
                 output += item.displayClass();
             }
         }
+        return output;
+    }
+
+    @Override
+    public String toString() {
+        String output = "class name: " + this.getClass().getSimpleName() + ", dailySchedule_id: " + dailySchedule_id
+                + ", monthlySchedule_id: " + monthlySchedule_id + ", schedule_id: " + schedule_id + ", description: "
+                + description;
         return output;
     }
 }

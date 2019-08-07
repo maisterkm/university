@@ -1,7 +1,59 @@
 package ua.com.foxminded.university.dao.service;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import ua.com.foxminded.university.dao.DBConnector;
 import ua.com.foxminded.university.dao.DailyScheduleDAO;
+import ua.com.foxminded.university.domain.DailySchedule;
 
 public class DailyScheduleService implements DailyScheduleDAO {
+    public void add(DailySchedule dailySchedule) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement statementInsert = null;
+        PreparedStatement statementSelect = null;
+        String sql_insert = "INSERT INTO DAILYSCHEDULE (dailySchedule_id, monthlyschedule_id, schedule_id, description) VALUES (?, ?, ?, ?)";
+        String sql_select = "SELECT * FROM DAILYSCHEDULE WHERE dailySchedule_id=? AND monthlyschedule_id=? AND schedule_id=?";
 
+        try {
+            statementSelect = connection.prepareStatement(sql_select);
+            statementInsert = connection.prepareStatement(sql_insert);
+            statementSelect.setInt(1, dailySchedule.getDailySchedule_id());
+            statementSelect.setInt(2, dailySchedule.getMonthlySchedule_id());
+            statementSelect.setInt(3, dailySchedule.getSchedule_id());
+
+            ResultSet resultSet = statementSelect.executeQuery();
+            while (resultSet.next()) {
+                if (resultSet.getInt("dailyschedule_id") == dailySchedule.getDailySchedule_id()
+                        && resultSet.getInt("monthlyschedule_id") == dailySchedule.getMonthlySchedule_id()
+                        && resultSet.getInt("schedule_id") == dailySchedule.getSchedule_id()) {
+                    System.out.println("dailySchedule_id=" + dailySchedule.getDailySchedule_id()
+                            + ", monthlySchedule_id=" + dailySchedule.getMonthlySchedule_id() + ", schedule_id="
+                            + dailySchedule.getSchedule_id() + " is already in the table MONTHLYSCHEDULE");
+                    return;
+                }
+            }
+            statementInsert.setInt(1, dailySchedule.getDailySchedule_id());
+            statementInsert.setInt(2, dailySchedule.getMonthlySchedule_id());
+            statementInsert.setInt(3, dailySchedule.getSchedule_id());
+            statementInsert.setString(4, dailySchedule.getDescription());
+
+            statementInsert.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (statementInsert != null) {
+                statementInsert.close();
+            }
+            if (statementSelect != null) {
+                statementSelect.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 }

@@ -1,8 +1,12 @@
 package ua.com.foxminded.university.dao;
 
+import java.sql.SQLException;
+
+import ua.com.foxminded.university.domain.DailySchedule;
+
 public interface DailyScheduleDAO {
     // create
-//    void add(DailySchedule dailySchedule) throws SQLException;
+    void add(DailySchedule dailySchedule) throws SQLException;
 
     // read
 //    List<DailySchedule> getAll() throws SQLException;
