@@ -469,14 +469,14 @@ public class App {
             MonthlySchedule monthlySchedule_getById = monthlyScheduleService.getById(10, 2);
             System.out.println(monthlySchedule_getById);
 
-//            System.out.println("\nScheduleService.update()");
-//            scheduleTest.setDescription("UPDATE_DESCRIPTION");
-//            scheduleService.update(scheduleTest);
-//            scheduleList = scheduleService.getAll();
-//            for (Schedule item : scheduleList) {
-//                System.out.println(item);
-//            }
-//
+            System.out.println("\nmonthlyScheduleService.update()");
+            monthlyScheduleTest.setDescription("UPDATE_DESCRIPTION");
+            monthlyScheduleService.update(monthlyScheduleTest);
+            monthlyScheduleList = monthlyScheduleService.getAll();
+            for (MonthlySchedule item : monthlyScheduleList) {
+                System.out.println(item);
+            }
+
 //            System.out.println("\nscheduleService.remove()");
 //            scheduleService.remove(scheduleTest);
 //            scheduleList = scheduleService.getAll();

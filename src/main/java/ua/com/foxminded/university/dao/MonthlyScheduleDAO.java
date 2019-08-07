@@ -15,7 +15,7 @@ public interface MonthlyScheduleDAO {
     MonthlySchedule getById(Integer id, Integer schedule_id) throws SQLException;
 
     // update
-//    void update(MonthlySchedule monthlySchedule) throws SQLException;
+    void update(MonthlySchedule monthlySchedule) throws SQLException;
 
     // delete
 //    void remove(MonthlySchedule monthlySchedule) throws SQLException;

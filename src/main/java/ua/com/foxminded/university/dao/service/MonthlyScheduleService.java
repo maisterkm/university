@@ -117,4 +117,28 @@ public class MonthlyScheduleService implements MonthlyScheduleDAO {
         }
         return monthlySchedule;
     }
+
+    public void update(MonthlySchedule monthlySchedule) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement predStatement = null;
+        String sql_update = "UPDATE MONTHLYSCHEDULE SET description=? WHERE monthlyschedule_id=? AND schedule_id=?";
+
+        try {
+            predStatement = connection.prepareStatement(sql_update);
+            predStatement.setString(1, monthlySchedule.getDescription());
+            predStatement.setInt(2, monthlySchedule.getMonthlySchedule_id());
+            predStatement.setInt(3, monthlySchedule.getSchedule_id());
+            predStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (predStatement != null) {
+                predStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 }
