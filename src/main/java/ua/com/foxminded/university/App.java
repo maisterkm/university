@@ -437,12 +437,12 @@ public class App {
                 System.out.println(item);
             }
 
-//            System.out.println("\nclassroomService.remove()");
-//            classroomService.remove(classroomTest);
-//            classroomList = classroomService.getAll();
-//            for (Classroom item : classroomList) {
-//                System.out.println(item);
-//            }
+            System.out.println("\nscheduleService.remove()");
+            scheduleService.remove(scheduleTest);
+            scheduleList = scheduleService.getAll();
+            for (Schedule item : scheduleList) {
+                System.out.println(item);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

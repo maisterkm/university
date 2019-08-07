@@ -134,4 +134,25 @@ public class ScheduleService implements ScheduleDAO {
             }
         }
     }
+
+    public void remove(Schedule schedule) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatement = null;
+        String sql_delete = "DELETE FROM SCHEDULE WHERE schedule_id=?";
+        try {
+            preStatement = connection.prepareStatement(sql_delete);
+            preStatement.setInt(1, schedule.getSchedule_id());
+            preStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preStatement != null) {
+                preStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 }
