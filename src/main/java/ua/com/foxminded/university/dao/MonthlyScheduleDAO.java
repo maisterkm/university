@@ -12,7 +12,7 @@ public interface MonthlyScheduleDAO {
     // read
     List<MonthlySchedule> getAll() throws SQLException;
 
-    MonthlySchedule getById(Integer id, Integer schedule_id) throws SQLException;
+    MonthlySchedule getById(Integer monthlySchedule_id, Integer schedule_id) throws SQLException;
 
     // update
     void update(MonthlySchedule monthlySchedule) throws SQLException;

@@ -7,7 +7,34 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Class;
 
 public class DailySchedule {
+    private int dailySchedule_id;
+    private int monthlySchedule_id;
+    private int schedule_id;
     private List<Class> listsOfClasses = new ArrayList<Class>();
+
+    public int getDailySchedule_id() {
+        return dailySchedule_id;
+    }
+
+    public void setDailySchedule_id(int dailySchedule_id) {
+        this.dailySchedule_id = dailySchedule_id;
+    }
+
+    public int getMonthlySchedule_id() {
+        return monthlySchedule_id;
+    }
+
+    public void setMonthlySchedule_id(int monthlySchedule_id) {
+        this.monthlySchedule_id = monthlySchedule_id;
+    }
+
+    public int getSchedule_id() {
+        return schedule_id;
+    }
+
+    public void setSchedule_id(int schedule_id) {
+        this.schedule_id = schedule_id;
+    }
 
     public List<Class> getListsOfClasses() {
         return listsOfClasses;
