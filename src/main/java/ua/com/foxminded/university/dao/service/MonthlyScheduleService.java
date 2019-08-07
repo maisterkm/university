@@ -141,4 +141,26 @@ public class MonthlyScheduleService implements MonthlyScheduleDAO {
             }
         }
     }
+
+    public void remove(MonthlySchedule monthlySchedule) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatement = null;
+        String sql_delete = "DELETE FROM MONTHLYSCHEDULE WHERE monthlyschedule_id=? AND schedule_id=?";
+        try {
+            preStatement = connection.prepareStatement(sql_delete);
+            preStatement.setInt(1, monthlySchedule.getMonthlySchedule_id());
+            preStatement.setInt(2, monthlySchedule.getSchedule_id());
+            preStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preStatement != null) {
+                preStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 }

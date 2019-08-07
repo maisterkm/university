@@ -477,12 +477,12 @@ public class App {
                 System.out.println(item);
             }
 
-//            System.out.println("\nscheduleService.remove()");
-//            scheduleService.remove(scheduleTest);
-//            scheduleList = scheduleService.getAll();
-//            for (Schedule item : scheduleList) {
-//                System.out.println(item);
-//            }
+            System.out.println("\nmonthlyScheduleService.remove()");
+            monthlyScheduleService.remove(monthlyScheduleTest);
+            monthlyScheduleList = monthlyScheduleService.getAll();
+            for (MonthlySchedule item : monthlyScheduleList) {
+                System.out.println(item);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

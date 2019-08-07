@@ -18,5 +18,5 @@ public interface MonthlyScheduleDAO {
     void update(MonthlySchedule monthlySchedule) throws SQLException;
 
     // delete
-//    void remove(MonthlySchedule monthlySchedule) throws SQLException;
+    void remove(MonthlySchedule monthlySchedule) throws SQLException;
 }
