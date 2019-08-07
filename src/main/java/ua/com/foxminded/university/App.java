@@ -1,10 +1,9 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import ua.com.foxminded.university.dao.service.ScheduleService;
+import ua.com.foxminded.university.dao.service.MonthlyScheduleService;
+import ua.com.foxminded.university.domain.MonthlySchedule;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Class;
@@ -409,40 +408,79 @@ public class App {
 //            e.printStackTrace();
 //        }
 
-        Schedule scheduleTest = new Schedule();
-        scheduleTest.setSchedule_id(10);
-        scheduleTest.setDescription("TEST_DESCRIPTION");
-        ScheduleService scheduleService = new ScheduleService();
+//        Schedule scheduleTest = new Schedule();
+//        scheduleTest.setSchedule_id(10);
+//        scheduleTest.setDescription("TEST_DESCRIPTION");
+//        ScheduleService scheduleService = new ScheduleService();
+//        try {
+//            System.out.println("\n--- ScheduleService ---");
+//            System.out.println("\nscheduleService.add()");
+//            scheduleService.add(scheduleTest);
+//
+//            System.out.println("\nscheduleService.getAll()");
+//            List<Schedule> scheduleList = new ArrayList<Schedule>();
+//            scheduleList = scheduleService.getAll();
+//            for (Schedule item : scheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nscheduleService.getById()");
+//            Schedule schedule_getById = scheduleService.getById(10);
+//            System.out.println(schedule_getById);
+//
+//            System.out.println("\nScheduleService.update()");
+//            scheduleTest.setDescription("UPDATE_DESCRIPTION");
+//            scheduleService.update(scheduleTest);
+//            scheduleList = scheduleService.getAll();
+//            for (Schedule item : scheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nscheduleService.remove()");
+//            scheduleService.remove(scheduleTest);
+//            scheduleList = scheduleService.getAll();
+//            for (Schedule item : scheduleList) {
+//                System.out.println(item);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+
+        MonthlySchedule monthlyScheduleTest = new MonthlySchedule();
+        monthlyScheduleTest.setMonthlySchedule_id(10);
+        monthlyScheduleTest.setSchedule_id(2);
+        monthlyScheduleTest.setDescription("TEST_DESCRIPTION");
+        MonthlyScheduleService monthlyScheduleService = new MonthlyScheduleService();
         try {
-            System.out.println("\n--- ScheduleService ---");
-            System.out.println("\nscheduleService.add()");
-            scheduleService.add(scheduleTest);
+            System.out.println("\n--- MonthlyScheduleService ---");
+            System.out.println("\nmonthlyScheduleService.add()");
+            monthlyScheduleService.add(monthlyScheduleTest);
 
-            System.out.println("\nscheduleService.getAll()");
-            List<Schedule> scheduleList = new ArrayList<Schedule>();
-            scheduleList = scheduleService.getAll();
-            for (Schedule item : scheduleList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\nscheduleService.getById()");
-            Schedule schedule_getById = scheduleService.getById(10);
-            System.out.println(schedule_getById);
-
-            System.out.println("\nScheduleService.update()");
-            scheduleTest.setDescription("UPDATE_DESCRIPTION");
-            scheduleService.update(scheduleTest);
-            scheduleList = scheduleService.getAll();
-            for (Schedule item : scheduleList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\nscheduleService.remove()");
-            scheduleService.remove(scheduleTest);
-            scheduleList = scheduleService.getAll();
-            for (Schedule item : scheduleList) {
-                System.out.println(item);
-            }
+//            System.out.println("\nscheduleService.getAll()");
+//            List<Schedule> scheduleList = new ArrayList<Schedule>();
+//            scheduleList = scheduleService.getAll();
+//            for (Schedule item : scheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nscheduleService.getById()");
+//            Schedule schedule_getById = scheduleService.getById(10);
+//            System.out.println(schedule_getById);
+//
+//            System.out.println("\nScheduleService.update()");
+//            scheduleTest.setDescription("UPDATE_DESCRIPTION");
+//            scheduleService.update(scheduleTest);
+//            scheduleList = scheduleService.getAll();
+//            for (Schedule item : scheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\nscheduleService.remove()");
+//            scheduleService.remove(scheduleTest);
+//            scheduleList = scheduleService.getAll();
+//            for (Schedule item : scheduleList) {
+//                System.out.println(item);
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
