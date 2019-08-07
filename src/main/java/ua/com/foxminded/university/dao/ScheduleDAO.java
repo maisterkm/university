@@ -6,13 +6,13 @@ import java.util.List;
 import ua.com.foxminded.university.domain.Schedule;
 
 public interface ScheduleDAO {
- // create
+    // create
     void add(Schedule schedule) throws SQLException;
 
     // read
     List<Schedule> getAll() throws SQLException;
 
-//    Schedule getById(Integer id) throws SQLException;
+    Schedule getById(Integer id) throws SQLException;
 
     // update
 //    void update(Schedule schedule) throws SQLException;

@@ -425,10 +425,10 @@ public class App {
                 System.out.println(item);
             }
 
-//            System.out.println("\nclassroomService.getById()");
-//            Classroom classroom_getById = classroomService.getById(10, "room_test");
-//            System.out.println(classroom_getById);
-//
+            System.out.println("\nscheduleService.getById()");
+            Schedule schedule_getById = scheduleService.getById(10);
+            System.out.println(schedule_getById);
+
 //            System.out.println("\nClassroomService.update()");
 //            classroomTest.setCapacity(120);
 //            classroomService.update(classroomTest);

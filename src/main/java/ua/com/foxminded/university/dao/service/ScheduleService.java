@@ -82,4 +82,33 @@ public class ScheduleService implements ScheduleDAO {
         }
         return scheduleList;
     }
+
+    public Schedule getById(Integer schedule_id) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preparedStatement = null;
+        String sql = "SELECT schedule_id, description FROM SCHEDULE WHERE schedule_id=?";
+        Schedule schedule = new Schedule();
+        ScheduleService scheduleService = new ScheduleService();
+
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, schedule_id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            schedule.setSchedule_id(resultSet.getInt("schedule_id"));
+            schedule.setDescription(resultSet.getString("description"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return schedule;
+    }
 }
