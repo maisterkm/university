@@ -509,14 +509,14 @@ public class App {
             DailySchedule dailySchedule_getById = dailyScheduleService.getById(10, 2, 1);
             System.out.println(dailySchedule_getById);
 
-//            System.out.println("\nmonthlyScheduleService.update()");
-//            monthlyScheduleTest.setDescription("UPDATE_DESCRIPTION");
-//            monthlyScheduleService.update(monthlyScheduleTest);
-//            monthlyScheduleList = monthlyScheduleService.getAll();
-//            for (MonthlySchedule item : monthlyScheduleList) {
-//                System.out.println(item);
-//            }
-//
+            System.out.println("\ndailyScheduleService.update()");
+            dailyScheduleTest.setDescription("UPDATE_DESCRIPTION");
+            dailyScheduleService.update(dailyScheduleTest);
+            dailyScheduleList = dailyScheduleService.getAll();
+            for (DailySchedule item : dailyScheduleList) {
+                System.out.println(item);
+            }
+
 //            System.out.println("\nmonthlyScheduleService.remove()");
 //            monthlyScheduleService.remove(monthlyScheduleTest);
 //            monthlyScheduleList = monthlyScheduleService.getAll();

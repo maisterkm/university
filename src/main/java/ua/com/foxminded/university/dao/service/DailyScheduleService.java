@@ -124,4 +124,29 @@ public class DailyScheduleService implements DailyScheduleDAO {
         }
         return dailySchedule;
     }
+
+    public void update(DailySchedule dailySchedule) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement predStatement = null;
+        String sql_update = "UPDATE DAILYSCHEDULE SET description=? WHERE dailyschedule_id=? AND monthlyschedule_id=? AND schedule_id=?";
+
+        try {
+            predStatement = connection.prepareStatement(sql_update);
+            predStatement.setString(1, dailySchedule.getDescription());
+            predStatement.setInt(2, dailySchedule.getDailySchedule_id());
+            predStatement.setInt(3, dailySchedule.getMonthlySchedule_id());
+            predStatement.setInt(4, dailySchedule.getSchedule_id());
+            predStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (predStatement != null) {
+                predStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 }
