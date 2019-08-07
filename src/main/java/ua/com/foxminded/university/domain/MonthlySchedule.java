@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MonthlySchedule {
-    public void setSchedule_id(int schedule_id) {
-        this.schedule_id = schedule_id;
-    }
-
     private int monthlySchedule_id;
     private int schedule_id;
     private String description;
@@ -42,11 +38,22 @@ public class MonthlySchedule {
         return schedule_id;
     }
 
+    public void setSchedule_id(int schedule_id) {
+        this.schedule_id = schedule_id;
+    }
+
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        String output = "class name: " + this.getClass().getSimpleName() + ", monthlySchedule_id: " + monthlySchedule_id
+                + ", schedule_id: " + schedule_id + ", description: " + description;
+        return output;
     }
 }
