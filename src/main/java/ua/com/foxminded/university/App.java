@@ -1,14 +1,10 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import ua.com.foxminded.university.dao.service.CampusService;
-import ua.com.foxminded.university.dao.service.ClassroomService;
-import ua.com.foxminded.university.dao.service.LessonService;
-import ua.com.foxminded.university.domain.DailySchedule;
-import ua.com.foxminded.university.domain.MonthlySchedule;
+import ua.com.foxminded.university.dao.service.SubjectService;
+import ua.com.foxminded.university.dao.service.TeacherHasSubjectService;
+import ua.com.foxminded.university.dao.service.TeacherService;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Classroom;
@@ -529,75 +525,121 @@ public class App {
 //        } catch (SQLException e) {
 //            e.printStackTrace();
 //        }
-        Campus campusTest = new Campus(1, "CAMPUS_TEST");
-        Classroom classroomTest = new Classroom(campusTest, "room_101", 40);
-        Lesson lessonTest = new Lesson(10, classroomTest, subject2, 16, 0, 12, 12, 2019, 17, 30, 12, 12, 2019);
 
-        lessonTest.setLesson_id(10);
+//        Campus campusTest = new Campus(1, "CAMPUS_TEST");
+//        Classroom classroomTest = new Classroom(campusTest, "room_101", 40);
+//        Lesson lessonTest = new Lesson(10, classroomTest, subject2, 16, 0, 12, 12, 2019, 17, 30, 12, 12, 2019);
+//
+//        lessonTest.setLesson_id(10);
+//
+//        Schedule scheduleTest = new Schedule();
+//        scheduleTest.setSchedule_id(1);
+//        scheduleTest.setDescription("###TEST_DESCRIPTION###");
+//
+//        MonthlySchedule monthlyScheduleTest = new MonthlySchedule();
+//        monthlyScheduleTest.setMonthlySchedule_id(1);
+//        monthlyScheduleTest.setSchedule_id(1);
+//        monthlyScheduleTest.setDescription("###TEST_DESCRIPTION###");
+//
+//        DailySchedule dailyScheduleTest = new DailySchedule();
+//        dailyScheduleTest.setDailySchedule_id(1);
+//        dailyScheduleTest.setMonthlySchedule_id(1);
+//        dailyScheduleTest.setSchedule_id(1);
+//
+//        lessonTest.setSchedule(scheduleTest);
+//        lessonTest.setMonthlySchedule(monthlyScheduleTest);
+//        lessonTest.setDailySchedule(dailyScheduleTest);
+//
+//        LessonService lessonService = new LessonService();
+//        try {
+//            System.out.println("\n--- LessonService ---");
+//            System.out.println("\nlessonService.add()");
+//            lessonService.add(lessonTest);
+//
+//            System.out.println("\nlessonService.getAll()");
+//            List<Lesson> lessonList = new ArrayList<Lesson>();
+//            lessonList = lessonService.getAll();
+//            for (Lesson item : lessonList) {
+//                System.out.println(item.displayClass());
+//            }
+//
+//            System.out.println("\nlessonService.getById()");
+//            Lesson lesson_getById = lessonService.getById(10);
+//            System.out.println(lesson_getById.displayClass());
+//
+//            System.out.println("\nlessonService.update()");
+//            Campus updateCampus = new Campus();
+//            updateCampus.setCampus_id(20);
+//            updateCampus.setCampus("UPDATE_CAMPUS");
+//            CampusService campusService = new CampusService();
+//            campusService.add(updateCampus);
+//
+//            updateCampus.setCampus("UPDATE_CAMPUS");
+//            Classroom updateClassroom = new Classroom();
+//            updateClassroom.setCampus(updateCampus);
+//            updateClassroom.setRoomNumber("room_555");
+//            updateClassroom.setCapacity(200);
+//            ClassroomService classroomService = new ClassroomService();
+//            classroomService.add(updateClassroom);
+//            lessonTest.setClassroom(updateClassroom);
+//
+//            lessonService.update(lessonTest);
+//            lessonList = lessonService.getAll();
+//            for (Lesson item : lessonList) {
+//                System.out.println(item.displayClass());
+//            }
+//
+//            System.out.println("\nlessonService.remove()");
+//            lessonService.remove(lessonTest);
+//            lessonList = lessonService.getAll();
+//            for (Lesson item : lessonList) {
+//                System.out.println(item.displayClass());
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
 
-        Schedule scheduleTest = new Schedule();
-        scheduleTest.setSchedule_id(1);
-        scheduleTest.setDescription("###TEST_DESCRIPTION###");
-
-        MonthlySchedule monthlyScheduleTest = new MonthlySchedule();
-        monthlyScheduleTest.setMonthlySchedule_id(1);
-        monthlyScheduleTest.setSchedule_id(1);
-        monthlyScheduleTest.setDescription("###TEST_DESCRIPTION###");
-
-        DailySchedule dailyScheduleTest = new DailySchedule();
-        dailyScheduleTest.setDailySchedule_id(1);
-        dailyScheduleTest.setMonthlySchedule_id(1);
-        dailyScheduleTest.setSchedule_id(1);
-
-        lessonTest.setSchedule(scheduleTest);
-        lessonTest.setMonthlySchedule(monthlyScheduleTest);
-        lessonTest.setDailySchedule(dailyScheduleTest);
-
-        LessonService lessonService = new LessonService();
         try {
-            System.out.println("\n--- LessonService ---");
-            System.out.println("\nlessonService.add()");
-            lessonService.add(lessonTest);
+            TeacherHasSubjectService teacherHasSubjectService = new TeacherHasSubjectService();
+            Teacher teacherHasSubject = new Teacher(10, "FIRSTNAME_teacherHasSubject", "LASTNAME_teacherHasSubject", 25,
+                    8, 1982, 15, 8, 2013, position_1, 1100);
+            TeacherService teacherService = new TeacherService();
+            teacherService.add(teacherHasSubject);
 
-            System.out.println("\nlessonService.getAll()");
-            List<Lesson> lessonList = new ArrayList<Lesson>();
-            lessonList = lessonService.getAll();
-            for (Lesson item : lessonList) {
-                System.out.println(item.displayClass());
-            }
+            Subject subjectHasTeacher = new Subject(10, "MATHEMATICS");
+            SubjectService subjectService = new SubjectService();
+            subjectService.add(subjectHasTeacher);
 
-            System.out.println("\nlessonService.getById()");
-            Lesson lesson_getById = lessonService.getById(10);
-            System.out.println(lesson_getById.displayClass());
+            System.out.println("\n--- TeacherHasSubjectService ---");
+            System.out.println("\nteacherHasSubjectService.add()");
+            teacherHasSubjectService.add(teacherHasSubject, subjectHasTeacher);
 
-            System.out.println("\nlessonService.update()");
-            Campus updateCampus = new Campus();
-            updateCampus.setCampus_id(20);
-            updateCampus.setCampus("UPDATE_CAMPUS");
-            CampusService campusService = new CampusService();
-            campusService.add(updateCampus);
-
-            updateCampus.setCampus("UPDATE_CAMPUS");
-            Classroom updateClassroom = new Classroom();
-            updateClassroom.setCampus(updateCampus);
-            updateClassroom.setRoomNumber("room_555");
-            updateClassroom.setCapacity(200);
-            ClassroomService classroomService = new ClassroomService();
-            classroomService.add(updateClassroom);
-            lessonTest.setClassroom(updateClassroom);
-
-            lessonService.update(lessonTest);
-            lessonList = lessonService.getAll();
-            for (Lesson item : lessonList) {
-                System.out.println(item.displayClass());
-            }
-
-            System.out.println("\nlessonService.remove()");
-            lessonService.remove(lessonTest);
-            lessonList = lessonService.getAll();
-            for (Lesson item : lessonList) {
-                System.out.println(item.displayClass());
-            }
+//          System.out.println("\nGroupService.getAll()");
+//          List<Teacher> teacherList = new ArrayList<Teacher>();
+//          teacherList = teacherService.getAll();
+//          for (Teacher item : teacherList) {
+//              System.out.println(item);
+//          }
+//
+//          System.out.println("\nTeacherService.getById()");
+//          Teacher teacher_getById = teacherService.getById(333);
+//          System.out.println(teacher_getById);
+//
+//          System.out.println("\nTeacherService.update()");
+//          teacherTest.setSalary(1000000);
+//          teacherTest.setPosition(position_3);
+//          teacherService.update(teacherTest);
+//          teacherList = teacherService.getAll();
+//          for (Teacher item : teacherList) {
+//              System.out.println(item);
+//          }
+//
+//          System.out.println("\nTeacherService.remove()");
+//          teacherService.remove(teacherTest);
+//          teacherList = teacherService.getAll();
+//          for (Teacher item : teacherList) {
+//              System.out.println(item);
+//          }
         } catch (SQLException e) {
             e.printStackTrace();
         }
