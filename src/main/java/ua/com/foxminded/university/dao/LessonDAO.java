@@ -18,5 +18,5 @@ public interface LessonDAO {
     void update(Lesson lesson) throws SQLException;
 
     // delete
-//    void remove(Lesson lesson) throws SQLException;
+    void remove(Lesson lesson) throws SQLException;
 }

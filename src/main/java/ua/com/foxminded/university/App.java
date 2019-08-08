@@ -592,12 +592,12 @@ public class App {
                 System.out.println(item.displayClass());
             }
 
-//            System.out.println("\ndailyScheduleService.remove()");
-//            dailyScheduleService.remove(dailyScheduleTest);
-//            dailyScheduleList = dailyScheduleService.getAll();
-//            for (DailySchedule item : dailyScheduleList) {
-//                System.out.println(item);
-//            }
+            System.out.println("\nlessonService.remove()");
+            lessonService.remove(lessonTest);
+            lessonList = lessonService.getAll();
+            for (Lesson item : lessonList) {
+                System.out.println(item.displayClass());
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

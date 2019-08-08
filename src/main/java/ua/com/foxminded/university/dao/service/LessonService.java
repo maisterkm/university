@@ -224,4 +224,25 @@ public class LessonService implements LessonDAO {
             }
         }
     }
+
+    public void remove(Lesson lesson) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement preStatement = null;
+        String sql_delete = "DELETE FROM LESSON WHERE lesson_id=?";
+        try {
+            preStatement = connection.prepareStatement(sql_delete);
+            preStatement.setInt(1, lesson.getLesson_id());
+            preStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (preStatement != null) {
+                preStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 }
