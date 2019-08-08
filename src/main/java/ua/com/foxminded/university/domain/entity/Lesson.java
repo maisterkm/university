@@ -9,10 +9,7 @@ import ua.com.foxminded.university.domain.MonthlySchedule;
 import ua.com.foxminded.university.domain.Schedule;
 
 public class Lesson implements Comparable<Lesson> {
-    private int lessont_id;
-    private int subject_id;
-    private int dailyschedule_id;
-    private int monthlyschedule_id;
+    private int lesson_id;
     private int schedule_id;
     private Schedule schedule;
     private MonthlySchedule monthlySchedule;
@@ -23,8 +20,8 @@ public class Lesson implements Comparable<Lesson> {
     private Calendar endTime = new GregorianCalendar();
     private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd-MM-yyyy");
 
-    public Lesson(Classroom classroom, Subject subject, int beginHour, int beginMin, int beginDay, int beginMonth,
-            int beginYear, int endHour, int endMin, int endDay, int endMonth, int endYear) {
+    public Lesson(int lessont_id, Classroom classroom, Subject subject, int beginHour, int beginMin, int beginDay,
+            int beginMonth, int beginYear, int endHour, int endMin, int endDay, int endMonth, int endYear) {
         this.classroom = classroom;
         this.subject = subject;
         beginTime.set(Calendar.HOUR_OF_DAY, beginHour);
@@ -39,12 +36,12 @@ public class Lesson implements Comparable<Lesson> {
         endTime.set(Calendar.YEAR, endYear);
     }
 
-    public int getLessont_id() {
-        return lessont_id;
+    public int getLesson_id() {
+        return lesson_id;
     }
 
-    public void setLessont_id(int lessont_id) {
-        this.lessont_id = lessont_id;
+    public void setLesson_id(int lesson_id) {
+        this.lesson_id = lesson_id;
     }
 
     public int getCampus_id() {
@@ -92,7 +89,31 @@ public class Lesson implements Comparable<Lesson> {
     }
 
     public void setSchedule_id(int schedule_id) {
-        schedule.setSchedule_id(schedule_id);
+        this.schedule.setSchedule_id(schedule_id);
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
+    public MonthlySchedule getMonthlySchedule() {
+        return monthlySchedule;
+    }
+
+    public void setMonthlySchedule(MonthlySchedule monthlySchedule) {
+        this.monthlySchedule = monthlySchedule;
+    }
+
+    public DailySchedule getDailySchedule() {
+        return dailySchedule;
+    }
+
+    public void setDailySchedule(DailySchedule dailySchedule) {
+        this.dailySchedule = dailySchedule;
     }
 
     public Calendar getBeginTime() {
@@ -101,6 +122,14 @@ public class Lesson implements Comparable<Lesson> {
 
     public void setBeginTime(Calendar beginTime) {
         this.beginTime = beginTime;
+    }
+
+    public Calendar getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Calendar endTime) {
+        this.endTime = endTime;
     }
 
     public Classroom getClassroom() {

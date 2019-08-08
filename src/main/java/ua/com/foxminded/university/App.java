@@ -1,11 +1,10 @@
 package ua.com.foxminded.university;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import ua.com.foxminded.university.dao.service.DailyScheduleService;
+import ua.com.foxminded.university.dao.service.LessonService;
 import ua.com.foxminded.university.domain.DailySchedule;
+import ua.com.foxminded.university.domain.MonthlySchedule;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Classroom;
@@ -112,13 +111,13 @@ public class App {
         System.out.println(student3.toString());
         System.out.println(student4.toString());
 
-        Lesson mathClass_seminar = new Lesson(room1, subject1, 8, 0, 1, 9, 2019, 9, 30, 1, 9, 2019);
-        Lesson mathClass_lecture = new Lesson(room3, subject1, 10, 0, 2, 9, 2019, 11, 30, 2, 9, 2019);
-        Lesson physicClass_seminar = new Lesson(room2, subject2, 10, 0, 1, 9, 2019, 11, 30, 1, 9, 2019);
-        Lesson physicClass_lecture = new Lesson(room3, subject2, 13, 0, 2, 9, 2019, 14, 30, 2, 9, 2019);
-        Lesson statisticClass_seminar = new Lesson(room1, subject3, 10, 0, 4, 9, 2019, 11, 30, 4, 9, 2019);
-        Lesson statisticClass_lecture = new Lesson(room3, subject3, 12, 0, 4, 9, 2019, 13, 30, 4, 9, 2019);
-        Lesson statisticClass_lecture_II = new Lesson(room3, subject3, 7, 0, 1, 9, 2019, 8, 30, 1, 9, 2019);
+        Lesson mathClass_seminar = new Lesson(1, room1, subject1, 8, 0, 1, 9, 2019, 9, 30, 1, 9, 2019);
+        Lesson mathClass_lecture = new Lesson(2, room3, subject1, 10, 0, 2, 9, 2019, 11, 30, 2, 9, 2019);
+        Lesson physicClass_seminar = new Lesson(3, room2, subject2, 10, 0, 1, 9, 2019, 11, 30, 1, 9, 2019);
+        Lesson physicClass_lecture = new Lesson(4, room3, subject2, 13, 0, 2, 9, 2019, 14, 30, 2, 9, 2019);
+        Lesson statisticClass_seminar = new Lesson(5, room1, subject3, 10, 0, 4, 9, 2019, 11, 30, 4, 9, 2019);
+        Lesson statisticClass_lecture = new Lesson(6, room3, subject3, 12, 0, 4, 9, 2019, 13, 30, 4, 9, 2019);
+        Lesson statisticClass_lecture_II = new Lesson(7, room3, subject3, 7, 0, 1, 9, 2019, 8, 30, 1, 9, 2019);
         System.out.println();
         mathClass_seminar.displayClass();
         mathClass_lecture.displayClass();
@@ -487,42 +486,100 @@ public class App {
 //            e.printStackTrace();
 //        }
 
+//        DailySchedule dailyScheduleTest = new DailySchedule();
+//        dailyScheduleTest.setDailySchedule_id(10);
+//        dailyScheduleTest.setMonthlySchedule_id(2);
+//        dailyScheduleTest.setSchedule_id(1);
+//        dailyScheduleTest.setDescription("TEST_DESCRIPTION");
+//        DailyScheduleService dailyScheduleService = new DailyScheduleService();
+//        try {
+//            System.out.println("\n--- DailyScheduleService ---");
+//            System.out.println("\ndailyScheduleService.add()");
+//            dailyScheduleService.add(dailyScheduleTest);
+//
+//            System.out.println("\ndailyScheduleService.getAll()");
+//            List<DailySchedule> dailyScheduleList = new ArrayList<DailySchedule>();
+//            dailyScheduleList = dailyScheduleService.getAll();
+//            for (DailySchedule item : dailyScheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\ndailyScheduleService.getById()");
+//            DailySchedule dailySchedule_getById = dailyScheduleService.getById(10, 2, 1);
+//            System.out.println(dailySchedule_getById);
+//
+//            System.out.println("\ndailyScheduleService.update()");
+//            dailyScheduleTest.setDescription("UPDATE_DESCRIPTION");
+//            dailyScheduleService.update(dailyScheduleTest);
+//            dailyScheduleList = dailyScheduleService.getAll();
+//            for (DailySchedule item : dailyScheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\ndailyScheduleService.remove()");
+//            dailyScheduleService.remove(dailyScheduleTest);
+//            dailyScheduleList = dailyScheduleService.getAll();
+//            for (DailySchedule item : dailyScheduleList) {
+//                System.out.println(item);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+        Campus campusTest = new Campus(1, "CAMPUS_TEST");
+        Classroom classroomTest = new Classroom(campusTest, "room_101", 40);
+        Lesson lessonTest = new Lesson(10, classroomTest, subject2, 16, 0, 12, 12, 2019, 17, 30, 12, 12, 2019);
+
+        lessonTest.setLesson_id(10);
+
+        Schedule scheduleTest = new Schedule();
+        scheduleTest.setSchedule_id(1);
+        scheduleTest.setDescription("###TEST_DESCRIPTION###");
+
+        MonthlySchedule monthlyScheduleTest = new MonthlySchedule();
+        monthlyScheduleTest.setMonthlySchedule_id(1);
+        monthlyScheduleTest.setSchedule_id(1);
+        monthlyScheduleTest.setDescription("###TEST_DESCRIPTION###");
+
         DailySchedule dailyScheduleTest = new DailySchedule();
-        dailyScheduleTest.setDailySchedule_id(10);
-        dailyScheduleTest.setMonthlySchedule_id(2);
+        dailyScheduleTest.setDailySchedule_id(1);
+        dailyScheduleTest.setMonthlySchedule_id(1);
         dailyScheduleTest.setSchedule_id(1);
-        dailyScheduleTest.setDescription("TEST_DESCRIPTION");
-        DailyScheduleService dailyScheduleService = new DailyScheduleService();
+
+        lessonTest.setSchedule(scheduleTest);
+        lessonTest.setMonthlySchedule(monthlyScheduleTest);
+        lessonTest.setDailySchedule(dailyScheduleTest);
+
+        LessonService lessonService = new LessonService();
         try {
-            System.out.println("\n--- DailyScheduleService ---");
-            System.out.println("\ndailyScheduleService.add()");
-            dailyScheduleService.add(dailyScheduleTest);
+            System.out.println("\n--- LessonService ---");
+            System.out.println("\nlessonService.add()");
+            lessonService.add(lessonTest);
 
-            System.out.println("\ndailyScheduleService.getAll()");
-            List<DailySchedule> dailyScheduleList = new ArrayList<DailySchedule>();
-            dailyScheduleList = dailyScheduleService.getAll();
-            for (DailySchedule item : dailyScheduleList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\ndailyScheduleService.getById()");
-            DailySchedule dailySchedule_getById = dailyScheduleService.getById(10, 2, 1);
-            System.out.println(dailySchedule_getById);
-
-            System.out.println("\ndailyScheduleService.update()");
-            dailyScheduleTest.setDescription("UPDATE_DESCRIPTION");
-            dailyScheduleService.update(dailyScheduleTest);
-            dailyScheduleList = dailyScheduleService.getAll();
-            for (DailySchedule item : dailyScheduleList) {
-                System.out.println(item);
-            }
-
-            System.out.println("\ndailyScheduleService.remove()");
-            dailyScheduleService.remove(dailyScheduleTest);
-            dailyScheduleList = dailyScheduleService.getAll();
-            for (DailySchedule item : dailyScheduleList) {
-                System.out.println(item);
-            }
+//            System.out.println("\ndailyScheduleService.getAll()");
+//            List<DailySchedule> dailyScheduleList = new ArrayList<DailySchedule>();
+//            dailyScheduleList = dailyScheduleService.getAll();
+//            for (DailySchedule item : dailyScheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\ndailyScheduleService.getById()");
+//            DailySchedule dailySchedule_getById = dailyScheduleService.getById(10, 2, 1);
+//            System.out.println(dailySchedule_getById);
+//
+//            System.out.println("\ndailyScheduleService.update()");
+//            dailyScheduleTest.setDescription("UPDATE_DESCRIPTION");
+//            dailyScheduleService.update(dailyScheduleTest);
+//            dailyScheduleList = dailyScheduleService.getAll();
+//            for (DailySchedule item : dailyScheduleList) {
+//                System.out.println(item);
+//            }
+//
+//            System.out.println("\ndailyScheduleService.remove()");
+//            dailyScheduleService.remove(dailyScheduleTest);
+//            dailyScheduleList = dailyScheduleService.getAll();
+//            for (DailySchedule item : dailyScheduleList) {
+//                System.out.println(item);
+//            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
