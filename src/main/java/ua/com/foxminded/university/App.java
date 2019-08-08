@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ua.com.foxminded.university.dao.service.CampusService;
+import ua.com.foxminded.university.dao.service.ClassroomService;
 import ua.com.foxminded.university.dao.service.LessonService;
 import ua.com.foxminded.university.domain.DailySchedule;
 import ua.com.foxminded.university.domain.MonthlySchedule;
@@ -568,14 +570,28 @@ public class App {
             Lesson lesson_getById = lessonService.getById(10);
             System.out.println(lesson_getById.displayClass());
 
-//            System.out.println("\ndailyScheduleService.update()");
-//            dailyScheduleTest.setDescription("UPDATE_DESCRIPTION");
-//            dailyScheduleService.update(dailyScheduleTest);
-//            dailyScheduleList = dailyScheduleService.getAll();
-//            for (DailySchedule item : dailyScheduleList) {
-//                System.out.println(item);
-//            }
-//
+            System.out.println("\nlessonService.update()");
+            Campus updateCampus = new Campus();
+            updateCampus.setCampus_id(20);
+            updateCampus.setCampus("UPDATE_CAMPUS");
+            CampusService campusService = new CampusService();
+            campusService.add(updateCampus);
+
+            updateCampus.setCampus("UPDATE_CAMPUS");
+            Classroom updateClassroom = new Classroom();
+            updateClassroom.setCampus(updateCampus);
+            updateClassroom.setRoomNumber("room_555");
+            updateClassroom.setCapacity(200);
+            ClassroomService classroomService = new ClassroomService();
+            classroomService.add(updateClassroom);
+            lessonTest.setClassroom(updateClassroom);
+
+            lessonService.update(lessonTest);
+            lessonList = lessonService.getAll();
+            for (Lesson item : lessonList) {
+                System.out.println(item.displayClass());
+            }
+
 //            System.out.println("\ndailyScheduleService.remove()");
 //            dailyScheduleService.remove(dailyScheduleTest);
 //            dailyScheduleList = dailyScheduleService.getAll();

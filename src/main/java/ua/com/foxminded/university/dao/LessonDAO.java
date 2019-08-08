@@ -12,11 +12,10 @@ public interface LessonDAO {
     // read
     List<Lesson> getAll() throws SQLException;
 
-//    Lesson getById(Integer lesson_id)
-//            throws SQLException;
+    Lesson getById(Integer lesson_id) throws SQLException;
 
     // update
-//    void update(Lesson lesson) throws SQLException;
+    void update(Lesson lesson) throws SQLException;
 
     // delete
 //    void remove(Lesson lesson) throws SQLException;

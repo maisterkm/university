@@ -193,4 +193,35 @@ public class LessonService implements LessonDAO {
         }
         return lesson;
     }
+
+    public void update(Lesson lesson) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement predStatement = null;
+        String sql_update = "UPDATE LESSON SET campus_id=?, roomnumber=?, begintime=?, endtime=?, subject_id=?, dailyschedule_id=?, monthlyschedule_id=?, schedule_id=? WHERE lesson_id=?";
+
+        try {
+            predStatement = connection.prepareStatement(sql_update);
+            predStatement.setInt(1, lesson.getCampus_id());
+            predStatement.setString(2, lesson.getRoomnumber());
+            predStatement.setTimestamp(3, new java.sql.Timestamp(lesson.getBeginTime().getTime().getTime()));
+            predStatement.setTimestamp(4, new java.sql.Timestamp(lesson.getEndTime().getTime().getTime()));
+            predStatement.setInt(5, lesson.getSubject_id());
+            predStatement.setInt(6, lesson.getDailyschedule_id());
+            predStatement.setInt(7, lesson.getMonthlyschedule_id());
+            predStatement.setInt(8, lesson.getSchedule_id());
+            predStatement.setInt(9, lesson.getLesson_id());
+
+            predStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (predStatement != null) {
+                predStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+    }
 }
