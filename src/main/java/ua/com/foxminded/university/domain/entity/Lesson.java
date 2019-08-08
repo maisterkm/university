@@ -10,7 +10,6 @@ import ua.com.foxminded.university.domain.Schedule;
 
 public class Lesson implements Comparable<Lesson> {
     private int lesson_id;
-    private int schedule_id;
     private Schedule schedule;
     private MonthlySchedule monthlySchedule;
     private DailySchedule dailySchedule;
@@ -19,6 +18,9 @@ public class Lesson implements Comparable<Lesson> {
     private Calendar beginTime = new GregorianCalendar();
     private Calendar endTime = new GregorianCalendar();
     private SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd-MM-yyyy");
+
+    public Lesson() {
+    }
 
     public Lesson(int lessont_id, Classroom classroom, Subject subject, int beginHour, int beginMin, int beginDay,
             int beginMonth, int beginYear, int endHour, int endMin, int endDay, int endMonth, int endYear) {
@@ -100,6 +102,14 @@ public class Lesson implements Comparable<Lesson> {
         this.schedule = schedule;
     }
 
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
     public MonthlySchedule getMonthlySchedule() {
         return monthlySchedule;
     }
@@ -141,10 +151,10 @@ public class Lesson implements Comparable<Lesson> {
     }
 
     public String displayClass() {
-        String output = "class name: " + this.getClass().getSimpleName() + ", begin time: "
+        String output = "class name: " + this.getClass().getSimpleName() + ", lesson_id: " + lesson_id + ", campus_id: "
+                + getCampus_id() + ", roomnumber: " + getRoomnumber() + ", begin time: "
                 + sdf.format(beginTime.getTime()) + ", end time: " + sdf.format(endTime.getTime()) + ", subject: "
                 + subject.getSubject() + ", classroom: " + classroom.getRoomNumber();
-        System.out.println(output);
         return output;
     }
 

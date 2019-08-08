@@ -4,10 +4,20 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 import ua.com.foxminded.university.dao.DBConnector;
 import ua.com.foxminded.university.dao.LessonDAO;
+import ua.com.foxminded.university.domain.DailySchedule;
+import ua.com.foxminded.university.domain.MonthlySchedule;
+import ua.com.foxminded.university.domain.Schedule;
+import ua.com.foxminded.university.domain.entity.Classroom;
 import ua.com.foxminded.university.domain.entity.Lesson;
+import ua.com.foxminded.university.domain.entity.Subject;
 
 public class LessonService implements LessonDAO {
     public void add(Lesson lesson) throws SQLException {
@@ -54,5 +64,70 @@ public class LessonService implements LessonDAO {
                 connection.close();
             }
         }
+    }
+
+    public List<Lesson> getAll() throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        List<Lesson> lessonList = new ArrayList<Lesson>();
+        String sql = "SELECT lesson_id, campus_id, roomnumber, begintime, endtime, subject_id, dailyschedule_id, monthlyschedule_id, schedule_id FROM LESSON";
+        Statement statement = null;
+
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                Lesson lesson = new Lesson();
+                lesson.setLesson_id(resultSet.getInt("lesson_id"));
+
+                ClassroomService classroomService = new ClassroomService();
+                Classroom classroom = classroomService.getById(resultSet.getInt("campus_id"),
+                        resultSet.getString("roomnumber"));
+                lesson.setClassroom(classroom);
+
+                String strBeginTime = resultSet.getString("begintime");
+                Timestamp timestampBeginTime = Timestamp.valueOf(strBeginTime);
+                Calendar calendarBeginTime = Calendar.getInstance();
+                calendarBeginTime.setTimeInMillis(timestampBeginTime.getTime());
+                lesson.setBeginTime(calendarBeginTime);
+
+                String strEndTime = resultSet.getString("endtime");
+                Timestamp timestampEndTime = Timestamp.valueOf(strEndTime);
+                Calendar calendarEndTime = Calendar.getInstance();
+                calendarEndTime.setTimeInMillis(timestampEndTime.getTime());
+                lesson.setEndTime(calendarEndTime);
+
+                SubjectService subjectService = new SubjectService();
+                Subject subject = subjectService.getById(resultSet.getInt("subject_id"));
+                lesson.setSubject(subject);
+
+                DailyScheduleService dailyScheduleService = new DailyScheduleService();
+                DailySchedule dailySchedule = dailyScheduleService.getById(resultSet.getInt("dailyschedule_id"),
+                        resultSet.getInt("monthlyschedule_id"), resultSet.getInt("schedule_id"));
+                lesson.setDailySchedule(dailySchedule);
+
+                MonthlyScheduleService monthlyService = new MonthlyScheduleService();
+                MonthlySchedule monthlySchedule = monthlyService.getById(resultSet.getInt("monthlyschedule_id"),
+                        resultSet.getInt("schedule_id"));
+                lesson.setMonthlySchedule(monthlySchedule);
+
+                ScheduleService scheduleService = new ScheduleService();
+                Schedule schedule = scheduleService.getById(resultSet.getInt("schedule_id"));
+                lesson.setSchedule(schedule);
+
+                lessonList.add(lesson);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return lessonList;
     }
 }
