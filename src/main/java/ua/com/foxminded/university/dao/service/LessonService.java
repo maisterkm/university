@@ -130,4 +130,67 @@ public class LessonService implements LessonDAO {
         }
         return lessonList;
     }
+
+    public Lesson getById(Integer lesson_id) throws SQLException {
+        DBConnector dbConnection = new DBConnector();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement predStatement = null;
+        String sql = "SELECT lesson_id, campus_id, roomnumber, begintime, endtime, subject_id, dailyschedule_id, monthlyschedule_id, schedule_id FROM LESSON WHERE lesson_id=?";
+        Lesson lesson = new Lesson();
+
+        try {
+            predStatement = connection.prepareStatement(sql);
+            predStatement.setInt(1, lesson_id);
+
+            ResultSet resultSet = predStatement.executeQuery();
+            resultSet.next();
+            lesson.setLesson_id(resultSet.getInt("lesson_id"));
+
+            ClassroomService classroomService = new ClassroomService();
+            Classroom classroom = classroomService.getById(resultSet.getInt("campus_id"),
+                    resultSet.getString("roomnumber"));
+            lesson.setClassroom(classroom);
+
+            String strBeginTime = resultSet.getString("begintime");
+            Timestamp timestampBeginTime = Timestamp.valueOf(strBeginTime);
+            Calendar calendarBeginTime = Calendar.getInstance();
+            calendarBeginTime.setTimeInMillis(timestampBeginTime.getTime());
+            lesson.setBeginTime(calendarBeginTime);
+
+            String strEndTime = resultSet.getString("endtime");
+            Timestamp timestampEndTime = Timestamp.valueOf(strEndTime);
+            Calendar calendarEndTime = Calendar.getInstance();
+            calendarEndTime.setTimeInMillis(timestampEndTime.getTime());
+            lesson.setEndTime(calendarEndTime);
+
+            SubjectService subjectService = new SubjectService();
+            Subject subject = subjectService.getById(resultSet.getInt("subject_id"));
+            lesson.setSubject(subject);
+
+            DailyScheduleService dailyScheduleService = new DailyScheduleService();
+            DailySchedule dailySchedule = dailyScheduleService.getById(resultSet.getInt("dailyschedule_id"),
+                    resultSet.getInt("monthlyschedule_id"), resultSet.getInt("schedule_id"));
+            lesson.setDailySchedule(dailySchedule);
+
+            MonthlyScheduleService monthlyService = new MonthlyScheduleService();
+            MonthlySchedule monthlySchedule = monthlyService.getById(resultSet.getInt("monthlyschedule_id"),
+                    resultSet.getInt("schedule_id"));
+            lesson.setMonthlySchedule(monthlySchedule);
+
+            ScheduleService scheduleService = new ScheduleService();
+            Schedule schedule = scheduleService.getById(resultSet.getInt("schedule_id"));
+            lesson.setSchedule(schedule);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (predStatement != null) {
+                predStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return lesson;
+    }
 }

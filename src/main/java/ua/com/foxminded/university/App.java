@@ -563,11 +563,11 @@ public class App {
             for (Lesson item : lessonList) {
                 System.out.println(item.displayClass());
             }
-//
-//            System.out.println("\ndailyScheduleService.getById()");
-//            DailySchedule dailySchedule_getById = dailyScheduleService.getById(10, 2, 1);
-//            System.out.println(dailySchedule_getById);
-//
+
+            System.out.println("\nlessonService.getById()");
+            Lesson lesson_getById = lessonService.getById(10);
+            System.out.println(lesson_getById.displayClass());
+
 //            System.out.println("\ndailyScheduleService.update()");
 //            dailyScheduleTest.setDescription("UPDATE_DESCRIPTION");
 //            dailyScheduleService.update(dailyScheduleTest);
