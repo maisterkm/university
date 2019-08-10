@@ -2,6 +2,7 @@ package ua.com.foxminded.university.dao;
 
 import ua.com.foxminded.university.TypeOfEntity;
 import ua.com.foxminded.university.dao.service.CampusDAO;
+import ua.com.foxminded.university.dao.service.PositionDAO;
 
 public class FactoryDAO {
     public DAO<?> create(TypeOfEntity entity) {
@@ -18,8 +19,8 @@ public class FactoryDAO {
 //            return new LessonService();
 //        case PERSON:
 //            return new PersonService();
-//        case POSITION:
-//            return new PositionService();
+        case POSITION:
+            return new PositionDAO();
 //        case STUDENT:
 //            return new StudentService();
 //        case SUBJECT:

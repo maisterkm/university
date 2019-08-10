@@ -8,6 +8,14 @@ public class Position {
     private int position_id;
     private String position;
 
+    public Position() {
+    }
+
+    public Position(int position_id, String position) {
+        this.position_id = position_id;
+        this.position = position;
+    }
+
     public int getPosition_id() {
         return position_id;
     }
@@ -23,10 +31,11 @@ public class Position {
     public void setPosition(String position) {
         this.position = position;
     }
-    
+
     @Override
     public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() + ", position_id: " + position_id + ", position:" + position;
+        String output = "class name: " + this.getClass().getSimpleName() + ", position_id: " + position_id
+                + ", position:" + position;
         return output;
     }
 }

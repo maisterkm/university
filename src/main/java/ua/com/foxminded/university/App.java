@@ -6,13 +6,16 @@ import java.util.List;
 
 import ua.com.foxminded.university.dao.FactoryDAO;
 import ua.com.foxminded.university.dao.service.CampusDAO;
+import ua.com.foxminded.university.dao.service.PositionDAO;
 import ua.com.foxminded.university.domain.entity.Campus;
+import ua.com.foxminded.university.domain.entity.Position;
 
 public class App {
     public static void main(String[] args) {
         FactoryDAO factory = new FactoryDAO();
 
         try {
+            // CampusDAO
             Campus campusTest = new Campus(10, "TEST_CAMPUS");
             CampusDAO campusDAO = (CampusDAO) factory.create(TypeOfEntity.CAMPUS);
 
@@ -43,6 +46,40 @@ public class App {
             campusDAO.remove(campusTest);
             campusList = campusDAO.getAll();
             for (Campus item : campusList) {
+                System.out.println(item);
+            }
+
+            // PositionDAO
+            Position positionTest = new Position(10, "TEST_POSITION");
+            PositionDAO positionDAO = (PositionDAO) factory.create(TypeOfEntity.POSITION);
+
+            System.out.println("\n--- PositionDAO ---");
+            System.out.println("\npositionDAO.add()");
+            positionDAO.add(positionTest);
+
+            System.out.println("\npositionDAO.getById()");
+            Position position_getById = positionDAO.getById(10);
+            System.out.println(position_getById);
+
+            System.out.println("\npositionDAO.getAll()");
+            List<Position> positionList = new ArrayList<Position>();
+            positionList = positionDAO.getAll();
+            for (Position item : positionList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\npositionDAO.update()");
+            positionTest.setPosition("POSITION_UPDATE");
+            positionDAO.update(positionTest);
+            positionList = positionDAO.getAll();
+            for (Position item : positionList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\npositionDAO.remove()");
+            positionDAO.remove(positionTest);
+            positionList = positionDAO.getAll();
+            for (Position item : positionList) {
                 System.out.println(item);
             }
         } catch (SQLException e) {
