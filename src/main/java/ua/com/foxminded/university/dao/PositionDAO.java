@@ -5,8 +5,8 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.entity.Position;
 
-public interface PositionDAO {
- // create
+public interface PositionDAO extends DAO {
+    // create
     void add(Position position) throws SQLException;
 
     // read

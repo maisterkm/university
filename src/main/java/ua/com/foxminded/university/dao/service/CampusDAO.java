@@ -8,12 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.com.foxminded.university.dao.CampusDAO;
+import ua.com.foxminded.university.dao.DAO;
 import ua.com.foxminded.university.dao.DBConnector;
 import ua.com.foxminded.university.domain.entity.Campus;
 
-public class CampusService implements CampusDAO {
-
+public class CampusDAO implements DAO<Campus> {
     public void add(Campus campus) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -92,7 +91,7 @@ public class CampusService implements CampusDAO {
         Campus campus = new Campus();
 
         try {
-                preparedStatement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, campus_id);
 
             ResultSet resultSet = preparedStatement.executeQuery();

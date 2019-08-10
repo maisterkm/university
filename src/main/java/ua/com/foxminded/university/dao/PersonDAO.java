@@ -5,7 +5,7 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.entity.Person;
 
-public interface PersonDAO {
+public interface PersonDAO extends DAO {
     // create
     void add(Person person) throws SQLException;
 

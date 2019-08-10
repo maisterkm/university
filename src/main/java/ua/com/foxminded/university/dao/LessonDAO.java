@@ -5,7 +5,7 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.entity.Lesson;
 
-public interface LessonDAO {
+public interface LessonDAO extends DAO {
     // create
     void add(Lesson lesson) throws SQLException;
 

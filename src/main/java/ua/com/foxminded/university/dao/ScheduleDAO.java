@@ -5,7 +5,7 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.Schedule;
 
-public interface ScheduleDAO {
+public interface ScheduleDAO extends DAO {
     // create
     void add(Schedule schedule) throws SQLException;
 

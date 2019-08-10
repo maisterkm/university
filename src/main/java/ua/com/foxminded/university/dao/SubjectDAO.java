@@ -5,8 +5,8 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.entity.Subject;
 
-public interface SubjectDAO {
- // create
+public interface SubjectDAO extends DAO {
+    // create
     void add(Subject subject) throws SQLException;
 
     // read

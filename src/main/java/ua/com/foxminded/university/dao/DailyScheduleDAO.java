@@ -5,7 +5,7 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.DailySchedule;
 
-public interface DailyScheduleDAO {
+public interface DailyScheduleDAO extends DAO {
     // create
     void add(DailySchedule dailySchedule) throws SQLException;
 

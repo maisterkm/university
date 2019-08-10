@@ -5,8 +5,8 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.entity.Group;
 
-public interface GroupDAO {
- // create
+public interface GroupDAO extends DAO {
+    // create
     void add(Group group) throws SQLException;
 
     // read

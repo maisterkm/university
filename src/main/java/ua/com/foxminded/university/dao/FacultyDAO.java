@@ -5,18 +5,18 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.entity.Faculties;
 
-public interface FacultyDAO {
+public interface FacultyDAO<T> extends DAO<T> {
     // create
-       void add(Faculties faculty) throws SQLException;
+    void add(Faculties faculty) throws SQLException;
 
-       // read
-       List<Faculties> getAll() throws SQLException;
+    // read
+    List<T> getAll() throws SQLException;
 
-       Faculties getById(Integer id) throws SQLException;
+    T getById(Integer id) throws SQLException;
 
-       // update
-       void update(Faculties faculty) throws SQLException;
+    // update
+    void update(T faculty) throws SQLException;
 
-       // delete
-       void remove(Faculties faculty) throws SQLException;
-   }
+    // delete
+    void remove(T faculty) throws SQLException;
+}
