@@ -22,8 +22,9 @@ public class Lesson implements Comparable<Lesson> {
     public Lesson() {
     }
 
-    public Lesson(int lessont_id, Classroom classroom, Subject subject, int beginHour, int beginMin, int beginDay,
+    public Lesson(int lesson_id, Classroom classroom, Subject subject, int beginHour, int beginMin, int beginDay,
             int beginMonth, int beginYear, int endHour, int endMin, int endDay, int endMonth, int endYear) {
+        this.lesson_id = lesson_id;
         this.classroom = classroom;
         this.subject = subject;
         beginTime.set(Calendar.HOUR_OF_DAY, beginHour);

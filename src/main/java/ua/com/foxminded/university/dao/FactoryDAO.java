@@ -6,6 +6,7 @@ import ua.com.foxminded.university.dao.service.ClassroomDAO;
 import ua.com.foxminded.university.dao.service.DailyScheduleDAO;
 import ua.com.foxminded.university.dao.service.FacultiesDAO;
 import ua.com.foxminded.university.dao.service.GroupDAO;
+import ua.com.foxminded.university.dao.service.LessonDAO;
 import ua.com.foxminded.university.dao.service.MonthlyScheduleDAO;
 import ua.com.foxminded.university.dao.service.PersonDAO;
 import ua.com.foxminded.university.dao.service.PositionDAO;
@@ -25,8 +26,8 @@ public class FactoryDAO {
             return new FacultiesDAO();
         case GROUP:
             return new GroupDAO();
-//        case LESSON:
-//            return new LessonDAO();
+        case LESSON:
+            return new LessonDAO();
         case PERSON:
             return new PersonDAO();
         case POSITION:
