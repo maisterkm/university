@@ -7,6 +7,7 @@ import java.util.List;
 import ua.com.foxminded.university.dao.FactoryDAO;
 import ua.com.foxminded.university.dao.service.CampusDAO;
 import ua.com.foxminded.university.dao.service.ClassroomDAO;
+import ua.com.foxminded.university.dao.service.DailyScheduleDAO;
 import ua.com.foxminded.university.dao.service.FacultiesDAO;
 import ua.com.foxminded.university.dao.service.GroupDAO;
 import ua.com.foxminded.university.dao.service.MonthlyScheduleDAO;
@@ -16,6 +17,7 @@ import ua.com.foxminded.university.dao.service.ScheduleDAO;
 import ua.com.foxminded.university.dao.service.StudentDAO;
 import ua.com.foxminded.university.dao.service.SubjectDAO;
 import ua.com.foxminded.university.dao.service.TeacherDAO;
+import ua.com.foxminded.university.domain.DailySchedule;
 import ua.com.foxminded.university.domain.MonthlySchedule;
 import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
@@ -435,88 +437,47 @@ public class App {
                 System.out.println(item);
             }
 
+            // DailyScheduleDAO
+            DailySchedule dailyScheduleTest = new DailySchedule();
+            dailyScheduleTest.setDailySchedule_id(10);
+            dailyScheduleTest.setMonthlySchedule_id(2);
+            dailyScheduleTest.setSchedule_id(1);
+            dailyScheduleTest.setDescription("TEST_DESCRIPTION");
+            DailyScheduleDAO dailyScheduleDAO = (DailyScheduleDAO) factory.create(TypeOfEntity.DAILYSCHEDULE);
+
+            System.out.println("\n--- DailyScheduleService ---");
+            System.out.println("\ndailyScheduleDAO.add()");
+            dailyScheduleDAO.add(dailyScheduleTest);
+
+            System.out.println("\ndailyScheduleDAO.getAll()");
+            List<DailySchedule> dailyScheduleList = new ArrayList<DailySchedule>();
+            dailyScheduleList = dailyScheduleDAO.getAll();
+            for (DailySchedule item : dailyScheduleList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\ndailyScheduleDAO.getById()");
+            DailySchedule dailySchedule_getById = dailyScheduleDAO.getById(10, 2, 1);
+            System.out.println(dailySchedule_getById);
+
+            System.out.println("\ndailyScheduleDAO.update()");
+            dailyScheduleTest.setDescription("UPDATE_DESCRIPTION");
+            dailyScheduleDAO.update(dailyScheduleTest);
+            dailyScheduleList = dailyScheduleDAO.getAll();
+            for (DailySchedule item : dailyScheduleList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\ndailyScheduleDAO.remove()");
+            dailyScheduleDAO.remove(dailyScheduleTest);
+            dailyScheduleList = dailyScheduleDAO.getAll();
+            for (DailySchedule item : dailyScheduleList) {
+                System.out.println(item);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-//      MonthlySchedule monthlyScheduleTest = new MonthlySchedule();
-//      monthlyScheduleTest.setMonthlySchedule_id(10);
-//      monthlyScheduleTest.setSchedule_id(2);
-//      monthlyScheduleTest.setDescription("TEST_DESCRIPTION");
-//      MonthlyScheduleService monthlyScheduleService = new MonthlyScheduleService();
-//      try {
-//          System.out.println("\n--- MonthlyScheduleService ---");
-//          System.out.println("\nmonthlyScheduleService.add()");
-//          monthlyScheduleService.add(monthlyScheduleTest);
-//
-//          System.out.println("\nmonthlyScheduleService.getAll()");
-//          List<MonthlySchedule> monthlyScheduleList = new ArrayList<MonthlySchedule>();
-//          monthlyScheduleList = monthlyScheduleService.getAll();
-//          for (MonthlySchedule item : monthlyScheduleList) {
-//              System.out.println(item);
-//          }
-//
-//          System.out.println("\nmonthlyScheduleService.getById()");
-//          MonthlySchedule monthlySchedule_getById = monthlyScheduleService.getById(10, 2);
-//          System.out.println(monthlySchedule_getById);
-//
-//          System.out.println("\nmonthlyScheduleService.update()");
-//          monthlyScheduleTest.setDescription("UPDATE_DESCRIPTION");
-//          monthlyScheduleService.update(monthlyScheduleTest);
-//          monthlyScheduleList = monthlyScheduleService.getAll();
-//          for (MonthlySchedule item : monthlyScheduleList) {
-//              System.out.println(item);
-//          }
-//
-//          System.out.println("\nmonthlyScheduleService.remove()");
-//          monthlyScheduleService.remove(monthlyScheduleTest);
-//          monthlyScheduleList = monthlyScheduleService.getAll();
-//          for (MonthlySchedule item : monthlyScheduleList) {
-//              System.out.println(item);
-//          }
-//      } catch (SQLException e) {
-//          e.printStackTrace();
-//      }
-
-//      DailySchedule dailyScheduleTest = new DailySchedule();
-//      dailyScheduleTest.setDailySchedule_id(10);
-//      dailyScheduleTest.setMonthlySchedule_id(2);
-//      dailyScheduleTest.setSchedule_id(1);
-//      dailyScheduleTest.setDescription("TEST_DESCRIPTION");
-//      DailyScheduleService dailyScheduleService = new DailyScheduleService();
-//      try {
-//          System.out.println("\n--- DailyScheduleService ---");
-//          System.out.println("\ndailyScheduleService.add()");
-//          dailyScheduleService.add(dailyScheduleTest);
-//
-//          System.out.println("\ndailyScheduleService.getAll()");
-//          List<DailySchedule> dailyScheduleList = new ArrayList<DailySchedule>();
-//          dailyScheduleList = dailyScheduleService.getAll();
-//          for (DailySchedule item : dailyScheduleList) {
-//              System.out.println(item);
-//          }
-//
-//          System.out.println("\ndailyScheduleService.getById()");
-//          DailySchedule dailySchedule_getById = dailyScheduleService.getById(10, 2, 1);
-//          System.out.println(dailySchedule_getById);
-//
-//          System.out.println("\ndailyScheduleService.update()");
-//          dailyScheduleTest.setDescription("UPDATE_DESCRIPTION");
-//          dailyScheduleService.update(dailyScheduleTest);
-//          dailyScheduleList = dailyScheduleService.getAll();
-//          for (DailySchedule item : dailyScheduleList) {
-//              System.out.println(item);
-//          }
-//
-//          System.out.println("\ndailyScheduleService.remove()");
-//          dailyScheduleService.remove(dailyScheduleTest);
-//          dailyScheduleList = dailyScheduleService.getAll();
-//          for (DailySchedule item : dailyScheduleList) {
-//              System.out.println(item);
-//          }
-//      } catch (SQLException e) {
-//          e.printStackTrace();
-//      }
 
 //      Campus campusTest = new Campus(1, "CAMPUS_TEST");
 //      Classroom classroomTest = new Classroom(campusTest, "room_101", 40);

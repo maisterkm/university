@@ -3,6 +3,7 @@ package ua.com.foxminded.university.dao;
 import ua.com.foxminded.university.TypeOfEntity;
 import ua.com.foxminded.university.dao.service.CampusDAO;
 import ua.com.foxminded.university.dao.service.ClassroomDAO;
+import ua.com.foxminded.university.dao.service.DailyScheduleDAO;
 import ua.com.foxminded.university.dao.service.FacultiesDAO;
 import ua.com.foxminded.university.dao.service.GroupDAO;
 import ua.com.foxminded.university.dao.service.MonthlyScheduleDAO;
@@ -38,8 +39,8 @@ public class FactoryDAO {
             return new TeacherDAO();
         case SCHEDULE:
             return new ScheduleDAO();
-//        case DAILYSCHEDULE:
-//            return new DailyScheduleService();
+        case DAILYSCHEDULE:
+            return new DailyScheduleDAO();
         case MONTHLYSHCEDULE:
             return new MonthlyScheduleDAO();
         default:
