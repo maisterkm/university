@@ -9,10 +9,12 @@ import ua.com.foxminded.university.dao.service.CampusDAO;
 import ua.com.foxminded.university.dao.service.FacultiesDAO;
 import ua.com.foxminded.university.dao.service.GroupDAO;
 import ua.com.foxminded.university.dao.service.PositionDAO;
+import ua.com.foxminded.university.dao.service.SubjectDAO;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Faculties;
 import ua.com.foxminded.university.domain.entity.Group;
 import ua.com.foxminded.university.domain.entity.Position;
+import ua.com.foxminded.university.domain.entity.Subject;
 
 public class App {
     public static void main(String[] args) {
@@ -121,7 +123,7 @@ public class App {
                 System.out.println(item);
             }
 
-            // GroupService
+            // GroupDAO
             Faculties faculty_1 = new Faculties(20, "FACULTY_TEST_1");
             facultiesDAO.add(faculty_1);
             Faculties faculty_2 = new Faculties(30, "UPDATE_FACULTY_OF_COMPUTER_SCIENCE");
@@ -161,60 +163,44 @@ public class App {
                 System.out.println(item.displayGroup());
             }
 
+            // SubjectDAO
+            Subject subjectTest = new Subject(10, "NEW_SUBJECT");
+            SubjectDAO subjectDAO = (SubjectDAO) factory.create(TypeOfEntity.SUBJECT);
+
+            System.out.println("\n--- SubjectDAO ---");
+            System.out.println("\nsubjectService.add()");
+            subjectDAO.add(subjectTest);
+
+            System.out.println("\nsubjectDAO.getById()");
+            Subject subject_getById = subjectDAO.getById(10);
+            System.out.println(subject_getById.toString());
+
+            System.out.println("\nSubjectDAO.getAll()");
+            List<Subject> subjectList = new ArrayList<Subject>();
+            subjectList = subjectDAO.getAll();
+            for (Subject item : subjectList) {
+                System.out.println(item.toString());
+            }
+
+            System.out.println("\nsubjectService.update()");
+            subjectTest.setSubject("SUBJECT_UPDATE");
+            subjectDAO.update(subjectTest);
+            subjectList = subjectDAO.getAll();
+            for (Subject item : subjectList) {
+                System.out.println(item.toString());
+            }
+
+            System.out.println("\nsubjectDAO.remove()");
+            subjectDAO.remove(subjectTest);
+            subjectList = subjectDAO.getAll();
+            for (Subject item : subjectList) {
+                System.out.println(item.toString());
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-//        try {
-//           
-//        // GroupService
-//        Faculties faculty_1 = new Faculties(1, "FACULTY_OF_MATHEMATICS");
-//        Faculties faculty_2 = new Faculties(2, "UPDATE_FACULTY_OF_COMPUTER_SCIENCE");
-//        Group groupTest = new Group();
-//        groupTest.setGroup_id(10);
-//        groupTest.setGroupNumber("NEW_GROUP");
-//        groupTest.setFaculty(faculty_1);
-//        GroupService groupService = new GroupService();
-//        try {
-//            System.out.println("\n--- GroupService ---");
-//            System.out.println("\nGroupService.add()");
-//            groupService.add(groupTest);
-//
-//            System.out.println("\nGroupService.getById()");
-//            Group group_getById = groupService.getById(10);
-//            System.out.println("id=" + group_getById.getGroup_id() + " groupNumber=" + group_getById.getGroupNumber()
-//                    + " facultyId=" + group_getById.getFaculty_id());
-//
-//            System.out.println("\nGroupService.getAll()");
-//            List<Group> groupList = new ArrayList<Group>();
-//            groupList = groupService.getAll();
-//            for (Group item : groupList) {
-//                System.out.println("id=" + item.getGroup_id() + " groupNumber=" + item.getGroupNumber() + " facultyId="
-//                        + item.getFaculty().getFaculty_id());
-//            }
-//
-//            System.out.println("\nGroupService.update()");
-//            groupTest.setGroupNumber("GROUP_UPDATE");
-//            groupTest.setFaculty(faculty_2);
-//            groupService.update(groupTest);
-//            groupList = groupService.getAll();
-//            for (Group item : groupList) {
-//                System.out.println("id=" + item.getGroup_id() + " groupNumber=" + item.getGroupNumber() + " facultyId="
-//                        + item.getFaculty_id());
-//            }
-//
-//            System.out.println("\nGroupService.remove()");
-//            groupService.remove(groupTest);
-//            groupList = groupService.getAll();
-//            for (Group item : groupList) {
-//                System.out.println("id=" + item.getGroup_id() + " groupNumber=" + item.getGroupNumber() + " facultyId="
-//                        + item.getFaculty_id());
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-
-        // GroupService
 //      Subject subjectTest = new Subject(10, "NEW_SUBJECT");
 //      SubjectService subjectService = new SubjectService();
 //      try {

@@ -5,6 +5,7 @@ import ua.com.foxminded.university.dao.service.CampusDAO;
 import ua.com.foxminded.university.dao.service.FacultiesDAO;
 import ua.com.foxminded.university.dao.service.GroupDAO;
 import ua.com.foxminded.university.dao.service.PositionDAO;
+import ua.com.foxminded.university.dao.service.SubjectDAO;
 
 public class FactoryDAO {
     public DAO<?> create(TypeOfEntity entity) {
@@ -25,8 +26,8 @@ public class FactoryDAO {
             return new PositionDAO();
 //        case STUDENT:
 //            return new StudentService();
-//        case SUBJECT:
-//            return new SubjectService();
+        case SUBJECT:
+            return new SubjectDAO();
 //        case TEACHER:
 //            return new TeacherService();
 //        case SCHEDULE:
