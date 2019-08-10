@@ -6,15 +6,25 @@ import java.util.List;
 
 import ua.com.foxminded.university.dao.FactoryDAO;
 import ua.com.foxminded.university.dao.service.CampusDAO;
+import ua.com.foxminded.university.dao.service.ClassroomDAO;
 import ua.com.foxminded.university.dao.service.FacultiesDAO;
 import ua.com.foxminded.university.dao.service.GroupDAO;
+import ua.com.foxminded.university.dao.service.PersonDAO;
 import ua.com.foxminded.university.dao.service.PositionDAO;
+import ua.com.foxminded.university.dao.service.ScheduleDAO;
+import ua.com.foxminded.university.dao.service.StudentDAO;
 import ua.com.foxminded.university.dao.service.SubjectDAO;
+import ua.com.foxminded.university.dao.service.TeacherDAO;
+import ua.com.foxminded.university.domain.Schedule;
 import ua.com.foxminded.university.domain.entity.Campus;
+import ua.com.foxminded.university.domain.entity.Classroom;
 import ua.com.foxminded.university.domain.entity.Faculties;
 import ua.com.foxminded.university.domain.entity.Group;
+import ua.com.foxminded.university.domain.entity.Person;
 import ua.com.foxminded.university.domain.entity.Position;
+import ua.com.foxminded.university.domain.entity.Student;
 import ua.com.foxminded.university.domain.entity.Subject;
+import ua.com.foxminded.university.domain.entity.Teacher;
 
 public class App {
     public static void main(String[] args) {
@@ -197,216 +207,198 @@ public class App {
                 System.out.println(item.toString());
             }
 
+            // PersonDAO
+            Person personTest = new Person(10, "FirstName_Test", "LastName_Test", 28, 02, 1955, 01, 01, 2019);
+            PersonDAO personDAO = (PersonDAO) factory.create(TypeOfEntity.PERSON);
+
+            System.out.println("\n--- PersonDAO ---");
+            System.out.println("\npersonDAO.add()");
+            personDAO.add(personTest);
+
+            System.out.println("\npersonDAO.getAll()");
+            List<Person> personList = new ArrayList<Person>();
+            personList = personDAO.getAll();
+            for (Person item : personList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\npersonDAO.getById()");
+            Person person_getById = personDAO.getById(10);
+            System.out.println(person_getById);
+
+            System.out.println("\npersonDAO.update()");
+            personTest.setFirstName("FIRSTNAME_UPDATE");
+            personTest.setLastName("LASTNAME_UPDATE");
+            personDAO.update(personTest);
+            personList = personDAO.getAll();
+            for (Person item : personList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\npersonDAO.remove()");
+            personDAO.remove(personTest);
+            personList = personDAO.getAll();
+            for (Person item : personList) {
+                System.out.println(item);
+            }
+
+            // TeacherDAO
+            Position position_1 = positionDAO.getById(1);
+            Teacher teacherTest = new Teacher(333, "FIRSTNAME_TEST333", "LASTNAME_TEST333", 30, 9, 1988, 21, 9, 2011,
+                    position_1, 3333);
+            TeacherDAO teacherDAO = (TeacherDAO) factory.create(TypeOfEntity.TEACHER);
+
+            System.out.println("\n--- TeacherDAO ---");
+            System.out.println("\nteacherDAO.add()");
+            teacherDAO.add(teacherTest);
+
+            System.out.println("\nteacherDAO.getAll()");
+            List<Teacher> teacherList = new ArrayList<Teacher>();
+            teacherList = teacherDAO.getAll();
+            for (Teacher item : teacherList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\nteacherDAO.getById()");
+            Teacher teacher_getById = teacherDAO.getById(333);
+            System.out.println(teacher_getById);
+
+            System.out.println("\nteacherDAO.update()");
+            teacherTest.setSalary(1000000);
+            Position position_3 = new Position(20, "TEST_POSITION_§");
+            positionDAO.add(position_3);
+            teacherTest.setPosition(position_3);
+            teacherDAO.update(teacherTest);
+            teacherList = teacherDAO.getAll();
+            for (Teacher item : teacherList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\nteacherDAO.remove()");
+            teacherDAO.remove(teacherTest);
+            teacherList = teacherDAO.getAll();
+            for (Teacher item : teacherList) {
+                System.out.println(item);
+            }
+
+            // StudentDAO
+            Student studentTest = new Student(100, "STUDENT_TEST", "STUDENT_TEST", 30, 9, 1988, 21, 9, 2011);
+            studentTest.setMatriculationnumber(100000);
+            Group group2 = new Group(30, "GR_TEST_2", faculty_1);
+            groupDAO.add(group2);
+            studentTest.setGroup(group2);
+            StudentDAO studentDAO = (StudentDAO) factory.create(TypeOfEntity.STUDENT);
+
+            System.out.println("\n--- StudentDAO ---");
+            System.out.println("\nstudentDAO.add()");
+            studentDAO.add(studentTest);
+
+            System.out.println("\nstudentDAO.getAll()");
+            List<Student> studentList = new ArrayList<Student>();
+            studentList = studentDAO.getAll();
+            for (Student item : studentList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\nstudentDAO.getById()");
+            Student student_getById = studentDAO.getById(100);
+            System.out.println(student_getById);
+
+            System.out.println("\nstudentDAO.update()");
+            studentTest.setMatriculationnumber(999999);
+            studentTest.setGroup(group2);
+            studentDAO.update(studentTest);
+            studentList = studentDAO.getAll();
+            for (Student item : studentList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\nstudentDAO.remove()");
+            studentDAO.remove(studentTest);
+            studentList = studentDAO.getAll();
+            for (Student item : studentList) {
+                System.out.println(item);
+            }
+
+            // ClassroomDAO
+            Campus campus2 = new Campus(20, "CAMPUS_TEST_2");
+            campusDAO.add(campus2);
+            ClassroomDAO classroomDAO = (ClassroomDAO) factory.create(TypeOfEntity.CLASSROOM);
+
+            Classroom classroomTest = new Classroom();
+            classroomTest.setCampus(campus2);
+            classroomTest.setRoomNumber("room_test");
+            classroomTest.setCapacity(70);
+
+            System.out.println("\n--- ClassroomService ---");
+            System.out.println("\nclassroomService.add()");
+            classroomDAO.add(classroomTest);
+
+            System.out.println("\nclassroomDAO.getAll()");
+            List<Classroom> classroomList = new ArrayList<Classroom>();
+            classroomList = classroomDAO.getAll();
+            for (Classroom item : classroomList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\nclassroomDAO.getById()");
+            Classroom classroom_getById = classroomDAO.getById(20, "room_test");
+            System.out.println(classroom_getById);
+
+            System.out.println("\nclassroomDAO.update()");
+            classroomTest.setCapacity(350);
+            classroomDAO.update(classroomTest);
+            classroomList = classroomDAO.getAll();
+            for (Classroom item : classroomList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\nclassroomDAO.remove()");
+            classroomDAO.remove(classroomTest);
+            classroomList = classroomDAO.getAll();
+            for (Classroom item : classroomList) {
+                System.out.println(item);
+            }
+
+            // ScheduleDAO
+            ScheduleDAO scheduleDAO = (ScheduleDAO) factory.create(TypeOfEntity.SCHEDULE);
+            Schedule scheduleTest = new Schedule();
+            scheduleTest.setSchedule_id(10);
+            scheduleTest.setDescription("TEST_DESCRIPTION");
+
+            System.out.println("\n--- ScheduleDAO ---");
+            System.out.println("\nscheduleDAO.add()");
+            scheduleDAO.add(scheduleTest);
+
+            System.out.println("\nscheduleDAO.getAll()");
+            List<Schedule> scheduleList = new ArrayList<Schedule>();
+            scheduleList = scheduleDAO.getAll();
+            for (Schedule item : scheduleList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\nscheduleDAO.getById()");
+            Schedule schedule_getById = scheduleDAO.getById(10);
+            System.out.println(schedule_getById);
+
+            System.out.println("\nscheduleDAO.update()");
+            scheduleTest.setDescription("UPDATE_DESCRIPTION");
+            scheduleDAO.update(scheduleTest);
+            scheduleList = scheduleDAO.getAll();
+            for (Schedule item : scheduleList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\nscheduleDAO.remove()");
+            scheduleDAO.remove(scheduleTest);
+            scheduleList = scheduleDAO.getAll();
+            for (Schedule item : scheduleList) {
+                System.out.println(item);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-//      Subject subjectTest = new Subject(10, "NEW_SUBJECT");
-//      SubjectService subjectService = new SubjectService();
-//      try {
-//          System.out.println("\n--- SubjectService ---");
-//          System.out.println("\nSubjectService.add()");
-//          subjectService.add(subjectTest);
-//
-//          System.out.println("\nSubjectService.getById()");
-//          Subject subject_getById = subjectService.getById(10);
-//          System.out.println("id=" + subject_getById.getSubject_id() + " subject=" + subject_getById.getSubject());
-//
-//          System.out.println("\nSubjectService.getAll()");
-//          List<Subject> subjectList = new ArrayList<Subject>();
-//          subjectList = subjectService.getAll();
-//          for (Subject item : subjectList) {
-//              System.out.println("id=" + item.getSubject_id() + " subject=" + item.getSubject());
-//          }
-//
-//          System.out.println("\nSubjectService.update()");
-//          subjectTest.setSubject("SUBJECT_UPDATE");
-//          subjectService.update(subjectTest);
-//          subjectList = subjectService.getAll();
-//          for (Subject item : subjectList) {
-//              System.out.println("id=" + item.getSubject_id() + " subject=" + item.getSubject());
-//          }
-//
-//          System.out.println("\nSubjectService.remove()");
-//          subjectService.remove(subjectTest);
-//          subjectList = subjectService.getAll();
-//          for (Subject item : subjectList) {
-//              System.out.println("id=" + item.getSubject_id() + " subject=" + item.getSubject());
-//          }
-//      } catch (SQLException e) {
-//          e.printStackTrace();
-//      }
-
-//      Person personTest = new Person(10, "FirstName_Test", "LastName_Test", 28, 02, 1955, 01, 01, 2019);
-//      PersonService personService = new PersonService();
-//      try {
-//          System.out.println("\n--- PersonService ---");
-//          System.out.println("\nPersonService.add()");
-//          personService.add(personTest);
-//
-//          System.out.println("\nGroupService.getAll()");
-//          List<Person> personList = new ArrayList<Person>();
-//          personList = personService.getAll();
-//          for (Person item : personList) {
-//              System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
-//                      + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
-//                      + item.getEnrollmentDate());
-//          }
-//
-//          System.out.println("\nPersonService.getById()");
-//          Person person_getById = personService.getById(10);
-//          System.out.println("id=" + person_getById.getPerson_id() + " firstname=" + person_getById.getFirstName()
-//                  + " lastname=" + person_getById.getLastName() + " dateOfBirth= " + person_getById.getDateOfBirth()
-//                  + " enrollmentDate=" + person_getById.getEnrollmentDate());
-//
-//          System.out.println("\nPersonService.update()");
-//          personTest.setFirstName("FIRSTNAME_UPDATE");
-//          personTest.setLastName("LASTNAME_UPDATE");
-//          personService.update(personTest);
-//          personList = personService.getAll();
-//          for (Person item : personList) {
-//              System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
-//                      + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
-//                      + item.getEnrollmentDate());
-//          }
-//
-//          System.out.println("\nPersonService.remove()");
-//          personService.remove(personTest);
-//          personList = personService.getAll();
-//          for (Person item : personList) {
-//              System.out.println("id=" + item.getPerson_id() + " firstname=" + item.getFirstName() + " lastname="
-//                      + item.getLastName() + " dateOfBirth= " + item.getDateOfBirth() + " enrollmentDate="
-//                      + item.getEnrollmentDate());
-//          }
-//      } catch (SQLException e) {
-//          e.printStackTrace();
-//      }
-
-//      Teacher teacherTest = new Teacher(333, "FIRSTNAME_TEST333", "LASTNAME_TEST333", 30, 9, 1988, 21, 9, 2011,
-//              position_1, 3333);
-//      TeacherService teacherService = new TeacherService();
-//      try {
-//          System.out.println("\n--- TeacherService ---");
-//          System.out.println("\nTeacherService.add()");
-//          teacherService.add(teacherTest);
-//
-//          System.out.println("\nGroupService.getAll()");
-//          List<Teacher> teacherList = new ArrayList<Teacher>();
-//          teacherList = teacherService.getAll();
-//          for (Teacher item : teacherList) {
-//              System.out.println(item);
-//          }
-//
-//          System.out.println("\nTeacherService.getById()");
-//          Teacher teacher_getById = teacherService.getById(333);
-//          System.out.println(teacher_getById);
-//
-//          System.out.println("\nTeacherService.update()");
-//          teacherTest.setSalary(1000000);
-//          teacherTest.setPosition(position_3);
-//          teacherService.update(teacherTest);
-//          teacherList = teacherService.getAll();
-//          for (Teacher item : teacherList) {
-//              System.out.println(item);
-//          }
-//
-//          System.out.println("\nTeacherService.remove()");
-//          teacherService.remove(teacherTest);
-//          teacherList = teacherService.getAll();
-//          for (Teacher item : teacherList) {
-//              System.out.println(item);
-//          }
-//      } catch (SQLException e) {
-//          e.printStackTrace();
-//      }
-
-//      Student studentTest = new Student(100, "STUDENT_TEST", "STUDENT_TEST", 30, 9, 1988, 21, 9, 2011);
-//      studentTest.setMatriculationnumber(100000);
-//      group2.setGroup_id(2);
-//      studentTest.setGroup(group2);
-//      StudentService studentService = new StudentService();
-//      try {
-//          System.out.println("\n--- StudentService ---");
-//          System.out.println("\nStudentService.add()");
-//          studentService.add(studentTest);
-//
-//          System.out.println("\nStudentService.getAll()");
-//          List<Student> studentList = new ArrayList<Student>();
-//          studentList = studentService.getAll();
-//          for (Student item : studentList) {
-//              System.out.println(item);
-//          }
-//
-//          System.out.println("\nStudentService.getById()");
-//          Student student_getById = studentService.getById(100);
-//          System.out.println(student_getById);
-//
-//          System.out.println("\nStudentService.update()");
-//          studentTest.setMatriculationnumber(999999);
-//          studentTest.setGroup(group2);
-//          studentTest.setStudentSchedule(schedule);
-//          studentService.update(studentTest);
-//          studentList = studentService.getAll();
-//          for (Student item : studentList) {
-//              System.out.println(item);
-//          }
-//
-//          System.out.println("\nstudentService.remove()");
-//          studentService.remove(studentTest);
-//          studentList = studentService.getAll();
-//          for (Student item : studentList) {
-//              System.out.println(item);
-//          }
-//      } catch (SQLException e) {
-//          e.printStackTrace();
-//      }
-//      Campus campusTest = new Campus();
-//      campusTest.setCampus_id(10);
-//      campusTest.setCampus("CAMPUS_TEST");
-//      CampusService campusService = new CampusService();
-//
-//      Classroom classroomTest = new Classroom();
-//      classroomTest.setCampus(campusTest);
-//      classroomTest.setRoomNumber("room_test");
-//      classroomTest.setCapacity(70);
-//
-//      ClassroomService classroomService = new ClassroomService();
-//      try {
-//          System.out.println("\n--- ClassroomService ---");
-//          System.out.println("\nclassroomService.add()");
-//
-//          campusService.add(campusTest);
-//
-//          classroomService.add(classroomTest);
-//
-//          System.out.println("\nclassroomService.getAll()");
-//          List<Classroom> classroomList = new ArrayList<Classroom>();
-//          classroomList = classroomService.getAll();
-//          for (Classroom item : classroomList) {
-//              System.out.println(item);
-//          }
-//
-//          System.out.println("\nclassroomService.getById()");
-//          Classroom classroom_getById = classroomService.getById(10, "room_test");
-//          System.out.println(classroom_getById);
-//
-//          System.out.println("\nClassroomService.update()");
-//          classroomTest.setCapacity(120);
-//          classroomService.update(classroomTest);
-//          classroomList = classroomService.getAll();
-//          for (Classroom item : classroomList) {
-//              System.out.println(item);
-//          }
-//
-//          System.out.println("\nclassroomService.remove()");
-//          classroomService.remove(classroomTest);
-//          classroomList = classroomService.getAll();
-//          for (Classroom item : classroomList) {
-//              System.out.println(item);
-//          }
-//      } catch (SQLException e) {
-//          e.printStackTrace();
-//      }
 
 //      Schedule scheduleTest = new Schedule();
 //      scheduleTest.setSchedule_id(10);

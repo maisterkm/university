@@ -10,8 +10,10 @@
 //import java.util.Calendar;
 //import java.util.List;
 //
+//import ua.com.foxminded.university.TypeOfEntity;
+//import ua.com.foxminded.university.dao.DAO;
 //import ua.com.foxminded.university.dao.DBConnector;
-//import ua.com.foxminded.university.dao.LessonDAO;
+//import ua.com.foxminded.university.dao.FactoryDAO;
 //import ua.com.foxminded.university.domain.DailySchedule;
 //import ua.com.foxminded.university.domain.MonthlySchedule;
 //import ua.com.foxminded.university.domain.Schedule;
@@ -19,7 +21,7 @@
 //import ua.com.foxminded.university.domain.entity.Lesson;
 //import ua.com.foxminded.university.domain.entity.Subject;
 //
-//public class LessonService implements LessonDAO {
+//public class LessonDAO implements DAO<Lesson> {
 //    public void add(Lesson lesson) throws SQLException {
 //        DBConnector dbConnection = new DBConnector();
 //        Connection connection = dbConnection.getConnection();
@@ -81,8 +83,9 @@
 //                Lesson lesson = new Lesson();
 //                lesson.setLesson_id(resultSet.getInt("lesson_id"));
 //
-//                ClassroomService classroomService = new ClassroomService();
-//                Classroom classroom = classroomService.getById(resultSet.getInt("campus_id"),
+//                FactoryDAO factory = new FactoryDAO();
+//                ClassroomDAO classroomDAO = (ClassroomDAO) factory.create(TypeOfEntity.CLASSROOM);
+//                Classroom classroom = classroomDAO.getById(resultSet.getInt("campus_id"),
 //                        resultSet.getString("roomnumber"));
 //                lesson.setClassroom(classroom);
 //
@@ -98,8 +101,8 @@
 //                calendarEndTime.setTimeInMillis(timestampEndTime.getTime());
 //                lesson.setEndTime(calendarEndTime);
 //
-//                SubjectService subjectService = new SubjectService();
-//                Subject subject = subjectService.getById(resultSet.getInt("subject_id"));
+//                SubjectDAO subjectDAO = (SubjectDAO) factory.create(TypeOfEntity.SUBJECT);
+//                Subject subject = subjectDAO.getById(resultSet.getInt("subject_id"));
 //                lesson.setSubject(subject);
 //
 //                DailyScheduleService dailyScheduleService = new DailyScheduleService();
@@ -146,8 +149,9 @@
 //            resultSet.next();
 //            lesson.setLesson_id(resultSet.getInt("lesson_id"));
 //
-//            ClassroomService classroomService = new ClassroomService();
-//            Classroom classroom = classroomService.getById(resultSet.getInt("campus_id"),
+//            FactoryDAO factory = new FactoryDAO();
+//            ClassroomDAO classroomDAO = (ClassroomDAO) factory.create(TypeOfEntity.CLASSROOM);
+//            Classroom classroom = classroomDAO.getById(resultSet.getInt("campus_id"),
 //                    resultSet.getString("roomnumber"));
 //            lesson.setClassroom(classroom);
 //
@@ -163,8 +167,8 @@
 //            calendarEndTime.setTimeInMillis(timestampEndTime.getTime());
 //            lesson.setEndTime(calendarEndTime);
 //
-//            SubjectService subjectService = new SubjectService();
-//            Subject subject = subjectService.getById(resultSet.getInt("subject_id"));
+//            SubjectDAO subjectDAO = (SubjectDAO) factory.create(TypeOfEntity.SUBJECT);
+//            Subject subject = subjectDAO.getById(resultSet.getInt("subject_id"));
 //            lesson.setSubject(subject);
 //
 //            DailyScheduleService dailyScheduleService = new DailyScheduleService();
