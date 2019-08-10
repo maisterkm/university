@@ -6,8 +6,10 @@ import java.util.List;
 
 import ua.com.foxminded.university.dao.FactoryDAO;
 import ua.com.foxminded.university.dao.service.CampusDAO;
+import ua.com.foxminded.university.dao.service.FacultiesDAO;
 import ua.com.foxminded.university.dao.service.PositionDAO;
 import ua.com.foxminded.university.domain.entity.Campus;
+import ua.com.foxminded.university.domain.entity.Faculties;
 import ua.com.foxminded.university.domain.entity.Position;
 
 public class App {
@@ -82,49 +84,47 @@ public class App {
             for (Position item : positionList) {
                 System.out.println(item);
             }
+
+            // FacultyDAO
+            Faculties facultyTest = new Faculties(10, "NEW_FACULTY");
+            FacultiesDAO facultiesDAO = (FacultiesDAO) factory.create(TypeOfEntity.FACULTIES);
+
+            System.out.println("\n--- FacultiesDAO ---");
+            System.out.println("\nfacultiesDAO.add()");
+            facultiesDAO.add(facultyTest);
+
+            System.out.println("\nfacultiesDAO.getById()");
+            Faculties fauculties_getById = facultiesDAO.getById(10);
+            System.out.println(fauculties_getById);
+
+            System.out.println("\nFacultiesDAO.getAll()");
+            List<Faculties> facultyList = new ArrayList<Faculties>();
+            facultyList = facultiesDAO.getAll();
+            for (Faculties item : facultyList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\nfacultyDAO.update()");
+            facultyTest.setFaculty("FACULTY_UPDATE");
+            facultiesDAO.update(facultyTest);
+            facultyList = facultiesDAO.getAll();
+            for (Faculties item : facultyList) {
+                System.out.println(item);
+            }
+
+            System.out.println("\nfacultyDAO.remove()");
+            facultiesDAO.remove(facultyTest);
+            facultyList = facultiesDAO.getAll();
+            for (Faculties item : facultyList) {
+                System.out.println(item);
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        // FacultyService
-//        Faculties facultyTest = new Faculties();
-//        facultyTest.setFaculty_id(10);
-//        facultyTest.setFaculty("NEW_FACULTY");
-////        DAO facultyService = new FacultiesService();
-//        FacultyDAO facultyService = factory.createService(TypeOfEntity.FACULTIES);
+       
 //        try {
-//            System.out.println("\n--- facultyService ---");
-//            System.out.println("\nfacultyService.add()");
-//            facultyService.add(facultyTest);
-//
-//            System.out.println("\nfacultyService.getById()");
-//            Faculties fauculty_getById = facultyService.getById(10);
-//            System.out.println("id=" + fauculty_getById.getFaculty_id() + " faculty=" + fauculty_getById.getFaculty());
-//
-//            System.out.println("\nFacultyService.getAll()");
-//            List<Faculties> facultyList = new ArrayList<Faculties>();
-//            facultyList = facultyService.getAll();
-//            for (Faculties item : facultyList) {
-//                System.out.println(item);
-//            }
-//
-//            System.out.println("\nfacultyService.update()");
-//            facultyTest.setFaculty("FACULTY_UPDATE");
-//            facultyService.update(facultyTest);
-//            facultyList = facultyService.getAll();
-//            for (Faculties item : facultyList) {
-//                System.out.println(item);
-//            }
-//
-//            System.out.println("\nfacultyService.remove()");
-//            facultyService.remove(facultyTest);
-//            facultyList = facultyService.getAll();
-//            for (Faculties item : facultyList) {
-//                System.out.println(item);
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//
+//           
 //        // GroupService
 //        Faculties faculty_1 = new Faculties(1, "FACULTY_OF_MATHEMATICS");
 //        Faculties faculty_2 = new Faculties(2, "UPDATE_FACULTY_OF_COMPUTER_SCIENCE");
