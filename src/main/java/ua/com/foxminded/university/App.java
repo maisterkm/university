@@ -7,9 +7,11 @@ import java.util.List;
 import ua.com.foxminded.university.dao.FactoryDAO;
 import ua.com.foxminded.university.dao.service.CampusDAO;
 import ua.com.foxminded.university.dao.service.FacultiesDAO;
+import ua.com.foxminded.university.dao.service.GroupDAO;
 import ua.com.foxminded.university.dao.service.PositionDAO;
 import ua.com.foxminded.university.domain.entity.Campus;
 import ua.com.foxminded.university.domain.entity.Faculties;
+import ua.com.foxminded.university.domain.entity.Group;
 import ua.com.foxminded.university.domain.entity.Position;
 
 public class App {
@@ -119,10 +121,50 @@ public class App {
                 System.out.println(item);
             }
 
+            // GroupService
+            Faculties faculty_1 = new Faculties(20, "FACULTY_TEST_1");
+            facultiesDAO.add(faculty_1);
+            Faculties faculty_2 = new Faculties(30, "UPDATE_FACULTY_OF_COMPUTER_SCIENCE");
+            facultiesDAO.add(faculty_2);
+            Group groupTest = new Group(10, "GR_TEST_1", faculty_1);
+
+            GroupDAO groupDAO = (GroupDAO) factory.create(TypeOfEntity.GROUP);
+
+            System.out.println("\n--- GroupDAO ---");
+            System.out.println("\ngroupDAO.add()");
+            groupDAO.add(groupTest);
+
+            System.out.println("\ngroupDAO.getById()");
+            Group group_getById = groupDAO.getById(10);
+            System.out.println(group_getById.displayGroup());
+
+            System.out.println("\ngroupDAO.getAll()");
+            List<Group> groupList = new ArrayList<Group>();
+            groupList = groupDAO.getAll();
+            for (Group item : groupList) {
+                System.out.println(item.displayGroup());
+            }
+
+            System.out.println("\ngroupDAO.update()");
+            groupTest.setGroupNumber("GROUP_UPDATE");
+            groupTest.setFaculty(faculty_2);
+            groupDAO.update(groupTest);
+            groupList = groupDAO.getAll();
+            for (Group item : groupList) {
+                System.out.println(item.displayGroup());
+            }
+
+            System.out.println("\ngroupDAO.remove()");
+            groupDAO.remove(groupTest);
+            groupList = groupDAO.getAll();
+            for (Group item : groupList) {
+                System.out.println(item.displayGroup());
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-       
+
 //        try {
 //           
 //        // GroupService

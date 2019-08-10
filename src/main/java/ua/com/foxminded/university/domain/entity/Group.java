@@ -9,18 +9,23 @@ public class Group {
     private Faculties faculty;
     private List<Student> studentList = new ArrayList<Student>();
 
-    public Group() {}
-    public Group(String groupNumber, Faculties faculty) {
+    public Group() {
+    }
+
+    public Group(int group_id, String groupNumber, Faculties faculty) {
+        this.group_id = group_id;
         this.groupNumber = groupNumber;
         this.faculty = faculty;
     }
-    
+
     public int getGroup_id() {
         return group_id;
     }
+
     public void setGroup_id(int group_id) {
         this.group_id = group_id;
     }
+
     public List<Student> getStudentList() {
         return studentList;
     }
@@ -36,18 +41,19 @@ public class Group {
     public void setGroupNumber(String groupNumber) {
         this.groupNumber = groupNumber;
     }
-    
+
     public int getFaculty_id() {
         return faculty.getFaculty_id();
     }
-    
+
     public void setFaculty_id(int faculty_id) {
         this.faculty.setFaculty_id(faculty_id);
     }
-    
+
     public Faculties getFaculty() {
         return faculty;
     }
+
     public void setFaculty(Faculties faculty) {
         this.faculty = faculty;
     }
@@ -63,13 +69,12 @@ public class Group {
 
     public String displayGroup() {
         String output = "";
-        output += "class name: " + this.getClass().getSimpleName() + ", group number: " + groupNumber + ", faculty: "
-                + faculty.getFaculty() + "\n\tlist of students:";
+        output += "class name: " + this.getClass().getSimpleName() + ", group_id: " + group_id + ", group number: "
+                + groupNumber + ", faculty: " + faculty.getFaculty() + "\n\tlist of students:";
         int i = 0;
         for (Student item : studentList) {
             output += "\t" + Integer.toString(++i) + ": " + item;
         }
-        System.out.println(output);
         return output;
     }
 

@@ -3,6 +3,7 @@ package ua.com.foxminded.university.dao;
 import ua.com.foxminded.university.TypeOfEntity;
 import ua.com.foxminded.university.dao.service.CampusDAO;
 import ua.com.foxminded.university.dao.service.FacultiesDAO;
+import ua.com.foxminded.university.dao.service.GroupDAO;
 import ua.com.foxminded.university.dao.service.PositionDAO;
 
 public class FactoryDAO {
@@ -14,8 +15,8 @@ public class FactoryDAO {
 //            return new ClassroomService();
         case FACULTIES:
             return new FacultiesDAO();
-//        case GROUP:
-//            return new GroupService();
+        case GROUP:
+            return new GroupDAO();
 //        case LESSON:
 //            return new LessonService();
 //        case PERSON:
