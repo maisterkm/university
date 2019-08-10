@@ -1,4 +1,4 @@
-package ua.com.foxminded.university.dao.service;
+package ua.com.foxminded.university.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,9 +11,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import ua.com.foxminded.university.TypeOfEntity;
-import ua.com.foxminded.university.dao.DAO;
-import ua.com.foxminded.university.dao.DBConnector;
-import ua.com.foxminded.university.dao.FactoryDAO;
 import ua.com.foxminded.university.domain.DailySchedule;
 import ua.com.foxminded.university.domain.MonthlySchedule;
 import ua.com.foxminded.university.domain.Schedule;

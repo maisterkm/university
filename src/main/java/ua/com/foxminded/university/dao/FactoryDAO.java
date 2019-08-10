@@ -1,19 +1,6 @@
 package ua.com.foxminded.university.dao;
 
 import ua.com.foxminded.university.TypeOfEntity;
-import ua.com.foxminded.university.dao.service.CampusDAO;
-import ua.com.foxminded.university.dao.service.ClassroomDAO;
-import ua.com.foxminded.university.dao.service.DailyScheduleDAO;
-import ua.com.foxminded.university.dao.service.FacultiesDAO;
-import ua.com.foxminded.university.dao.service.GroupDAO;
-import ua.com.foxminded.university.dao.service.LessonDAO;
-import ua.com.foxminded.university.dao.service.MonthlyScheduleDAO;
-import ua.com.foxminded.university.dao.service.PersonDAO;
-import ua.com.foxminded.university.dao.service.PositionDAO;
-import ua.com.foxminded.university.dao.service.ScheduleDAO;
-import ua.com.foxminded.university.dao.service.StudentDAO;
-import ua.com.foxminded.university.dao.service.SubjectDAO;
-import ua.com.foxminded.university.dao.service.TeacherDAO;
 
 public class FactoryDAO {
     public DAO<?> create(TypeOfEntity entity) {

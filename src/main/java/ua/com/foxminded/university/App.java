@@ -4,20 +4,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import ua.com.foxminded.university.dao.CampusDAO;
+import ua.com.foxminded.university.dao.ClassroomDAO;
+import ua.com.foxminded.university.dao.DailyScheduleDAO;
 import ua.com.foxminded.university.dao.FactoryDAO;
-import ua.com.foxminded.university.dao.service.CampusDAO;
-import ua.com.foxminded.university.dao.service.ClassroomDAO;
-import ua.com.foxminded.university.dao.service.DailyScheduleDAO;
-import ua.com.foxminded.university.dao.service.FacultiesDAO;
-import ua.com.foxminded.university.dao.service.GroupDAO;
-import ua.com.foxminded.university.dao.service.LessonDAO;
-import ua.com.foxminded.university.dao.service.MonthlyScheduleDAO;
-import ua.com.foxminded.university.dao.service.PersonDAO;
-import ua.com.foxminded.university.dao.service.PositionDAO;
-import ua.com.foxminded.university.dao.service.ScheduleDAO;
-import ua.com.foxminded.university.dao.service.StudentDAO;
-import ua.com.foxminded.university.dao.service.SubjectDAO;
-import ua.com.foxminded.university.dao.service.TeacherDAO;
+import ua.com.foxminded.university.dao.FacultiesDAO;
+import ua.com.foxminded.university.dao.GroupDAO;
+import ua.com.foxminded.university.dao.LessonDAO;
+import ua.com.foxminded.university.dao.MonthlyScheduleDAO;
+import ua.com.foxminded.university.dao.PersonDAO;
+import ua.com.foxminded.university.dao.PositionDAO;
+import ua.com.foxminded.university.dao.ScheduleDAO;
+import ua.com.foxminded.university.dao.StudentDAO;
+import ua.com.foxminded.university.dao.SubjectDAO;
+import ua.com.foxminded.university.dao.TeacherDAO;
 import ua.com.foxminded.university.domain.DailySchedule;
 import ua.com.foxminded.university.domain.MonthlySchedule;
 import ua.com.foxminded.university.domain.Schedule;
@@ -559,27 +559,5 @@ public class App {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-//        try {
-//            TeacherHasSubjectService teacherHasSubjectService = new TeacherHasSubjectService();
-//            Position position = new Position();
-//            position.setPosition_id(1);
-//            position.setPosition("PROFESSOR");
-//            Teacher teacherHasSubject = new Teacher(10, "FIRSTNAME_teacherHasSubject", "LASTNAME_teacherHasSubject", 25,
-//                    8, 1982, 15, 8, 2013, position, 1100);
-//          TeacherService teacherService = new TeacherService();
-//          teacherService.add(teacherHasSubject);
-//
-//          Subject subjectHasTeacher = new Subject(10, "MATHEMATICS");
-//          SubjectService subjectService = new SubjectService();
-//          subjectService.add(subjectHasTeacher);
-//
-//          System.out.println("\n--- TeacherHasSubjectService ---");
-//          System.out.println("\nteacherHasSubjectService.add()");
-//          teacherHasSubjectService.add(teacherHasSubject, subjectHasTeacher);
-//      } catch (SQLException e) {
-//          e.printStackTrace();
-//      }
-
     }
 }

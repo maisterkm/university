@@ -1,4 +1,4 @@
-package ua.com.foxminded.university.dao.service;
+package ua.com.foxminded.university.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,33 +8,36 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.com.foxminded.university.dao.DAO;
-import ua.com.foxminded.university.dao.DBConnector;
-import ua.com.foxminded.university.domain.entity.Faculties;
+import ua.com.foxminded.university.TypeOfEntity;
+import ua.com.foxminded.university.domain.entity.Classroom;
 
-public class FacultiesDAO implements DAO<Faculties> {
-    public void add(Faculties faculty) throws SQLException {
+public class ClassroomDAO implements DAO<Classroom> {
+    public void add(Classroom classroom) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
         PreparedStatement statementSelect = null;
-        String sql_insert = "INSERT INTO FACULTIES (faculty_id, faculty) VALUES (?, ?)";
-        String sql_select = "SELECT * FROM FACULTIES WHERE faculty_id=?";
+        String sql_insert = "INSERT INTO CLASSROOM (campus_id, roomnumber, capacity) VALUES (?, ?, ?)";
+        String sql_select = "SELECT * FROM CLASSROOM WHERE campus_id=? AND roomnumber=?";
 
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, faculty.getFaculty_id());
+            statementSelect.setInt(1, classroom.getCampus().getCampus_id());
+            statementSelect.setString(2, classroom.getRoomNumber());
 
             ResultSet resultSet = statementSelect.executeQuery();
             while (resultSet.next()) {
-                if (resultSet.getInt("faculty_id") == faculty.getFaculty_id()) {
-                    System.out.println("faculty_id=" + faculty.getFaculty_id() + " is already in the table FACULTIES");
+                if (resultSet.getInt("campus_id") == classroom.getCampus().getCampus_id()
+                        && resultSet.getString("roomnumber").equals(classroom.getRoomNumber())) {
+                    System.out.println("Classroom=" + classroom.getCampus().getCampus_id() + ", "
+                            + classroom.getRoomNumber() + " is already in the table CLASSROOM");
                     return;
                 }
             }
-            statementInsert.setInt(1, faculty.getFaculty_id());
-            statementInsert.setString(2, faculty.getFaculty());
+            statementInsert.setInt(1, classroom.getCampus().getCampus_id());
+            statementInsert.setString(2, classroom.getRoomNumber());
+            statementInsert.setInt(3, classroom.getCapacity());
 
             statementInsert.executeUpdate();
         } catch (SQLException e) {
@@ -51,12 +54,14 @@ public class FacultiesDAO implements DAO<Faculties> {
             }
         }
     }
-    
-    public List<Faculties> getAll() throws SQLException {
+
+    public List<Classroom> getAll() throws SQLException {
+        FactoryDAO factory = new FactoryDAO();
+        CampusDAO campusDAO = (CampusDAO) factory.create(TypeOfEntity.CAMPUS);
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
-        List<Faculties> facultyList = new ArrayList<Faculties>();
-        String sql = "SELECT faculty_id, faculty FROM FACULTIES";
+        List<Classroom> classroomList = new ArrayList<Classroom>();
+        String sql = "SELECT campus_id, roomnumber, capacity FROM CLASSROOM";
         Statement statement = null;
 
         try {
@@ -64,11 +69,12 @@ public class FacultiesDAO implements DAO<Faculties> {
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
-                Faculties faculty = new Faculties();
-                faculty.setFaculty_id(resultSet.getInt("faculty_id"));
-                faculty.setFaculty(resultSet.getString("faculty"));
+                Classroom classroom = new Classroom();
+                classroom.setCampus(campusDAO.getById(resultSet.getInt("campus_id")));
+                classroom.setRoomNumber(resultSet.getString("roomnumber"));
+                classroom.setCapacity(resultSet.getInt("capacity"));
 
-                facultyList.add(faculty);
+                classroomList.add(classroom);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -80,24 +86,33 @@ public class FacultiesDAO implements DAO<Faculties> {
                 connection.close();
             }
         }
-        return facultyList;
+        return classroomList;
     }
-    
-    public Faculties getById(Integer faculty_id) throws SQLException {
+
+    public Classroom getById(Integer i) {
+        return null;
+    }
+
+    public Classroom getById(Integer campus_id, String roomnumber) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
-        String sql = "SELECT faculty_id, faculty FROM FACULTIES WHERE faculty_id = ?";
-        Faculties faculty = new Faculties();
+        String sql = "SELECT campus_id, roomnumber, capacity FROM CLASSROOM WHERE campus_id=? AND roomnumber=?";
+        Classroom classroom = new Classroom();
+        FactoryDAO factory = new FactoryDAO();
+        CampusDAO campusDAO = (CampusDAO) factory.create(TypeOfEntity.CAMPUS);
 
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, faculty_id);
+            preparedStatement.setInt(1, campus_id);
+            preparedStatement.setString(2, roomnumber);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            faculty.setFaculty_id(resultSet.getInt("faculty_id"));
-            faculty.setFaculty(resultSet.getString("faculty"));
+            while (resultSet.next()) {
+                classroom.setCampus(campusDAO.getById(campus_id));
+                classroom.setRoomNumber(resultSet.getString("roomnumber"));
+                classroom.setCapacity(resultSet.getInt("capacity"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -108,19 +123,20 @@ public class FacultiesDAO implements DAO<Faculties> {
                 connection.close();
             }
         }
-        return faculty;
+        return classroom;
     }
-    
-    public void update(Faculties faculty) throws SQLException {
+
+    public void update(Classroom classroom) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
-        String sql_update = "UPDATE FACULTIES SET faculty=? WHERE faculty_id=?";
+        String sql_update = "UPDATE CLASSROOM SET capacity=? WHERE campus_id=? AND roomnumber=?";
 
         try {
             preparedStatement = connection.prepareStatement(sql_update);
-            preparedStatement.setString(1, faculty.getFaculty());
-            preparedStatement.setInt(2, faculty.getFaculty_id());
+            preparedStatement.setInt(1, classroom.getCapacity());
+            preparedStatement.setInt(2, classroom.getCampus().getCampus_id());
+            preparedStatement.setString(3, classroom.getRoomNumber());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,15 +149,16 @@ public class FacultiesDAO implements DAO<Faculties> {
             }
         }
     }
-    
-    public void remove(Faculties faculty) throws SQLException {
+
+    public void remove(Classroom classroom) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
-        String sql_delete = "DELETE FROM FACULTIES WHERE faculty_id=?";
+        String sql_delete = "DELETE FROM CLASSROOM WHERE campus_id=? AND roomnumber=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, faculty.getFaculty_id());
+            preStatement.setInt(1, classroom.getCampus().getCampus_id());
+            preStatement.setString(2, classroom.getRoomNumber());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

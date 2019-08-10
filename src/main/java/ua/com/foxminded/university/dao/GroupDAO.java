@@ -1,4 +1,4 @@
-package ua.com.foxminded.university.dao.service;
+package ua.com.foxminded.university.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import ua.com.foxminded.university.dao.DAO;
-import ua.com.foxminded.university.dao.DBConnector;
 import ua.com.foxminded.university.domain.entity.Faculties;
 import ua.com.foxminded.university.domain.entity.Group;
 
