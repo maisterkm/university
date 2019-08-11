@@ -32,13 +32,13 @@ public class LessonDAO implements DAO<Lesson> {
             statementInsert = connection.prepareStatement(sql_insert);
             statementSelect.setInt(1, lesson.getLesson_id());
 
-            ResultSet resultSet = statementSelect.executeQuery();
-            while (resultSet.next()) {
-                if (resultSet.getInt("lesson_id") == lesson.getLesson_id()) {
-                    System.out.println("lesson_id=" + lesson.getLesson_id() + " is already in the table LESSON");
-                    return;
-                }
-            }
+//            ResultSet resultSet = statementSelect.executeQuery();
+//            while (resultSet.next()) {
+//                if (resultSet.getInt("lesson_id") == lesson.getLesson_id()) {
+//                    System.out.println("lesson_id=" + lesson.getLesson_id() + " is already in the table LESSON");
+//                    return;
+//                }
+//            }
             statementInsert.setInt(1, lesson.getLesson_id());
             statementInsert.setInt(2, lesson.getCampus_id());
             statementInsert.setString(3, lesson.getRoomnumber());

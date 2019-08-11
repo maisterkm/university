@@ -25,16 +25,16 @@ public class MonthlyScheduleDAO implements DAO<MonthlySchedule> {
             statementSelect.setInt(1, monthlySchedule.getMonthlySchedule_id());
             statementSelect.setInt(2, monthlySchedule.getSchedule_id());
 
-            ResultSet resultSet = statementSelect.executeQuery();
-            while (resultSet.next()) {
-                if (resultSet.getInt("monthlyschedule_id") == monthlySchedule.getMonthlySchedule_id()
-                        && resultSet.getInt("schedule_id") == monthlySchedule.getSchedule_id()) {
-                    System.out.println(
-                            "monthlySchedule_id=" + monthlySchedule.getMonthlySchedule_id() + ", " + "schedule_id="
-                                    + monthlySchedule.getSchedule_id() + " is already in the table MONTHLYSCHEDULE");
-                    return;
-                }
-            }
+//            ResultSet resultSet = statementSelect.executeQuery();
+//            while (resultSet.next()) {
+//                if (resultSet.getInt("monthlyschedule_id") == monthlySchedule.getMonthlySchedule_id()
+//                        && resultSet.getInt("schedule_id") == monthlySchedule.getSchedule_id()) {
+//                    System.out.println(
+//                            "monthlySchedule_id=" + monthlySchedule.getMonthlySchedule_id() + ", " + "schedule_id="
+//                                    + monthlySchedule.getSchedule_id() + " is already in the table MONTHLYSCHEDULE");
+//                    return;
+//                }
+//            }
             statementInsert.setInt(1, monthlySchedule.getMonthlySchedule_id());
             statementInsert.setInt(2, monthlySchedule.getSchedule_id());
             statementInsert.setString(3, monthlySchedule.getDescription());
