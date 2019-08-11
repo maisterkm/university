@@ -20,12 +20,6 @@ public class MonthlySchedule {
         return listOfDailySchedule;
     }
 
-    public void displayMonthlySchedule() {
-        for (DailySchedule item : listOfDailySchedule) {
-            item.displayDay();
-        }
-    }
-
     public int getMonthlySchedule_id() {
         return monthlySchedule_id;
     }

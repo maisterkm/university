@@ -30,30 +30,6 @@ public class Student extends Person {
         this.group = group;
     }
 
-    public Schedule getStudentSchedule() {
-        return studentSchedule;
-    }
-
-    public void setStudentSchedule(Schedule studentSchedule) {
-        this.studentSchedule = studentSchedule;
-    }
-
-    public void addClassToSchedule(Lesson c) {
-        studentSchedule.addClass(c);
-    }
-
-    public void removeClassFromSchedule(Lesson c) {
-        studentSchedule.removeClass(c);
-    }
-
-    public void displayMonthSchedule(int month) {
-        studentSchedule.displayMonth(month);
-    }
-
-    public void displayDaySchedule(int month, int day) {
-        studentSchedule.displayDay(month, day);
-    }
-
     @Override
     public String toString() {
         String output = super.toString() + ", group: "

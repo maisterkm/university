@@ -109,11 +109,12 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
             predStatement.setInt(3, schedule_id);
 
             ResultSet resultSet = predStatement.executeQuery();
-            resultSet.next();
-            dailySchedule.setDailySchedule_id(resultSet.getInt("dailyschedule_id"));
-            dailySchedule.setMonthlySchedule_id(resultSet.getInt("monthlyschedule_id"));
-            dailySchedule.setSchedule_id(resultSet.getInt("schedule_id"));
-            dailySchedule.setDescription(resultSet.getString("description"));
+            while(resultSet.next()) {
+                dailySchedule.setDailySchedule_id(resultSet.getInt("dailyschedule_id"));
+                dailySchedule.setMonthlySchedule_id(resultSet.getInt("monthlyschedule_id"));
+                dailySchedule.setSchedule_id(resultSet.getInt("schedule_id"));
+                dailySchedule.setDescription(resultSet.getString("description"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

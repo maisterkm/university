@@ -35,21 +35,13 @@ public class Teacher extends Person {
         this.salary = salary;
     }
 
-    public Schedule getTeacherSchedule() {
-        return teacherSchedule;
-    }
+//    public Schedule getTeacherSchedule() {
+//        return teacherSchedule;
+//    }
 
-    public void setTeacherSchedule(Schedule teacherSchedule) {
-        this.teacherSchedule = teacherSchedule;
-    }
-
-    public void displayMonthSchedule(int month) {
-        teacherSchedule.displayMonth(month);
-    }
-
-    public void displayDaySchedule(int month, int day) {
-        teacherSchedule.displayDay(month, day);
-    }
+//    public void setTeacherSchedule(Schedule teacherSchedule) {
+//        this.teacherSchedule = teacherSchedule;
+//    }
 
     @Override
     public String toString() {

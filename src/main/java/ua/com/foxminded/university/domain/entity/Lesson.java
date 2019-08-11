@@ -51,76 +51,36 @@ public class Lesson implements Comparable<Lesson> {
         return classroom.getCampus().getCampus_id();
     }
 
-    public void setCampus_id(int campus_id) {
-        classroom.getCampus().setCampus_id(campus_id);
-    }
-
     public String getRoomnumber() {
         return classroom.getRoomNumber();
-    }
-
-    public void setRoomnumber(String roomnumber) {
-        classroom.setRoomNumber(roomnumber);
     }
 
     public int getSubject_id() {
         return subject.getSubject_id();
     }
 
-    public void setSubject_id(int subject_id) {
-        subject.setSubject_id(subject_id);
-    }
-
     public int getDailyschedule_id() {
         return dailySchedule.getDailySchedule_id();
-    }
-
-    public void setDailyschedule_id(int dailyschedule_id) {
-        dailySchedule.setDailySchedule_id(dailyschedule_id);
     }
 
     public int getMonthlyschedule_id() {
         return monthlySchedule.getMonthlySchedule_id();
     }
 
-    public void setMonthlyschedule_id(int monthlyschedule_id) {
-        monthlySchedule.setMonthlySchedule_id(monthlyschedule_id);
-    }
-
     public int getSchedule_id() {
         return schedule.getSchedule_id();
-    }
-
-    public void setSchedule_id(int schedule_id) {
-        this.schedule.setSchedule_id(schedule_id);
-    }
-
-    public Schedule getSchedule() {
-        return schedule;
     }
 
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
     }
 
-    public Subject getSubject() {
-        return subject;
-    }
-
     public void setSubject(Subject subject) {
         this.subject = subject;
     }
 
-    public MonthlySchedule getMonthlySchedule() {
-        return monthlySchedule;
-    }
-
     public void setMonthlySchedule(MonthlySchedule monthlySchedule) {
         this.monthlySchedule = monthlySchedule;
-    }
-
-    public DailySchedule getDailySchedule() {
-        return dailySchedule;
     }
 
     public void setDailySchedule(DailySchedule dailySchedule) {
@@ -141,10 +101,6 @@ public class Lesson implements Comparable<Lesson> {
 
     public void setEndTime(Calendar endTime) {
         this.endTime = endTime;
-    }
-
-    public Classroom getClassroom() {
-        return classroom;
     }
 
     public void setClassroom(Classroom classroom) {

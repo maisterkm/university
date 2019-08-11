@@ -1,6 +1,5 @@
 package ua.com.foxminded.university.domain;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,9 @@ public class DailySchedule {
     private int schedule_id;
     private String description;
     private List<Lesson> listsOfClasses = new ArrayList<Lesson>();
+
+    public DailySchedule() {
+    }
 
     public int getDailySchedule_id() {
         return dailySchedule_id;
@@ -47,26 +49,6 @@ public class DailySchedule {
 
     public List<Lesson> getListsOfClasses() {
         return listsOfClasses;
-    }
-
-    public void addClass(Lesson clas) {
-        listsOfClasses.add(clas);
-    }
-
-    public void removeClass(Lesson clas) {
-        listsOfClasses.remove(clas);
-    }
-
-    public String displayDay() {
-        String output = "";
-        if (!listsOfClasses.isEmpty()) {
-            SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMMM");
-            output += sdf.format(listsOfClasses.get(0).getBeginTime().getTime());
-            for (Lesson item : listsOfClasses) {
-                output += item.displayClass();
-            }
-        }
-        return output;
     }
 
     @Override

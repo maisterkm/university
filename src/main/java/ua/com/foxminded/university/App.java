@@ -154,13 +154,13 @@ public class App {
 
             System.out.println("\ngroupDAO.getById()");
             Group group_getById = groupDAO.getById(10);
-            System.out.println(group_getById.displayGroup());
+            System.out.println(group_getById.toString());
 
             System.out.println("\ngroupDAO.getAll()");
             List<Group> groupList = new ArrayList<Group>();
             groupList = groupDAO.getAll();
             for (Group item : groupList) {
-                System.out.println(item.displayGroup());
+                System.out.println(item.toString());
             }
 
             System.out.println("\ngroupDAO.update()");
@@ -169,14 +169,14 @@ public class App {
             groupDAO.update(groupTest);
             groupList = groupDAO.getAll();
             for (Group item : groupList) {
-                System.out.println(item.displayGroup());
+                System.out.println(item.toString());
             }
 
             System.out.println("\ngroupDAO.remove()");
             groupDAO.remove(groupTest);
             groupList = groupDAO.getAll();
             for (Group item : groupList) {
-                System.out.println(item.displayGroup());
+                System.out.println(item.toString());
             }
 
             // SubjectDAO
