@@ -11,7 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Position;
 
 public class PositionDAO implements DAO<Position> {
-    public void add(Position position) throws SQLException {
+    public void add(Position position) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -39,19 +39,23 @@ public class PositionDAO implements DAO<Position> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementInsert != null) {
-                statementInsert.close();
-            }
-            if (statementSelect != null) {
-                statementSelect.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementInsert != null) {
+                    statementInsert.close();
+                }
+                if (statementSelect != null) {
+                    statementSelect.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public List<Position> getAll() throws SQLException {
+    public List<Position> getAll() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Position> positionList = new ArrayList<Position>();
@@ -72,17 +76,21 @@ public class PositionDAO implements DAO<Position> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return positionList;
     }
 
-    public Position getById(Integer position_id) throws SQLException {
+    public Position getById(Integer position_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -100,17 +108,21 @@ public class PositionDAO implements DAO<Position> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return position;
     }
 
-    public void update(Position position) throws SQLException {
+    public void update(Position position) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -124,16 +136,20 @@ public class PositionDAO implements DAO<Position> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public void remove(Position position) throws SQLException {
+    public void remove(Position position) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
@@ -145,11 +161,15 @@ public class PositionDAO implements DAO<Position> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatement != null) {
-                preStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatement != null) {
+                    preStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

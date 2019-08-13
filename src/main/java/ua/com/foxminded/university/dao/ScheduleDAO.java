@@ -11,7 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.Schedule;
 
 public class ScheduleDAO implements DAO<Schedule> {
-    public void add(Schedule schedule) throws SQLException {
+    public void add(Schedule schedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -38,19 +38,23 @@ public class ScheduleDAO implements DAO<Schedule> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementInsert != null) {
-                statementInsert.close();
-            }
-            if (statementSelect != null) {
-                statementSelect.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementInsert != null) {
+                    statementInsert.close();
+                }
+                if (statementSelect != null) {
+                    statementSelect.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public List<Schedule> getAll() throws SQLException {
+    public List<Schedule> getAll() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Schedule> scheduleList = new ArrayList<Schedule>();
@@ -71,17 +75,21 @@ public class ScheduleDAO implements DAO<Schedule> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return scheduleList;
     }
 
-    public Schedule getById(Integer schedule_id) throws SQLException {
+    public Schedule getById(Integer schedule_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -99,17 +107,21 @@ public class ScheduleDAO implements DAO<Schedule> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return schedule;
     }
 
-    public void update(Schedule schedule) throws SQLException {
+    public void update(Schedule schedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -123,16 +135,20 @@ public class ScheduleDAO implements DAO<Schedule> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public void remove(Schedule schedule) throws SQLException {
+    public void remove(Schedule schedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
@@ -144,11 +160,15 @@ public class ScheduleDAO implements DAO<Schedule> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatement != null) {
-                preStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatement != null) {
+                    preStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

@@ -11,7 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.DailySchedule;
 
 public class DailyScheduleDAO implements DAO<DailySchedule> {
-    public void add(DailySchedule dailySchedule) throws SQLException {
+    public void add(DailySchedule dailySchedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -35,19 +35,23 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementInsert != null) {
-                statementInsert.close();
-            }
-            if (statementSelect != null) {
-                statementSelect.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementInsert != null) {
+                    statementInsert.close();
+                }
+                if (statementSelect != null) {
+                    statementSelect.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public List<DailySchedule> getAll() throws SQLException {
+    public List<DailySchedule> getAll() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<DailySchedule> dailyScheduleList = new ArrayList<DailySchedule>();
@@ -69,11 +73,15 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return dailyScheduleList;
@@ -83,8 +91,7 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
         return null;
     }
 
-    public DailySchedule getById(Integer dailySchedule_id, Integer monthlySchedule_id, Integer schedule_id)
-            throws SQLException {
+    public DailySchedule getById(Integer dailySchedule_id, Integer monthlySchedule_id, Integer schedule_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement predStatement = null;
@@ -107,17 +114,21 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (predStatement != null) {
-                predStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (predStatement != null) {
+                    predStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return dailySchedule;
     }
 
-    public void update(DailySchedule dailySchedule) throws SQLException {
+    public void update(DailySchedule dailySchedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement predStatement = null;
@@ -133,16 +144,20 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (predStatement != null) {
-                predStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (predStatement != null) {
+                    predStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public void remove(DailySchedule dailySchedule) throws SQLException {
+    public void remove(DailySchedule dailySchedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
@@ -156,11 +171,15 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatement != null) {
-                preStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatement != null) {
+                    preStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

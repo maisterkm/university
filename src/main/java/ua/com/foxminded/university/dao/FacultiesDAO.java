@@ -11,7 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Faculties;
 
 public class FacultiesDAO implements DAO<Faculties> {
-    public void add(Faculties faculty) throws SQLException {
+    public void add(Faculties faculty) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -38,19 +38,23 @@ public class FacultiesDAO implements DAO<Faculties> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementInsert != null) {
-                statementInsert.close();
-            }
-            if (statementSelect != null) {
-                statementSelect.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementInsert != null) {
+                    statementInsert.close();
+                }
+                if (statementSelect != null) {
+                    statementSelect.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
-    
-    public List<Faculties> getAll() throws SQLException {
+
+    public List<Faculties> getAll() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Faculties> facultyList = new ArrayList<Faculties>();
@@ -71,17 +75,21 @@ public class FacultiesDAO implements DAO<Faculties> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return facultyList;
     }
-    
-    public Faculties getById(Integer faculty_id) throws SQLException {
+
+    public Faculties getById(Integer faculty_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -99,17 +107,21 @@ public class FacultiesDAO implements DAO<Faculties> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return faculty;
     }
-    
-    public void update(Faculties faculty) throws SQLException {
+
+    public void update(Faculties faculty) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -123,16 +135,20 @@ public class FacultiesDAO implements DAO<Faculties> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
-    
-    public void remove(Faculties faculty) throws SQLException {
+
+    public void remove(Faculties faculty) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
@@ -144,11 +160,15 @@ public class FacultiesDAO implements DAO<Faculties> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatement != null) {
-                preStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatement != null) {
+                    preStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

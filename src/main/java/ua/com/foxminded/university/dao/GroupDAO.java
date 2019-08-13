@@ -12,7 +12,7 @@ import ua.com.foxminded.university.domain.entity.Faculties;
 import ua.com.foxminded.university.domain.entity.Group;
 
 public class GroupDAO implements DAO<Group> {
-    public void add(Group group) throws SQLException {
+    public void add(Group group) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -40,19 +40,23 @@ public class GroupDAO implements DAO<Group> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementInsert != null) {
-                statementInsert.close();
-            }
-            if (statementSelect != null) {
-                statementSelect.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementInsert != null) {
+                    statementInsert.close();
+                }
+                if (statementSelect != null) {
+                    statementSelect.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public List<Group> getAll() throws SQLException {
+    public List<Group> getAll() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Group> groupList = new ArrayList<Group>();
@@ -84,20 +88,24 @@ public class GroupDAO implements DAO<Group> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statement_grup != null) {
-                statement_grup.close();
-            }
-            if (statement_faculty != null) {
-                statement_faculty.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statement_grup != null) {
+                    statement_grup.close();
+                }
+                if (statement_faculty != null) {
+                    statement_faculty.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return groupList;
     }
 
-    public Group getById(Integer group_id) throws SQLException {
+    public Group getById(Integer group_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -118,17 +126,21 @@ public class GroupDAO implements DAO<Group> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return group;
     }
 
-    public void update(Group group) throws SQLException {
+    public void update(Group group) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -143,16 +155,20 @@ public class GroupDAO implements DAO<Group> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public void remove(Group group) throws SQLException {
+    public void remove(Group group) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
@@ -164,11 +180,15 @@ public class GroupDAO implements DAO<Group> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatement != null) {
-                preStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatement != null) {
+                    preStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

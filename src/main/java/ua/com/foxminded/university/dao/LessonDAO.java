@@ -19,7 +19,7 @@ import ua.com.foxminded.university.domain.entity.Lesson;
 import ua.com.foxminded.university.domain.entity.Subject;
 
 public class LessonDAO implements DAO<Lesson> {
-    public void add(Lesson lesson) throws SQLException {
+    public void add(Lesson lesson) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -46,15 +46,19 @@ public class LessonDAO implements DAO<Lesson> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementInsert != null) {
-                statementInsert.close();
-            }
-            if (statementSelect != null) {
-                statementSelect.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
+            try {
+                if (statementInsert != null) {
+                    statementInsert.close();
+                }
+                if (statementSelect != null) {
+                    statementSelect.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } 
         }
     }
 
@@ -115,11 +119,15 @@ public class LessonDAO implements DAO<Lesson> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return lessonList;
@@ -179,12 +187,16 @@ public class LessonDAO implements DAO<Lesson> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (predStatement != null) {
-                predStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
-            }
+            try {
+                if (predStatement != null) {
+                    predStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } 
         }
         return lesson;
     }
@@ -211,11 +223,15 @@ public class LessonDAO implements DAO<Lesson> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (predStatement != null) {
-                predStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (predStatement != null) {
+                    predStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -232,11 +248,15 @@ public class LessonDAO implements DAO<Lesson> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatement != null) {
-                preStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatement != null) {
+                    preStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }

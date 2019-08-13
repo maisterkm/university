@@ -16,7 +16,7 @@ import ua.com.foxminded.university.domain.entity.Position;
 import ua.com.foxminded.university.domain.entity.Teacher;
 
 public class TeacherDAO implements DAO<Teacher> {
-    public void add(Teacher teacher) throws SQLException {
+    public void add(Teacher teacher) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -53,19 +53,23 @@ public class TeacherDAO implements DAO<Teacher> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementInsert != null) {
-                statementInsert.close();
-            }
-            if (statementSelect != null) {
-                statementSelect.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementInsert != null) {
+                    statementInsert.close();
+                }
+                if (statementSelect != null) {
+                    statementSelect.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public List<Teacher> getAll() throws SQLException {
+    public List<Teacher> getAll() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Teacher> teacherList = new ArrayList<Teacher>();
@@ -108,20 +112,24 @@ public class TeacherDAO implements DAO<Teacher> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementTeacher != null) {
-                statementTeacher.close();
-            }
-            if (preStatementPerson != null) {
-                preStatementPerson.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementTeacher != null) {
+                    statementTeacher.close();
+                }
+                if (preStatementPerson != null) {
+                    preStatementPerson.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return teacherList;
     }
 
-    public Teacher getById(Integer teacher_id) throws SQLException {
+    public Teacher getById(Integer teacher_id) {
         Teacher teacher = new Teacher();
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -164,20 +172,24 @@ public class TeacherDAO implements DAO<Teacher> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatementTeacher != null) {
-                preStatementTeacher.close();
-            }
-            if (preStatementPerson != null) {
-                preStatementPerson.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatementTeacher != null) {
+                    preStatementTeacher.close();
+                }
+                if (preStatementPerson != null) {
+                    preStatementPerson.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return teacher;
     }
 
-    public void update(Teacher teacher) throws SQLException {
+    public void update(Teacher teacher) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
@@ -194,16 +206,20 @@ public class TeacherDAO implements DAO<Teacher> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatement != null) {
-                preStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatement != null) {
+                    preStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public void remove(Teacher teacher) throws SQLException {
+    public void remove(Teacher teacher) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
@@ -215,16 +231,20 @@ public class TeacherDAO implements DAO<Teacher> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatement != null) {
-                preStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatement != null) {
+                    preStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public boolean existParentTable(Teacher teacher) throws SQLException {
+    public boolean existParentTable(Teacher teacher) {
         boolean flag = false;
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -243,11 +263,15 @@ public class TeacherDAO implements DAO<Teacher> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementSelect != null) {
-                statementSelect.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementSelect != null) {
+                    statementSelect.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return flag;

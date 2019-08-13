@@ -16,7 +16,7 @@ import ua.com.foxminded.university.domain.entity.Person;
 import ua.com.foxminded.university.domain.entity.Student;
 
 public class StudentDAO implements DAO<Student> {
-    public void add(Student student) throws SQLException {
+    public void add(Student student) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -53,19 +53,23 @@ public class StudentDAO implements DAO<Student> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementInsert != null) {
-                statementInsert.close();
-            }
-            if (statementSelect != null) {
-                statementSelect.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementInsert != null) {
+                    statementInsert.close();
+                }
+                if (statementSelect != null) {
+                    statementSelect.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public List<Student> getAll() throws SQLException {
+    public List<Student> getAll() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Student> studentList = new ArrayList<Student>();
@@ -110,36 +114,44 @@ public class StudentDAO implements DAO<Student> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementStudent != null) {
-                statementStudent.close();
-            }
-            if (preStatementPerson != null) {
-                preStatementPerson.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementStudent != null) {
+                    statementStudent.close();
+                }
+                if (preStatementPerson != null) {
+                    preStatementPerson.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return studentList;
     }
 
-    public Student getById(Integer student_id) throws SQLException {
+    public Student getById(Integer student_id) {
         FactoryDAO factory = new FactoryDAO();
         PersonDAO personDAO = (PersonDAO) factory.create(TypeOfEntity.PERSON);
         GroupDAO groupDAO = (GroupDAO) factory.create(TypeOfEntity.GROUP);
-        Person person = personDAO.getById(student_id);
-        Student student = new Student(person.getPerson_id(), person.getFirstName(), person.getLastName(),
-                person.getDateOfBirth().get(Calendar.DAY_OF_MONTH), person.getDateOfBirth().get(Calendar.MONTH),
-                person.getDateOfBirth().get(Calendar.YEAR), person.getEnrollmentDate().get(Calendar.DAY_OF_MONTH),
-                person.getEnrollmentDate().get(Calendar.MONTH), person.getEnrollmentDate().get(Calendar.YEAR));
-
-        DBConnector dbConnection = new DBConnector();
-        Connection connection = dbConnection.getConnection();
+        Person person;
+        Student student = null;
         PreparedStatement preStatementStudent = null;
-
-        String sql_select_student = "SELECT student_id, matriculationnumber, group_id, studentschedule_id FROM STUDENT WHERE student_id = ?";
-
+        Connection connection = null;
         try {
+            person = personDAO.getById(student_id);
+
+            student = new Student(person.getPerson_id(), person.getFirstName(), person.getLastName(),
+                    person.getDateOfBirth().get(Calendar.DAY_OF_MONTH), person.getDateOfBirth().get(Calendar.MONTH),
+                    person.getDateOfBirth().get(Calendar.YEAR), person.getEnrollmentDate().get(Calendar.DAY_OF_MONTH),
+                    person.getEnrollmentDate().get(Calendar.MONTH), person.getEnrollmentDate().get(Calendar.YEAR));
+
+            DBConnector dbConnection = new DBConnector();
+            connection = dbConnection.getConnection();
+
+            String sql_select_student = "SELECT student_id, matriculationnumber, group_id, studentschedule_id FROM STUDENT WHERE student_id = ?";
+
             preStatementStudent = connection.prepareStatement(sql_select_student);
             preStatementStudent.setInt(1, student_id);
             ResultSet resultSetStudent = preStatementStudent.executeQuery();
@@ -150,17 +162,21 @@ public class StudentDAO implements DAO<Student> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatementStudent != null) {
-                preStatementStudent.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatementStudent != null) {
+                    preStatementStudent.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return student;
     }
 
-    public void update(Student student) throws SQLException {
+    public void update(Student student) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
@@ -175,16 +191,20 @@ public class StudentDAO implements DAO<Student> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatement != null) {
-                preStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatement != null) {
+                    preStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public void remove(Student student) throws SQLException {
+    public void remove(Student student) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
@@ -196,16 +216,20 @@ public class StudentDAO implements DAO<Student> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatement != null) {
-                preStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatement != null) {
+                    preStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public boolean existParentTable(Student student) throws SQLException {
+    public boolean existParentTable(Student student) {
         boolean flag = false;
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -224,11 +248,15 @@ public class StudentDAO implements DAO<Student> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementSelect != null) {
-                statementSelect.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementSelect != null) {
+                    statementSelect.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return flag;

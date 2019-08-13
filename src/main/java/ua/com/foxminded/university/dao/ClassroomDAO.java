@@ -12,7 +12,7 @@ import ua.com.foxminded.university.TypeOfEntity;
 import ua.com.foxminded.university.domain.entity.Classroom;
 
 public class ClassroomDAO implements DAO<Classroom> {
-    public void add(Classroom classroom) throws SQLException {
+    public void add(Classroom classroom) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -43,19 +43,23 @@ public class ClassroomDAO implements DAO<Classroom> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statementInsert != null) {
-                statementInsert.close();
-            }
-            if (statementSelect != null) {
-                statementSelect.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statementInsert != null) {
+                    statementInsert.close();
+                }
+                if (statementSelect != null) {
+                    statementSelect.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public List<Classroom> getAll() throws SQLException {
+    public List<Classroom> getAll() {
         FactoryDAO factory = new FactoryDAO();
         CampusDAO campusDAO = (CampusDAO) factory.create(TypeOfEntity.CAMPUS);
         DBConnector dbConnection = new DBConnector();
@@ -79,11 +83,15 @@ public class ClassroomDAO implements DAO<Classroom> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return classroomList;
@@ -93,7 +101,7 @@ public class ClassroomDAO implements DAO<Classroom> {
         return null;
     }
 
-    public Classroom getById(Integer campus_id, String roomnumber) throws SQLException {
+    public Classroom getById(Integer campus_id, String roomnumber) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -116,17 +124,21 @@ public class ClassroomDAO implements DAO<Classroom> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return classroom;
     }
 
-    public void update(Classroom classroom) throws SQLException {
+    public void update(Classroom classroom) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -141,16 +153,20 @@ public class ClassroomDAO implements DAO<Classroom> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
 
-    public void remove(Classroom classroom) throws SQLException {
+    public void remove(Classroom classroom) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
@@ -163,11 +179,15 @@ public class ClassroomDAO implements DAO<Classroom> {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (preStatement != null) {
-                preStatement.close();
-            }
-            if (connection != null) {
-                connection.close();
+            try {
+                if (preStatement != null) {
+                    preStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
