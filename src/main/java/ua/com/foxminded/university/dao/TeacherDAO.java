@@ -27,13 +27,6 @@ public class TeacherDAO implements DAO<Teacher> {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
             statementSelect.setInt(1, teacher.getPerson_id());
-//            ResultSet resultSet = statementSelect.executeQuery();
-//            while (resultSet.next()) {
-//                if (resultSet.getInt("teacher_id") == teacher.getPerson_id()) {
-//                    System.out.println("teacher_id=" + teacher.getPerson_id() + " is already in the table TEACHER");
-//                    return;
-//                }
-//            }
             if (existParentTable(teacher)) {
                 statementInsert.setInt(1, teacher.getPerson_id());
                 statementInsert.setInt(2, teacher.getSalary());

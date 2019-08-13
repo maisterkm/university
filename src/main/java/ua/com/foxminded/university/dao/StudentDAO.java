@@ -27,13 +27,6 @@ public class StudentDAO implements DAO<Student> {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
             statementSelect.setInt(1, student.getPerson_id());
-//            ResultSet resultSet = statementSelect.executeQuery();
-//            while (resultSet.next()) {
-//                if (resultSet.getInt("student_id") == student.getPerson_id()) {
-//                    System.out.println("student_id=" + student.getPerson_id() + " is already in the table STUDENT");
-//                    return;
-//                }
-//            }
             if (existParentTable(student)) {
                 statementInsert.setInt(1, student.getPerson_id());
                 statementInsert.setInt(2, student.getMatriculationnumber());

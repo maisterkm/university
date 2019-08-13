@@ -26,17 +26,6 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
             statementSelect.setInt(2, dailySchedule.getMonthlySchedule_id());
             statementSelect.setInt(3, dailySchedule.getSchedule_id());
 
-//            ResultSet resultSet = statementSelect.executeQuery();
-//            while (resultSet.next()) {
-//                if (resultSet.getInt("dailyschedule_id") == dailySchedule.getDailySchedule_id()
-//                        && resultSet.getInt("monthlyschedule_id") == dailySchedule.getMonthlySchedule_id()
-//                        && resultSet.getInt("schedule_id") == dailySchedule.getSchedule_id()) {
-//                    System.out.println("dailySchedule_id=" + dailySchedule.getDailySchedule_id()
-//                            + ", monthlySchedule_id=" + dailySchedule.getMonthlySchedule_id() + ", schedule_id="
-//                            + dailySchedule.getSchedule_id() + " is already in the table MONTHLYSCHEDULE");
-//                    return;
-//                }
-//            }
             statementInsert.setInt(1, dailySchedule.getDailySchedule_id());
             statementInsert.setInt(2, dailySchedule.getMonthlySchedule_id());
             statementInsert.setInt(3, dailySchedule.getSchedule_id());
@@ -109,7 +98,7 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
             predStatement.setInt(3, schedule_id);
 
             ResultSet resultSet = predStatement.executeQuery();
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 dailySchedule.setDailySchedule_id(resultSet.getInt("dailyschedule_id"));
                 dailySchedule.setMonthlySchedule_id(resultSet.getInt("monthlyschedule_id"));
                 dailySchedule.setSchedule_id(resultSet.getInt("schedule_id"));

@@ -114,8 +114,6 @@ public class GroupDAO implements DAO<Group> {
                 group.setGroupNumber(resultSet.getString("groupnumber"));
                 FacultiesDAO facultiesDAO = new FacultiesDAO();
                 group.setFaculty(facultiesDAO.getById(resultSet.getInt("faculty_id")));
-                // group.setFaculty(new Faculties());
-                // group.getFaculty().setFaculty_id(resultSet.getInt("faculty_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
