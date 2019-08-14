@@ -369,7 +369,7 @@ public class App {
             // ScheduleDAO
             ScheduleDAO scheduleDAO = (ScheduleDAO) factory.create(TypeOfEntity.SCHEDULE);
             Schedule scheduleTest = new Schedule();
-            scheduleTest.setSchedule_id(10);
+            scheduleTest.setScheduleId(10);
             scheduleTest.setDescription("TEST_DESCRIPTION");
 
             System.out.println("\n--- ScheduleDAO ---");
@@ -404,8 +404,8 @@ public class App {
 
             // MonthlyScheduleDAO
             MonthlySchedule monthlyScheduleTest = new MonthlySchedule();
-            monthlyScheduleTest.setMonthlySchedule_id(10);
-            monthlyScheduleTest.setSchedule_id(2);
+            monthlyScheduleTest.setMonthlyScheduleId(10);
+            monthlyScheduleTest.setScheduleId(2);
             monthlyScheduleTest.setDescription("TEST_DESCRIPTION");
             MonthlyScheduleDAO monthlyScheduleDAO = (MonthlyScheduleDAO) factory.create(TypeOfEntity.MONTHLYSHCEDULE);
 
@@ -441,9 +441,9 @@ public class App {
 
             // DailyScheduleDAO
             DailySchedule dailyScheduleTest = new DailySchedule();
-            dailyScheduleTest.setDailySchedule_id(10);
-            dailyScheduleTest.setMonthlySchedule_id(2);
-            dailyScheduleTest.setSchedule_id(1);
+            dailyScheduleTest.setDailyScheduleId(10);
+            dailyScheduleTest.setMonthlyScheduleId(2);
+            dailyScheduleTest.setScheduleId(1);
             dailyScheduleTest.setDescription("TEST_DESCRIPTION");
             DailyScheduleDAO dailyScheduleDAO = (DailyScheduleDAO) factory.create(TypeOfEntity.DAILYSCHEDULE);
 
@@ -492,20 +492,20 @@ public class App {
             Lesson lessonTest = new Lesson(10, classroom40, subject40, 17, 0, 12, 12, 2019, 18, 30, 12, 12, 2019);
 
             Schedule scheduleTest2 = new Schedule();
-            scheduleTest2.setSchedule_id(10);
+            scheduleTest2.setScheduleId(10);
             scheduleTest2.setDescription("###TEST_DESCRIPTION###");
             scheduleDAO.add(scheduleTest2);
 
             MonthlySchedule monthlyScheduleTest2 = new MonthlySchedule();
-            monthlyScheduleTest2.setMonthlySchedule_id(10);
-            monthlyScheduleTest2.setSchedule_id(10);
+            monthlyScheduleTest2.setMonthlyScheduleId(10);
+            monthlyScheduleTest2.setScheduleId(10);
             monthlyScheduleTest2.setDescription("###TEST_DESCRIPTION###");
             monthlyScheduleDAO.add(monthlyScheduleTest2);
 
             DailySchedule dailyScheduleTest2 = new DailySchedule();
-            dailyScheduleTest2.setDailySchedule_id(10);
-            dailyScheduleTest2.setMonthlySchedule_id(10);
-            dailyScheduleTest2.setSchedule_id(10);
+            dailyScheduleTest2.setDailyScheduleId(10);
+            dailyScheduleTest2.setMonthlyScheduleId(10);
+            dailyScheduleTest2.setScheduleId(10);
             dailyScheduleDAO.add(dailyScheduleTest2);
 
             lessonTest.setSchedule(scheduleTest);
@@ -531,7 +531,7 @@ public class App {
 
             System.out.println("\nlessonDAO.update()");
             Campus updateCampus = new Campus();
-            updateCampus.setCampus_id(20);
+            updateCampus.setCampusId(20);
             updateCampus.setCampus("UPDATE_CAMPUS");
             campusDAO.add(updateCampus);
 

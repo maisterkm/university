@@ -35,14 +35,6 @@ public class Teacher extends Person {
         this.salary = salary;
     }
 
-//    public Schedule getTeacherSchedule() {
-//        return teacherSchedule;
-//    }
-
-//    public void setTeacherSchedule(Schedule teacherSchedule) {
-//        this.teacherSchedule = teacherSchedule;
-//    }
-
     @Override
     public String toString() {
         String strPosition = position == null ? "There is no position" : position.toString();

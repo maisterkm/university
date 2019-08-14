@@ -22,11 +22,11 @@ public class MonthlyScheduleDAO implements DAO<MonthlySchedule> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, monthlySchedule.getMonthlySchedule_id());
-            statementSelect.setInt(2, monthlySchedule.getSchedule_id());
+            statementSelect.setInt(1, monthlySchedule.getMonthlyScheduleId());
+            statementSelect.setInt(2, monthlySchedule.getScheduleId());
 
-            statementInsert.setInt(1, monthlySchedule.getMonthlySchedule_id());
-            statementInsert.setInt(2, monthlySchedule.getSchedule_id());
+            statementInsert.setInt(1, monthlySchedule.getMonthlyScheduleId());
+            statementInsert.setInt(2, monthlySchedule.getScheduleId());
             statementInsert.setString(3, monthlySchedule.getDescription());
 
             statementInsert.executeUpdate();
@@ -62,8 +62,8 @@ public class MonthlyScheduleDAO implements DAO<MonthlySchedule> {
 
             while (resultSet.next()) {
                 MonthlySchedule monthlySchedule = new MonthlySchedule();
-                monthlySchedule.setMonthlySchedule_id(resultSet.getInt("monthlyschedule_id"));
-                monthlySchedule.setSchedule_id(resultSet.getInt("schedule_id"));
+                monthlySchedule.setMonthlyScheduleId(resultSet.getInt("monthlyschedule_id"));
+                monthlySchedule.setScheduleId(resultSet.getInt("schedule_id"));
                 monthlySchedule.setDescription(resultSet.getString("description"));
                 monthlyScheduleList.add(monthlySchedule);
             }
@@ -102,8 +102,8 @@ public class MonthlyScheduleDAO implements DAO<MonthlySchedule> {
 
             ResultSet resultSet = predStatement.executeQuery();
             resultSet.next();
-            monthlySchedule.setMonthlySchedule_id(resultSet.getInt("monthlyschedule_id"));
-            monthlySchedule.setSchedule_id(resultSet.getInt("schedule_id"));
+            monthlySchedule.setMonthlyScheduleId(resultSet.getInt("monthlyschedule_id"));
+            monthlySchedule.setScheduleId(resultSet.getInt("schedule_id"));
             monthlySchedule.setDescription(resultSet.getString("description"));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -131,8 +131,8 @@ public class MonthlyScheduleDAO implements DAO<MonthlySchedule> {
         try {
             predStatement = connection.prepareStatement(sql_update);
             predStatement.setString(1, monthlySchedule.getDescription());
-            predStatement.setInt(2, monthlySchedule.getMonthlySchedule_id());
-            predStatement.setInt(3, monthlySchedule.getSchedule_id());
+            predStatement.setInt(2, monthlySchedule.getMonthlyScheduleId());
+            predStatement.setInt(3, monthlySchedule.getScheduleId());
             predStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -157,8 +157,8 @@ public class MonthlyScheduleDAO implements DAO<MonthlySchedule> {
         String sql_delete = "DELETE FROM MONTHLYSCHEDULE WHERE monthlyschedule_id=? AND schedule_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, monthlySchedule.getMonthlySchedule_id());
-            preStatement.setInt(2, monthlySchedule.getSchedule_id());
+            preStatement.setInt(1, monthlySchedule.getMonthlyScheduleId());
+            preStatement.setInt(2, monthlySchedule.getScheduleId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

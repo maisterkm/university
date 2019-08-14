@@ -30,15 +30,15 @@ public class LessonDAO implements DAO<Lesson> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, lesson.getLesson_id());
+            statementSelect.setInt(1, lesson.getLessonId());
 
-            statementInsert.setInt(1, lesson.getLesson_id());
-            statementInsert.setInt(2, lesson.getCampus_id());
+            statementInsert.setInt(1, lesson.getLessonId());
+            statementInsert.setInt(2, lesson.getCampusId());
             statementInsert.setString(3, lesson.getRoomnumber());
             statementInsert.setTimestamp(4, new java.sql.Timestamp(lesson.getBeginTime().getTime().getTime()));
             statementInsert.setTimestamp(5, new java.sql.Timestamp(lesson.getEndTime().getTime().getTime()));
-            statementInsert.setInt(6, lesson.getSubject_id());
-            statementInsert.setInt(7, lesson.getDailyschedule_id());
+            statementInsert.setInt(6, lesson.getSubjectId());
+            statementInsert.setInt(7, lesson.getDailyscheduleId());
             statementInsert.setInt(8, lesson.getMonthlyschedule_id());
             statementInsert.setInt(9, lesson.getSchedule_id());
 
@@ -75,7 +75,7 @@ public class LessonDAO implements DAO<Lesson> {
 
             while (resultSet.next()) {
                 Lesson lesson = new Lesson();
-                lesson.setLesson_id(resultSet.getInt("lesson_id"));
+                lesson.setLessonId(resultSet.getInt("lesson_id"));
 
                 FactoryDAO factory = new FactoryDAO();
                 ClassroomDAO classroomDAO = (ClassroomDAO) factory.create(TypeOfEntity.CLASSROOM);
@@ -146,7 +146,7 @@ public class LessonDAO implements DAO<Lesson> {
 
             ResultSet resultSet = predStatement.executeQuery();
             resultSet.next();
-            lesson.setLesson_id(resultSet.getInt("lesson_id"));
+            lesson.setLessonId(resultSet.getInt("lesson_id"));
 
             FactoryDAO factory = new FactoryDAO();
             ClassroomDAO classroomDAO = (ClassroomDAO) factory.create(TypeOfEntity.CLASSROOM);
@@ -209,15 +209,15 @@ public class LessonDAO implements DAO<Lesson> {
 
         try {
             predStatement = connection.prepareStatement(sql_update);
-            predStatement.setInt(1, lesson.getCampus_id());
+            predStatement.setInt(1, lesson.getCampusId());
             predStatement.setString(2, lesson.getRoomnumber());
             predStatement.setTimestamp(3, new java.sql.Timestamp(lesson.getBeginTime().getTime().getTime()));
             predStatement.setTimestamp(4, new java.sql.Timestamp(lesson.getEndTime().getTime().getTime()));
-            predStatement.setInt(5, lesson.getSubject_id());
-            predStatement.setInt(6, lesson.getDailyschedule_id());
+            predStatement.setInt(5, lesson.getSubjectId());
+            predStatement.setInt(6, lesson.getDailyscheduleId());
             predStatement.setInt(7, lesson.getMonthlyschedule_id());
             predStatement.setInt(8, lesson.getSchedule_id());
-            predStatement.setInt(9, lesson.getLesson_id());
+            predStatement.setInt(9, lesson.getLessonId());
 
             predStatement.executeUpdate();
         } catch (SQLException e) {
@@ -243,7 +243,7 @@ public class LessonDAO implements DAO<Lesson> {
         String sql_delete = "DELETE FROM LESSON WHERE lesson_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, lesson.getLesson_id());
+            preStatement.setInt(1, lesson.getLessonId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

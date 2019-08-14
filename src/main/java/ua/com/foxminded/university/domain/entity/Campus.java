@@ -1,20 +1,20 @@
 package ua.com.foxminded.university.domain.entity;
 
 public class Campus {
-    private int campus_id;
+    private int campusId;
     private String campus;
 
     public Campus() {}
-    public Campus(int campus_id, String campus) {
-        this.campus_id = campus_id;
+    public Campus(int campusId, String campus) {
+        this.campusId = campusId;
         this.campus = campus;
     }
-    public int getCampus_id() {
-        return campus_id;
+    public int getCampusId() {
+        return campusId;
     }
 
-    public void setCampus_id(int id) {
-        this.campus_id = id;
+    public void setCampusId(int id) {
+        this.campusId = id;
     }
 
     public String getCampus() {
@@ -27,7 +27,7 @@ public class Campus {
     
     @Override
     public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() + " campus_id: " + campus_id + ", campus: " + campus;
+        String output = "class name: " + this.getClass().getSimpleName() + " campus_id: " + campusId + ", campus: " + campus;
         return output;
     }
 

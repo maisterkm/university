@@ -22,13 +22,13 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, dailySchedule.getDailySchedule_id());
-            statementSelect.setInt(2, dailySchedule.getMonthlySchedule_id());
-            statementSelect.setInt(3, dailySchedule.getSchedule_id());
+            statementSelect.setInt(1, dailySchedule.getDailyScheduleId());
+            statementSelect.setInt(2, dailySchedule.getMonthlyScheduleId());
+            statementSelect.setInt(3, dailySchedule.getScheduleId());
 
-            statementInsert.setInt(1, dailySchedule.getDailySchedule_id());
-            statementInsert.setInt(2, dailySchedule.getMonthlySchedule_id());
-            statementInsert.setInt(3, dailySchedule.getSchedule_id());
+            statementInsert.setInt(1, dailySchedule.getDailyScheduleId());
+            statementInsert.setInt(2, dailySchedule.getMonthlyScheduleId());
+            statementInsert.setInt(3, dailySchedule.getScheduleId());
             statementInsert.setString(4, dailySchedule.getDescription());
 
             statementInsert.executeUpdate();
@@ -64,9 +64,9 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
 
             while (resultSet.next()) {
                 DailySchedule dailySchedule = new DailySchedule();
-                dailySchedule.setDailySchedule_id(resultSet.getInt("dailyschedule_id"));
-                dailySchedule.setMonthlySchedule_id(resultSet.getInt("monthlyschedule_id"));
-                dailySchedule.setSchedule_id(resultSet.getInt("schedule_id"));
+                dailySchedule.setDailyScheduleId(resultSet.getInt("dailyschedule_id"));
+                dailySchedule.setMonthlyScheduleId(resultSet.getInt("monthlyschedule_id"));
+                dailySchedule.setScheduleId(resultSet.getInt("schedule_id"));
                 dailySchedule.setDescription(resultSet.getString("description"));
                 dailyScheduleList.add(dailySchedule);
             }
@@ -106,9 +106,9 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
 
             ResultSet resultSet = predStatement.executeQuery();
             while (resultSet.next()) {
-                dailySchedule.setDailySchedule_id(resultSet.getInt("dailyschedule_id"));
-                dailySchedule.setMonthlySchedule_id(resultSet.getInt("monthlyschedule_id"));
-                dailySchedule.setSchedule_id(resultSet.getInt("schedule_id"));
+                dailySchedule.setDailyScheduleId(resultSet.getInt("dailyschedule_id"));
+                dailySchedule.setMonthlyScheduleId(resultSet.getInt("monthlyschedule_id"));
+                dailySchedule.setScheduleId(resultSet.getInt("schedule_id"));
                 dailySchedule.setDescription(resultSet.getString("description"));
             }
         } catch (SQLException e) {
@@ -137,9 +137,9 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
         try {
             predStatement = connection.prepareStatement(sql_update);
             predStatement.setString(1, dailySchedule.getDescription());
-            predStatement.setInt(2, dailySchedule.getDailySchedule_id());
-            predStatement.setInt(3, dailySchedule.getMonthlySchedule_id());
-            predStatement.setInt(4, dailySchedule.getSchedule_id());
+            predStatement.setInt(2, dailySchedule.getDailyScheduleId());
+            predStatement.setInt(3, dailySchedule.getMonthlyScheduleId());
+            predStatement.setInt(4, dailySchedule.getScheduleId());
             predStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -164,9 +164,9 @@ public class DailyScheduleDAO implements DAO<DailySchedule> {
         String sql_delete = "DELETE FROM DAILYSCHEDULE WHERE dailyschedule_id=? AND monthlyschedule_id=? AND schedule_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, dailySchedule.getDailySchedule_id());
-            preStatement.setInt(2, dailySchedule.getMonthlySchedule_id());
-            preStatement.setInt(3, dailySchedule.getSchedule_id());
+            preStatement.setInt(1, dailySchedule.getDailyScheduleId());
+            preStatement.setInt(2, dailySchedule.getMonthlyScheduleId());
+            preStatement.setInt(3, dailySchedule.getScheduleId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

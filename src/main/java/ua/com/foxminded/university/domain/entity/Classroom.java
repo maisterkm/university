@@ -5,13 +5,6 @@ public class Classroom {
     private int capacity;
     private String roomNumber;
 
-//    public Classroom() {}
-//    public Classroom(Campus campus, String roomNumber, int capacity) {
-//        this.campus = campus;
-//        this.roomNumber = roomNumber;
-//        this.capacity = capacity;
-//    }
-
     public Campus getCampus() {
         return campus;
     }

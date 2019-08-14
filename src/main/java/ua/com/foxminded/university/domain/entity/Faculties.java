@@ -1,23 +1,23 @@
 package ua.com.foxminded.university.domain.entity;
 
 public class Faculties {
-    private int faculty_id;
+    private int facultyId;
     private String faculty;
 
     public Faculties() {
     }
 
-    public Faculties(int faculty_id, String faculty) {
-        this.faculty_id = faculty_id;
+    public Faculties(int facultyId, String faculty) {
+        this.facultyId = facultyId;
         this.faculty = faculty;
     }
 
-    public int getFaculty_id() {
-        return faculty_id;
+    public int getFacultyId() {
+        return facultyId;
     }
 
-    public void setFaculty_id(int faculty_id) {
-        this.faculty_id = faculty_id;
+    public void setFacultyId(int facultyId) {
+        this.facultyId = facultyId;
     }
 
     public String getFaculty() {
@@ -30,7 +30,7 @@ public class Faculties {
 
     @Override
     public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() + ", faculty_id: " + faculty_id + ", facult: "
+        String output = "class name: " + this.getClass().getSimpleName() + ", faculty_id: " + facultyId + ", facult: "
                 + faculty;
         return output;
     }

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MonthlySchedule {
-    private int monthlySchedule_id;
-    private int schedule_id;
+    private int monthlyScheduleId;
+    private int scheduleId;
     private String description;
     public List<DailySchedule> listOfDailySchedule = new ArrayList<DailySchedule>();
     static final int NUMBER_OF_DAY_IN_MONTH = 31;
@@ -20,20 +20,20 @@ public class MonthlySchedule {
         return listOfDailySchedule;
     }
 
-    public int getMonthlySchedule_id() {
-        return monthlySchedule_id;
+    public int getMonthlyScheduleId() {
+        return monthlyScheduleId;
     }
 
-    public void setMonthlySchedule_id(int monthlySchedule_id) {
-        this.monthlySchedule_id = monthlySchedule_id;
+    public void setMonthlyScheduleId(int monthlyScheduleId) {
+        this.monthlyScheduleId = monthlyScheduleId;
     }
 
-    public int getSchedule_id() {
-        return schedule_id;
+    public int getScheduleId() {
+        return scheduleId;
     }
 
-    public void setSchedule_id(int schedule_id) {
-        this.schedule_id = schedule_id;
+    public void setScheduleId(int scheduleId) {
+        this.scheduleId = scheduleId;
     }
 
     public String getDescription() {
@@ -46,8 +46,8 @@ public class MonthlySchedule {
 
     @Override
     public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() + ", monthlySchedule_id: " + monthlySchedule_id
-                + ", schedule_id: " + schedule_id + ", description: " + description;
+        String output = "class name: " + this.getClass().getSimpleName() + ", monthlySchedule_id: " + monthlyScheduleId
+                + ", schedule_id: " + scheduleId + ", description: " + description;
         return output;
     }
 }

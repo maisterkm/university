@@ -22,16 +22,16 @@ public class FacultiesDAO implements DAO<Faculties> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, faculty.getFaculty_id());
+            statementSelect.setInt(1, faculty.getFacultyId());
 
             ResultSet resultSet = statementSelect.executeQuery();
             while (resultSet.next()) {
-                if (resultSet.getInt("faculty_id") == faculty.getFaculty_id()) {
-                    System.out.println("faculty_id=" + faculty.getFaculty_id() + " is already in the table FACULTIES");
+                if (resultSet.getInt("faculty_id") == faculty.getFacultyId()) {
+                    System.out.println("faculty_id=" + faculty.getFacultyId() + " is already in the table FACULTIES");
                     return;
                 }
             }
-            statementInsert.setInt(1, faculty.getFaculty_id());
+            statementInsert.setInt(1, faculty.getFacultyId());
             statementInsert.setString(2, faculty.getFaculty());
 
             statementInsert.executeUpdate();
@@ -67,7 +67,7 @@ public class FacultiesDAO implements DAO<Faculties> {
 
             while (resultSet.next()) {
                 Faculties faculty = new Faculties();
-                faculty.setFaculty_id(resultSet.getInt("faculty_id"));
+                faculty.setFacultyId(resultSet.getInt("faculty_id"));
                 faculty.setFaculty(resultSet.getString("faculty"));
 
                 facultyList.add(faculty);
@@ -102,7 +102,7 @@ public class FacultiesDAO implements DAO<Faculties> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            faculty.setFaculty_id(resultSet.getInt("faculty_id"));
+            faculty.setFacultyId(resultSet.getInt("faculty_id"));
             faculty.setFaculty(resultSet.getString("faculty"));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -130,7 +130,7 @@ public class FacultiesDAO implements DAO<Faculties> {
         try {
             preparedStatement = connection.prepareStatement(sql_update);
             preparedStatement.setString(1, faculty.getFaculty());
-            preparedStatement.setInt(2, faculty.getFaculty_id());
+            preparedStatement.setInt(2, faculty.getFacultyId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -155,7 +155,7 @@ public class FacultiesDAO implements DAO<Faculties> {
         String sql_delete = "DELETE FROM FACULTIES WHERE faculty_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, faculty.getFaculty_id());
+            preStatement.setInt(1, faculty.getFacultyId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

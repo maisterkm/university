@@ -23,19 +23,19 @@ public class ClassroomDAO implements DAO<Classroom> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, classroom.getCampus().getCampus_id());
+            statementSelect.setInt(1, classroom.getCampus().getCampusId());
             statementSelect.setString(2, classroom.getRoomNumber());
 
             ResultSet resultSet = statementSelect.executeQuery();
             while (resultSet.next()) {
-                if (resultSet.getInt("campus_id") == classroom.getCampus().getCampus_id()
+                if (resultSet.getInt("campus_id") == classroom.getCampus().getCampusId()
                         && resultSet.getString("roomnumber").equals(classroom.getRoomNumber())) {
-                    System.out.println("Classroom=" + classroom.getCampus().getCampus_id() + ", "
+                    System.out.println("Classroom=" + classroom.getCampus().getCampusId() + ", "
                             + classroom.getRoomNumber() + " is already in the table CLASSROOM");
                     return;
                 }
             }
-            statementInsert.setInt(1, classroom.getCampus().getCampus_id());
+            statementInsert.setInt(1, classroom.getCampus().getCampusId());
             statementInsert.setString(2, classroom.getRoomNumber());
             statementInsert.setInt(3, classroom.getCapacity());
 
@@ -147,7 +147,7 @@ public class ClassroomDAO implements DAO<Classroom> {
         try {
             preparedStatement = connection.prepareStatement(sql_update);
             preparedStatement.setInt(1, classroom.getCapacity());
-            preparedStatement.setInt(2, classroom.getCampus().getCampus_id());
+            preparedStatement.setInt(2, classroom.getCampus().getCampusId());
             preparedStatement.setString(3, classroom.getRoomNumber());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -173,7 +173,7 @@ public class ClassroomDAO implements DAO<Classroom> {
         String sql_delete = "DELETE FROM CLASSROOM WHERE campus_id=? AND roomnumber=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, classroom.getCampus().getCampus_id());
+            preStatement.setInt(1, classroom.getCampus().getCampusId());
             preStatement.setString(2, classroom.getRoomNumber());
             preStatement.executeUpdate();
         } catch (SQLException e) {

@@ -23,18 +23,18 @@ public class GroupDAO implements DAO<Group> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, group.getGroup_id());
+            statementSelect.setInt(1, group.getGroupId());
 
             ResultSet resultSet = statementSelect.executeQuery();
             while (resultSet.next()) {
-                if (resultSet.getInt("group_id") == group.getGroup_id()) {
-                    System.out.println("group_id=" + group.getGroup_id() + " is already in the table GROUP");
+                if (resultSet.getInt("group_id") == group.getGroupId()) {
+                    System.out.println("group_id=" + group.getGroupId() + " is already in the table GROUP");
                     return;
                 }
             }
-            statementInsert.setInt(1, group.getGroup_id());
+            statementInsert.setInt(1, group.getGroupId());
             statementInsert.setString(2, group.getGroupNumber());
-            statementInsert.setInt(3, group.getFaculty_id());
+            statementInsert.setInt(3, group.getFacultyId());
 
             statementInsert.executeUpdate();
         } catch (SQLException e) {
@@ -71,13 +71,13 @@ public class GroupDAO implements DAO<Group> {
                 Group group = new Group();
                 Faculties faculty = new Faculties();
                 statement_faculty = connection.prepareStatement(sql_select_faculty);
-                group.setGroup_id(resultSet_grup.getInt("group_id"));
+                group.setGroupId(resultSet_grup.getInt("group_id"));
                 group.setGroupNumber(resultSet_grup.getString("groupnumber"));
                 statement_faculty.setInt(1, resultSet_grup.getInt("faculty_id"));
                 ResultSet resultSet_faculty = statement_faculty.executeQuery();
                 while (resultSet_faculty.next()) {
                     if (resultSet_faculty.getInt("faculty_id") == resultSet_grup.getInt("faculty_id")) {
-                        faculty.setFaculty_id(resultSet_faculty.getInt("faculty_id"));
+                        faculty.setFacultyId(resultSet_faculty.getInt("faculty_id"));
                         faculty.setFaculty(resultSet_faculty.getString("faculty"));
                         break;
                     }
@@ -118,7 +118,7 @@ public class GroupDAO implements DAO<Group> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                group.setGroup_id(resultSet.getInt("group_id"));
+                group.setGroupId(resultSet.getInt("group_id"));
                 group.setGroupNumber(resultSet.getString("groupnumber"));
                 FacultiesDAO facultiesDAO = new FacultiesDAO();
                 group.setFaculty(facultiesDAO.getById(resultSet.getInt("faculty_id")));
@@ -149,8 +149,8 @@ public class GroupDAO implements DAO<Group> {
         try {
             preparedStatement = connection.prepareStatement(sql_update);
             preparedStatement.setString(1, group.getGroupNumber());
-            preparedStatement.setInt(2, group.getFaculty_id());
-            preparedStatement.setInt(3, group.getGroup_id());
+            preparedStatement.setInt(2, group.getFacultyId());
+            preparedStatement.setInt(3, group.getGroupId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -175,7 +175,7 @@ public class GroupDAO implements DAO<Group> {
         String sql_delete = "DELETE FROM GRUP WHERE group_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, group.getGroup_id());
+            preStatement.setInt(1, group.getGroupId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

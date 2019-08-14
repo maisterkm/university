@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Schedule {
-    private int schedule_id;
+    private int scheduleId;
     private String description;
     private List<MonthlySchedule> listOfMonthlySchedule = new ArrayList<MonthlySchedule>();
     static final int NUMBER_OF_MONTH_IN_YEAR = 12;
@@ -15,12 +15,12 @@ public class Schedule {
         }
     }
 
-    public int getSchedule_id() {
-        return schedule_id;
+    public int getScheduleId() {
+        return scheduleId;
     }
 
-    public void setSchedule_id(int schedule_id) {
-        this.schedule_id = schedule_id;
+    public void setScheduleId(int scheduleId) {
+        this.scheduleId = scheduleId;
     }
 
     public String getDescription() {
@@ -33,7 +33,7 @@ public class Schedule {
 
     @Override
     public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() + ", schedule_id: " + schedule_id
+        String output = "class name: " + this.getClass().getSimpleName() + ", schedule_id: " + scheduleId
                 + ", description: " + description;
         return output;
     }

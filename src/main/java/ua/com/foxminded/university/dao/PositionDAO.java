@@ -22,17 +22,17 @@ public class PositionDAO implements DAO<Position> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, position.getPosition_id());
+            statementSelect.setInt(1, position.getPositionId());
 
             ResultSet resultSet = statementSelect.executeQuery();
             while (resultSet.next()) {
-                if (resultSet.getInt("position_id") == position.getPosition_id()) {
+                if (resultSet.getInt("position_id") == position.getPositionId()) {
                     System.out
-                            .println("position_id=" + position.getPosition_id() + " is already in the table POSITIONS");
+                            .println("position_id=" + position.getPositionId() + " is already in the table POSITIONS");
                     return;
                 }
             }
-            statementInsert.setInt(1, position.getPosition_id());
+            statementInsert.setInt(1, position.getPositionId());
             statementInsert.setString(2, position.getPosition());
 
             statementInsert.executeUpdate();
@@ -68,7 +68,7 @@ public class PositionDAO implements DAO<Position> {
 
             while (resultSet.next()) {
                 Position position = new Position();
-                position.setPosition_id(resultSet.getInt("position_id"));
+                position.setPositionId(resultSet.getInt("position_id"));
                 position.setPosition(resultSet.getString("position"));
 
                 positionList.add(position);
@@ -103,7 +103,7 @@ public class PositionDAO implements DAO<Position> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            position.setPosition_id(resultSet.getInt("position_id"));
+            position.setPositionId(resultSet.getInt("position_id"));
             position.setPosition(resultSet.getString("position"));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -131,7 +131,7 @@ public class PositionDAO implements DAO<Position> {
         try {
             preparedStatement = connection.prepareStatement(sql_update);
             preparedStatement.setString(1, position.getPosition());
-            preparedStatement.setInt(2, position.getPosition_id());
+            preparedStatement.setInt(2, position.getPositionId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -156,7 +156,7 @@ public class PositionDAO implements DAO<Position> {
         String sql_delete = "DELETE FROM POSITIONS WHERE position_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, position.getPosition_id());
+            preStatement.setInt(1, position.getPositionId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

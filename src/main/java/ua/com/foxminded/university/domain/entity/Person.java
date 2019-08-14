@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Person {
-    private int person_id;
+    private int personId;
     private String firstName;
     private String lastName;
     Calendar dateOfBirth = new GregorianCalendar();
@@ -16,7 +16,7 @@ public class Person {
     
     public Person(int id, String firstName, String lastName, int birthDay, int birthMonth, int birthYear,
             int enrollmentDay, int enrollmentMonth, int enrollmentYear) {
-        this.person_id = id;
+        this.personId = id;
         this.firstName = firstName;
         this.lastName = lastName;
         dateOfBirth.set(Calendar.YEAR, birthYear);
@@ -27,12 +27,12 @@ public class Person {
         enrollmentDate.set(Calendar.DAY_OF_MONTH, enrollmentDay);
     }
     
-    public int getPerson_id() {
-        return person_id;
+    public int getPersonId() {
+        return personId;
     }
 
-    public void setPerson_id(int id) {
-        this.person_id = id;
+    public void setPersonId(int id) {
+        this.personId = id;
     }
 
     public String getFirstName() {
@@ -69,7 +69,7 @@ public class Person {
 
     @Override
     public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() + ", id: " + person_id + ", first name: " + firstName
+        String output = "class name: " + this.getClass().getSimpleName() + ", id: " + personId + ", first name: " + firstName
                 + ", last name: " + lastName + ", date of birth: " + sdf.format(dateOfBirth.getTime())
                 + ", enrollment date: " + sdf.format(enrollmentDate.getTime());
         return output;

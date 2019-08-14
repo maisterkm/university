@@ -9,7 +9,7 @@ import ua.com.foxminded.university.domain.MonthlySchedule;
 import ua.com.foxminded.university.domain.Schedule;
 
 public class Lesson implements Comparable<Lesson> {
-    private int lesson_id;
+    private int lessonId;
     private Schedule schedule;
     private MonthlySchedule monthlySchedule;
     private DailySchedule dailySchedule;
@@ -24,7 +24,7 @@ public class Lesson implements Comparable<Lesson> {
 
     public Lesson(int lesson_id, Classroom classroom, Subject subject, int beginHour, int beginMin, int beginDay,
             int beginMonth, int beginYear, int endHour, int endMin, int endDay, int endMonth, int endYear) {
-        this.lesson_id = lesson_id;
+        this.lessonId = lesson_id;
         this.classroom = classroom;
         this.subject = subject;
         beginTime.set(Calendar.HOUR_OF_DAY, beginHour);
@@ -39,36 +39,36 @@ public class Lesson implements Comparable<Lesson> {
         endTime.set(Calendar.YEAR, endYear);
     }
 
-    public int getLesson_id() {
-        return lesson_id;
+    public int getLessonId() {
+        return lessonId;
     }
 
-    public void setLesson_id(int lesson_id) {
-        this.lesson_id = lesson_id;
+    public void setLessonId(int lessonId) {
+        this.lessonId = lessonId;
     }
 
-    public int getCampus_id() {
-        return classroom.getCampus().getCampus_id();
+    public int getCampusId() {
+        return classroom.getCampus().getCampusId();
     }
 
     public String getRoomnumber() {
         return classroom.getRoomNumber();
     }
 
-    public int getSubject_id() {
-        return subject.getSubject_id();
+    public int getSubjectId() {
+        return subject.getSubjectId();
     }
 
-    public int getDailyschedule_id() {
-        return dailySchedule.getDailySchedule_id();
+    public int getDailyscheduleId() {
+        return dailySchedule.getDailyScheduleId();
     }
 
     public int getMonthlyschedule_id() {
-        return monthlySchedule.getMonthlySchedule_id();
+        return monthlySchedule.getMonthlyScheduleId();
     }
 
     public int getSchedule_id() {
-        return schedule.getSchedule_id();
+        return schedule.getScheduleId();
     }
 
     public void setSchedule(Schedule schedule) {
@@ -108,8 +108,8 @@ public class Lesson implements Comparable<Lesson> {
     }
 
     public String displayClass() {
-        String output = "class name: " + this.getClass().getSimpleName() + ", lesson_id: " + lesson_id + ", campus_id: "
-                + getCampus_id() + ", roomnumber: " + getRoomnumber() + ", begin time: "
+        String output = "class name: " + this.getClass().getSimpleName() + ", lesson_id: " + lessonId + ", campus_id: "
+                + getCampusId() + ", roomnumber: " + getRoomnumber() + ", begin time: "
                 + sdf.format(beginTime.getTime()) + ", end time: " + sdf.format(endTime.getTime()) + ", subject: "
                 + subject.getSubject() + ", classroom: " + classroom.getRoomNumber();
         return output;

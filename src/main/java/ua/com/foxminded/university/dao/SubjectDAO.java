@@ -22,16 +22,16 @@ public class SubjectDAO implements DAO<Subject> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, subject.getSubject_id());
+            statementSelect.setInt(1, subject.getSubjectId());
 
             ResultSet resultSet = statementSelect.executeQuery();
             while (resultSet.next()) {
-                if (resultSet.getInt("subject_id") == subject.getSubject_id()) {
-                    System.out.println("subject_id=" + subject.getSubject_id() + " is already in the table SUBJECTS");
+                if (resultSet.getInt("subject_id") == subject.getSubjectId()) {
+                    System.out.println("subject_id=" + subject.getSubjectId() + " is already in the table SUBJECTS");
                     return;
                 }
             }
-            statementInsert.setInt(1, subject.getSubject_id());
+            statementInsert.setInt(1, subject.getSubjectId());
             statementInsert.setString(2, subject.getSubject());
 
             statementInsert.executeUpdate();
@@ -67,7 +67,7 @@ public class SubjectDAO implements DAO<Subject> {
 
             while (resultSet.next()) {
                 Subject subject = new Subject();
-                subject.setSubject_id(resultSet.getInt("subject_id"));
+                subject.setSubjectId(resultSet.getInt("subject_id"));
                 subject.setSubject(resultSet.getString("subject"));
 
                 subjectList.add(subject);
@@ -102,7 +102,7 @@ public class SubjectDAO implements DAO<Subject> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            subject.setSubject_id(resultSet.getInt("subject_id"));
+            subject.setSubjectId(resultSet.getInt("subject_id"));
             subject.setSubject(resultSet.getString("subject"));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -130,7 +130,7 @@ public class SubjectDAO implements DAO<Subject> {
         try {
             preparedStatement = connection.prepareStatement(sql_update);
             preparedStatement.setString(1, subject.getSubject());
-            preparedStatement.setInt(2, subject.getSubject_id());
+            preparedStatement.setInt(2, subject.getSubjectId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -155,7 +155,7 @@ public class SubjectDAO implements DAO<Subject> {
         String sql_delete = "DELETE FROM SUBJECTS WHERE subject_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, subject.getSubject_id());
+            preStatement.setInt(1, subject.getSubjectId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

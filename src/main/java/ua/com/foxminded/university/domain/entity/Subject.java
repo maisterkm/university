@@ -1,23 +1,23 @@
 package ua.com.foxminded.university.domain.entity;
 
 public class Subject {
-    private int subject_id;
+    private int subjectId;
     private String subject;
 
     public Subject() {
     }
 
-    public Subject(int subject_id, String subject) {
-        this.subject_id = subject_id;
+    public Subject(int subjectId, String subject) {
+        this.subjectId = subjectId;
         this.subject = subject;
     }
 
-    public int getSubject_id() {
-        return subject_id;
+    public int getSubjectId() {
+        return subjectId;
     }
 
-    public void setSubject_id(int subject_id) {
-        this.subject_id = subject_id;
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
     }
 
     public String getSubject() {
@@ -30,7 +30,7 @@ public class Subject {
 
     @Override
     public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() + " subject_id=" + subject_id + ", subject: "
+        String output = "class name: " + this.getClass().getSimpleName() + " subject_id=" + subjectId + ", subject: "
                 + subject;
         return output;
     }

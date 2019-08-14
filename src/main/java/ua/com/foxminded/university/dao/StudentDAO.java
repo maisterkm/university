@@ -26,26 +26,26 @@ public class StudentDAO implements DAO<Student> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, student.getPerson_id());
+            statementSelect.setInt(1, student.getPersonId());
             if (existParentTable(student)) {
-                statementInsert.setInt(1, student.getPerson_id());
+                statementInsert.setInt(1, student.getPersonId());
                 statementInsert.setInt(2, student.getMatriculationnumber());
-                statementInsert.setInt(3, student.getGroup().getGroup_id());
+                statementInsert.setInt(3, student.getGroup().getGroupId());
                 statementInsert.executeUpdate();
             } else { // Create entry in table PERSON related with entry in table TEACHER
                 FactoryDAO factory = new FactoryDAO();
                 PersonDAO personDAO = (PersonDAO) factory.create(TypeOfEntity.PERSON);
                 Person person = new Person();
-                person.setPerson_id(student.getPerson_id());
+                person.setPersonId(student.getPersonId());
                 person.setFirstName(student.getFirstName());
                 person.setLastName(student.getLastName());
                 person.setDateOfBirth(student.getDateOfBirth());
                 person.setEnrollmentDate(student.getEnrollmentDate());
                 personDAO.add(person);
 
-                statementInsert.setInt(1, student.getPerson_id());
+                statementInsert.setInt(1, student.getPersonId());
                 statementInsert.setInt(2, student.getMatriculationnumber());
-                statementInsert.setInt(3, student.getGroup().getGroup_id());
+                statementInsert.setInt(3, student.getGroup().getGroupId());
                 statementInsert.executeUpdate();
                 System.out.println(
                         "There was no data in table PERSON related to current data student.\nEntry in table PERSON was created.");
@@ -142,7 +142,7 @@ public class StudentDAO implements DAO<Student> {
         try {
             person = personDAO.getById(student_id);
 
-            student = new Student(person.getPerson_id(), person.getFirstName(), person.getLastName(),
+            student = new Student(person.getPersonId(), person.getFirstName(), person.getLastName(),
                     person.getDateOfBirth().get(Calendar.DAY_OF_MONTH), person.getDateOfBirth().get(Calendar.MONTH),
                     person.getDateOfBirth().get(Calendar.YEAR), person.getEnrollmentDate().get(Calendar.DAY_OF_MONTH),
                     person.getEnrollmentDate().get(Calendar.MONTH), person.getEnrollmentDate().get(Calendar.YEAR));
@@ -184,9 +184,9 @@ public class StudentDAO implements DAO<Student> {
         try {
             preStatement = connection.prepareStatement(sql_update);
             preStatement.setInt(1, student.getMatriculationnumber());
-            preStatement.setInt(2, student.getGroup().getGroup_id());
+            preStatement.setInt(2, student.getGroup().getGroupId());
             preStatement.setInt(3, 2);
-            preStatement.setInt(4, student.getPerson_id());
+            preStatement.setInt(4, student.getPersonId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -211,7 +211,7 @@ public class StudentDAO implements DAO<Student> {
         String sql_delete = "DELETE FROM STUDENT WHERE student_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, student.getPerson_id());
+            preStatement.setInt(1, student.getPersonId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -237,11 +237,11 @@ public class StudentDAO implements DAO<Student> {
         String sql_select = "SELECT person_id FROM PERSON WHERE person_id=?";
         try {
             statementSelect = connection.prepareStatement(sql_select);
-            statementSelect.setInt(1, student.getPerson_id());
+            statementSelect.setInt(1, student.getPersonId());
             ResultSet resultSet = statementSelect.executeQuery();
 
             while (resultSet.next()) {
-                if (resultSet.getInt("person_id") == student.getPerson_id()) {
+                if (resultSet.getInt("person_id") == student.getPersonId()) {
                     flag = true;
                 }
             }

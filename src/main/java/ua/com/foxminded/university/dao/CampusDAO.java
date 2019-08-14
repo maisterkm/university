@@ -19,16 +19,16 @@ public class CampusDAO implements DAO<Campus> {
         String sql_select = "SELECT * FROM CAMPUS WHERE campus_id=?";
         try {
             statementSelect = handler.getPreparedStatement(sql_select);
-            statementSelect.setInt(1, campus.getCampus_id());
+            statementSelect.setInt(1, campus.getCampusId());
             ResultSet resultSetSelect = handler.getPreparedResultSet();
             while (resultSetSelect.next()) {
-                if (resultSetSelect.getInt("campus_id") == campus.getCampus_id()) {
-                    System.out.println("campus_id=" + campus.getCampus_id() + " is already in the table CAMPUS");
+                if (resultSetSelect.getInt("campus_id") == campus.getCampusId()) {
+                    System.out.println("campus_id=" + campus.getCampusId() + " is already in the table CAMPUS");
                     return;
                 }
             }
             statementInsert = handler.getPreparedStatement(sql_insert);
-            statementInsert.setInt(1, campus.getCampus_id());
+            statementInsert.setInt(1, campus.getCampusId());
             statementInsert.setString(2, campus.getCampus());
             statementInsert.executeUpdate();
         } catch (SQLException e) {
@@ -48,7 +48,7 @@ public class CampusDAO implements DAO<Campus> {
 
             while (resultSet.next()) {
                 Campus campus = new Campus();
-                campus.setCampus_id(resultSet.getInt("campus_id"));
+                campus.setCampusId(resultSet.getInt("campus_id"));
                 campus.setCampus(resultSet.getString("campus"));
 
                 campusList.add(campus);
@@ -72,7 +72,7 @@ public class CampusDAO implements DAO<Campus> {
 
             ResultSet resultSet = handler.getPreparedResultSet();
             while (resultSet.next()) {
-                campus.setCampus_id(resultSet.getInt("campus_id"));
+                campus.setCampusId(resultSet.getInt("campus_id"));
                 campus.setCampus(resultSet.getString("campus"));
             }
         } catch (SQLException e) {
@@ -90,7 +90,7 @@ public class CampusDAO implements DAO<Campus> {
         try {
             preparedStatement = handler.getPreparedStatement(sql_update);
             preparedStatement.setString(1, campus.getCampus());
-            preparedStatement.setInt(2, campus.getCampus_id());
+            preparedStatement.setInt(2, campus.getCampusId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -104,7 +104,7 @@ public class CampusDAO implements DAO<Campus> {
         String sql_delete = "DELETE FROM CAMPUS WHERE campus_id=?";
         try {
             preStatement = handler.getPreparedStatement(sql_delete);
-            preStatement.setInt(1, campus.getCampus_id());
+            preStatement.setInt(1, campus.getCampusId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

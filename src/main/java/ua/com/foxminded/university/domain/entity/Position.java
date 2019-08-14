@@ -1,27 +1,23 @@
 package ua.com.foxminded.university.domain.entity;
 
-//public enum Position {
-//    PROFESSOR, ASSOCIATE_PROFESSOR, ASSISTANT_PROFESSOR, LECTURER
-//}
-
 public class Position {
-    private int position_id;
+    private int positionId;
     private String position;
 
     public Position() {
     }
 
-    public Position(int position_id, String position) {
-        this.position_id = position_id;
+    public Position(int positionId, String position) {
+        this.positionId = positionId;
         this.position = position;
     }
 
-    public int getPosition_id() {
-        return position_id;
+    public int getPositionId() {
+        return positionId;
     }
 
-    public void setPosition_id(int position_id) {
-        this.position_id = position_id;
+    public void setPositionId(int positionId) {
+        this.positionId = positionId;
     }
 
     public String getPosition() {
@@ -34,7 +30,7 @@ public class Position {
 
     @Override
     public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() + ", position_id: " + position_id
+        String output = "class name: " + this.getClass().getSimpleName() + ", position_id: " + positionId
                 + ", position:" + position;
         return output;
     }

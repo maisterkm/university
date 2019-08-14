@@ -26,26 +26,26 @@ public class TeacherDAO implements DAO<Teacher> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, teacher.getPerson_id());
+            statementSelect.setInt(1, teacher.getPersonId());
             if (existParentTable(teacher)) {
-                statementInsert.setInt(1, teacher.getPerson_id());
+                statementInsert.setInt(1, teacher.getPersonId());
                 statementInsert.setInt(2, teacher.getSalary());
-                statementInsert.setInt(3, teacher.getPosition().getPosition_id());
+                statementInsert.setInt(3, teacher.getPosition().getPositionId());
                 statementInsert.executeUpdate();
             } else { // Create entry in table PERSON related with entry in table TEACHER
                 FactoryDAO factory = new FactoryDAO();
                 PersonDAO personDAO = (PersonDAO) factory.create(TypeOfEntity.PERSON);
                 Person person = new Person();
-                person.setPerson_id(teacher.getPerson_id());
+                person.setPersonId(teacher.getPersonId());
                 person.setFirstName(teacher.getFirstName());
                 person.setLastName(teacher.getLastName());
                 person.setDateOfBirth(teacher.getDateOfBirth());
                 person.setEnrollmentDate(teacher.getEnrollmentDate());
                 personDAO.add(person);
 
-                statementInsert.setInt(1, teacher.getPerson_id());
+                statementInsert.setInt(1, teacher.getPersonId());
                 statementInsert.setInt(2, teacher.getSalary());
-                statementInsert.setInt(3, teacher.getPosition().getPosition_id());
+                statementInsert.setInt(3, teacher.getPosition().getPositionId());
                 statementInsert.executeUpdate();
                 System.out.println(
                         "There was no data in table PERSON related to current data teacher.\nEntry in table PERSON was created.");
@@ -198,9 +198,9 @@ public class TeacherDAO implements DAO<Teacher> {
         try {
             preStatement = connection.prepareStatement(sql_update);
             preStatement.setInt(1, teacher.getSalary());
-            preStatement.setInt(2, teacher.getPosition().getPosition_id());
+            preStatement.setInt(2, teacher.getPosition().getPositionId());
             preStatement.setInt(3, 1);
-            preStatement.setInt(4, teacher.getPerson_id());
+            preStatement.setInt(4, teacher.getPersonId());
 
             preStatement.executeUpdate();
         } catch (SQLException e) {
@@ -226,7 +226,7 @@ public class TeacherDAO implements DAO<Teacher> {
         String sql_delete = "DELETE FROM TEACHER WHERE teacher_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, teacher.getPerson_id());
+            preStatement.setInt(1, teacher.getPersonId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -252,11 +252,11 @@ public class TeacherDAO implements DAO<Teacher> {
         String sql_select = "SELECT person_id FROM PERSON WHERE person_id=?";
         try {
             statementSelect = connection.prepareStatement(sql_select);
-            statementSelect.setInt(1, teacher.getPerson_id());
+            statementSelect.setInt(1, teacher.getPersonId());
             ResultSet resultSet = statementSelect.executeQuery();
 
             while (resultSet.next()) {
-                if (resultSet.getInt("person_id") == teacher.getPerson_id()) {
+                if (resultSet.getInt("person_id") == teacher.getPersonId()) {
                     flag = true;
                 }
             }
@@ -288,7 +288,7 @@ public class TeacherDAO implements DAO<Teacher> {
         Position position = new Position();
 
         while (resultSetPosition.next()) {
-            position.setPosition_id(resultSetPosition.getInt("position_id"));
+            position.setPositionId(resultSetPosition.getInt("position_id"));
             position.setPosition(resultSetPosition.getString("position"));
         }
         return position;

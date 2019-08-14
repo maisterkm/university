@@ -23,17 +23,17 @@ public class PersonDAO implements DAO<Person> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, person.getPerson_id());
+            statementSelect.setInt(1, person.getPersonId());
 
             ResultSet resultSet = statementSelect.executeQuery();
 
             while (resultSet.next()) {
-                if (resultSet.getInt("person_id") == person.getPerson_id()) {
-                    System.out.println("person_id=" + person.getPerson_id() + " is already in the table PERSON");
+                if (resultSet.getInt("person_id") == person.getPersonId()) {
+                    System.out.println("person_id=" + person.getPersonId() + " is already in the table PERSON");
                     return;
                 }
             }
-            statementInsert.setInt(1, person.getPerson_id());
+            statementInsert.setInt(1, person.getPersonId());
             statementInsert.setString(2, person.getFirstName());
             statementInsert.setString(3, person.getLastName());
             statementInsert.setTimestamp(4, new java.sql.Timestamp(person.getDateOfBirth().getTime().getTime()));
@@ -72,7 +72,7 @@ public class PersonDAO implements DAO<Person> {
 
             while (resultSet.next()) {
                 Person person = new Person();
-                person.setPerson_id(resultSet.getInt("person_id"));
+                person.setPersonId(resultSet.getInt("person_id"));
                 person.setFirstName(resultSet.getString("firstname"));
                 person.setLastName(resultSet.getString("lastname"));
 
@@ -120,7 +120,7 @@ public class PersonDAO implements DAO<Person> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            person.setPerson_id(resultSet.getInt("person_id"));
+            person.setPersonId(resultSet.getInt("person_id"));
             person.setFirstName(resultSet.getString("firstname"));
             person.setLastName(resultSet.getString("lastname"));
 
@@ -165,7 +165,7 @@ public class PersonDAO implements DAO<Person> {
             preparedStatement.setString(2, person.getLastName());
             preparedStatement.setTimestamp(3, new java.sql.Timestamp(person.getDateOfBirth().getTime().getTime()));
             preparedStatement.setTimestamp(4, new java.sql.Timestamp(person.getEnrollmentDate().getTime().getTime()));
-            preparedStatement.setInt(5, person.getPerson_id());
+            preparedStatement.setInt(5, person.getPersonId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -191,7 +191,7 @@ public class PersonDAO implements DAO<Person> {
         String sql_delete = "DELETE FROM PERSON WHERE person_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, person.getPerson_id());
+            preStatement.setInt(1, person.getPersonId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

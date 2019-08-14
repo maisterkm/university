@@ -22,16 +22,16 @@ public class ScheduleDAO implements DAO<Schedule> {
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
-            statementSelect.setInt(1, schedule.getSchedule_id());
+            statementSelect.setInt(1, schedule.getScheduleId());
 
             ResultSet resultSet = statementSelect.executeQuery();
             while (resultSet.next()) {
-                if (resultSet.getInt("schedule_id") == schedule.getSchedule_id()) {
-                    System.out.println("Classroom=" + schedule.getSchedule_id() + " is already in the table SCHEDULE");
+                if (resultSet.getInt("schedule_id") == schedule.getScheduleId()) {
+                    System.out.println("Classroom=" + schedule.getScheduleId() + " is already in the table SCHEDULE");
                     return;
                 }
             }
-            statementInsert.setInt(1, schedule.getSchedule_id());
+            statementInsert.setInt(1, schedule.getScheduleId());
             statementInsert.setString(2, schedule.getDescription());
 
             statementInsert.executeUpdate();
@@ -67,7 +67,7 @@ public class ScheduleDAO implements DAO<Schedule> {
 
             while (resultSet.next()) {
                 Schedule schedule = new Schedule();
-                schedule.setSchedule_id(resultSet.getInt("schedule_id"));
+                schedule.setScheduleId(resultSet.getInt("schedule_id"));
                 schedule.setDescription(resultSet.getString("description"));
 
                 scheduleList.add(schedule);
@@ -102,7 +102,7 @@ public class ScheduleDAO implements DAO<Schedule> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             resultSet.next();
-            schedule.setSchedule_id(resultSet.getInt("schedule_id"));
+            schedule.setScheduleId(resultSet.getInt("schedule_id"));
             schedule.setDescription(resultSet.getString("description"));
         } catch (SQLException e) {
             e.printStackTrace();
@@ -130,7 +130,7 @@ public class ScheduleDAO implements DAO<Schedule> {
         try {
             preparedStatement = connection.prepareStatement(sql_update);
             preparedStatement.setString(1, schedule.getDescription());
-            preparedStatement.setInt(2, schedule.getSchedule_id());
+            preparedStatement.setInt(2, schedule.getScheduleId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -155,7 +155,7 @@ public class ScheduleDAO implements DAO<Schedule> {
         String sql_delete = "DELETE FROM SCHEDULE WHERE schedule_id=?";
         try {
             preStatement = connection.prepareStatement(sql_delete);
-            preStatement.setInt(1, schedule.getSchedule_id());
+            preStatement.setInt(1, schedule.getScheduleId());
             preStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
