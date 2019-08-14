@@ -38,7 +38,7 @@ public class App {
 
         try {
             // CampusDAO
-            Campus campusTest = new Campus(10, "TEST_CAMPUS");
+            Campus campusTest = new Campus(77, "CAMPUS_77");
             CampusDAO campusDAO = (CampusDAO) factory.create(TypeOfEntity.CAMPUS);
 
             System.out.println("\n--- campusDAO ---");
@@ -46,7 +46,7 @@ public class App {
             campusDAO.add(campusTest);
 
             System.out.println("\ncampusDAO.getById()");
-            Campus fauculty_getById = campusDAO.getById(10);
+            Campus fauculty_getById = campusDAO.getById(77);
             System.out.println(fauculty_getById);
 
             System.out.println("\ncampusDAO.getAll()");
