@@ -16,7 +16,7 @@ import ua.com.foxminded.university.domain.entity.Person;
 import ua.com.foxminded.university.domain.entity.Student;
 
 public class StudentDAO implements Dao<Student> {
-    public void add(Student student) {
+    public void create(Student student) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -41,7 +41,7 @@ public class StudentDAO implements Dao<Student> {
                 person.setLastName(student.getLastName());
                 person.setDateOfBirth(student.getDateOfBirth());
                 person.setEnrollmentDate(student.getEnrollmentDate());
-                personDAO.add(person);
+                personDAO.create(person);
 
                 statementInsert.setInt(1, student.getPersonId());
                 statementInsert.setInt(2, student.getMatriculationnumber());
@@ -69,7 +69,7 @@ public class StudentDAO implements Dao<Student> {
         }
     }
 
-    public List<Student> getAll() {
+    public List<Student> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Student> studentList = new ArrayList<Student>();
@@ -105,7 +105,7 @@ public class StudentDAO implements Dao<Student> {
                             calendarEnrollmentDate.get(Calendar.MONTH), calendarEnrollmentDate.get(Calendar.YEAR));
                     FactoryDAO factory = new FactoryDAO();
                     GroupDAO groupDAO = (GroupDAO) factory.create(TypeOfEntity.GROUP);
-                    Group group = groupDAO.getById(resultSetStudent.getInt("group_id"));
+                    Group group = groupDAO.readById(resultSetStudent.getInt("group_id"));
                     student.setGroup(group);
                     student.setMatriculationnumber(resultSetStudent.getInt("matriculationnumber"));
                     studentList.add(student);
@@ -131,7 +131,7 @@ public class StudentDAO implements Dao<Student> {
         return studentList;
     }
 
-    public Student getById(Integer student_id) {
+    public Student readById(Integer student_id) {
         FactoryDAO factory = new FactoryDAO();
         PersonDAO personDAO = (PersonDAO) factory.create(TypeOfEntity.PERSON);
         GroupDAO groupDAO = (GroupDAO) factory.create(TypeOfEntity.GROUP);
@@ -140,7 +140,7 @@ public class StudentDAO implements Dao<Student> {
         PreparedStatement preStatementStudent = null;
         Connection connection = null;
         try {
-            person = personDAO.getById(student_id);
+            person = personDAO.readById(student_id);
 
             student = new Student(person.getPersonId(), person.getFirstName(), person.getLastName(),
                     person.getDateOfBirth().get(Calendar.DAY_OF_MONTH), person.getDateOfBirth().get(Calendar.MONTH),
@@ -157,7 +157,7 @@ public class StudentDAO implements Dao<Student> {
             ResultSet resultSetStudent = preStatementStudent.executeQuery();
             while (resultSetStudent.next()) {
                 student.setMatriculationnumber(resultSetStudent.getInt("matriculationnumber"));
-                student.setGroup(groupDAO.getById(resultSetStudent.getInt("group_id")));
+                student.setGroup(groupDAO.readById(resultSetStudent.getInt("group_id")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -204,7 +204,7 @@ public class StudentDAO implements Dao<Student> {
         }
     }
 
-    public void remove(Student student) {
+    public void delete(Student student) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;

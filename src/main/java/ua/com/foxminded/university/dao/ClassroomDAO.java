@@ -12,7 +12,7 @@ import ua.com.foxminded.university.TypeOfEntity;
 import ua.com.foxminded.university.domain.entity.Classroom;
 
 public class ClassroomDAO implements Dao<Classroom> {
-    public void add(Classroom classroom) {
+    public void create(Classroom classroom) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -59,7 +59,7 @@ public class ClassroomDAO implements Dao<Classroom> {
         }
     }
 
-    public List<Classroom> getAll() {
+    public List<Classroom> read() {
         FactoryDAO factory = new FactoryDAO();
         CampusDAO campusDAO = (CampusDAO) factory.create(TypeOfEntity.CAMPUS);
         DBConnector dbConnection = new DBConnector();
@@ -74,7 +74,7 @@ public class ClassroomDAO implements Dao<Classroom> {
 
             while (resultSet.next()) {
                 Classroom classroom = new Classroom();
-                classroom.setCampus(campusDAO.getById(resultSet.getInt("campus_id")));
+                classroom.setCampus(campusDAO.readById(resultSet.getInt("campus_id")));
                 classroom.setRoomNumber(resultSet.getString("roomnumber"));
                 classroom.setCapacity(resultSet.getInt("capacity"));
 
@@ -97,7 +97,7 @@ public class ClassroomDAO implements Dao<Classroom> {
         return classroomList;
     }
 
-    public Classroom getById(Integer i) {
+    public Classroom readById(Integer i) {
         return null;
     }
 
@@ -117,7 +117,7 @@ public class ClassroomDAO implements Dao<Classroom> {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                classroom.setCampus(campusDAO.getById(campus_id));
+                classroom.setCampus(campusDAO.readById(campus_id));
                 classroom.setRoomNumber(resultSet.getString("roomnumber"));
                 classroom.setCapacity(resultSet.getInt("capacity"));
             }
@@ -166,7 +166,7 @@ public class ClassroomDAO implements Dao<Classroom> {
         }
     }
 
-    public void remove(Classroom classroom) {
+    public void delete(Classroom classroom) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;

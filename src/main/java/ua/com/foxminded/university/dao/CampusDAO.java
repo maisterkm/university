@@ -11,7 +11,7 @@ import ua.com.foxminded.university.domain.entity.Campus;
 
 public class CampusDAO implements Dao<Campus> {
 
-    public void add(Campus campus) {
+    public void create(Campus campus) {
         Handler handler = new Handler();
         PreparedStatement statementInsert = null;
         PreparedStatement statementSelect = null;
@@ -37,7 +37,7 @@ public class CampusDAO implements Dao<Campus> {
         handler.close();
     }
 
-    public List<Campus> getAll() {
+    public List<Campus> read() {
         Handler handler = new Handler();
         List<Campus> campusList = new ArrayList<Campus>();
         String sql = "SELECT campus_id, campus FROM CAMPUS";
@@ -60,7 +60,7 @@ public class CampusDAO implements Dao<Campus> {
         return campusList;
     }
 
-    public Campus getById(Integer campus_id) {
+    public Campus readById(Integer campus_id) {
         Handler handler = new Handler();
         PreparedStatement preparedStatement = null;
         String sql = "SELECT campus_id, campus FROM CAMPUS WHERE campus_id = ?";
@@ -98,7 +98,7 @@ public class CampusDAO implements Dao<Campus> {
         handler.close();
     }
 
-    public void remove(Campus campus) {
+    public void delete(Campus campus) {
         Handler handler = new Handler();
         PreparedStatement preStatement = null;
         String sql_delete = "DELETE FROM CAMPUS WHERE campus_id=?";

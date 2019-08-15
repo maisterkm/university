@@ -13,7 +13,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Person;
 
 public class PersonDAO implements Dao<Person> {
-    public void add(Person person) {
+    public void create(Person person) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -59,7 +59,7 @@ public class PersonDAO implements Dao<Person> {
         }
     }
 
-    public List<Person> getAll() {
+    public List<Person> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Person> personList = new ArrayList<Person>();
@@ -107,7 +107,7 @@ public class PersonDAO implements Dao<Person> {
         return personList;
     }
 
-    public Person getById(Integer person_id) {
+    public Person readById(Integer person_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -184,7 +184,7 @@ public class PersonDAO implements Dao<Person> {
         }
     }
 
-    public void remove(Person person) {
+    public void delete(Person person) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;

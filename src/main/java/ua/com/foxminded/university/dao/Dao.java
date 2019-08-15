@@ -4,17 +4,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface Dao<Type> {
-// create
-    void add(Type type) throws SQLException;
+    void create(Type type) throws SQLException;
 
-// read
-    List<Type> getAll() throws SQLException;
+    List<Type> read() throws SQLException;
 
-    Type getById(Integer id) throws SQLException;
+    Type readById(Integer id) throws SQLException;
 
-// update
     void update(Type type) throws SQLException;
 
-// delete
-    void remove(Type type) throws SQLException;
+    void delete(Type type) throws SQLException;
 }

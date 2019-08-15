@@ -11,7 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Position;
 
 public class PositionDAO implements Dao<Position> {
-    public void add(Position position) {
+    public void create(Position position) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -55,7 +55,7 @@ public class PositionDAO implements Dao<Position> {
         }
     }
 
-    public List<Position> getAll() {
+    public List<Position> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Position> positionList = new ArrayList<Position>();
@@ -90,7 +90,7 @@ public class PositionDAO implements Dao<Position> {
         return positionList;
     }
 
-    public Position getById(Integer position_id) {
+    public Position readById(Integer position_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -149,7 +149,7 @@ public class PositionDAO implements Dao<Position> {
         }
     }
 
-    public void remove(Position position) {
+    public void delete(Position position) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;

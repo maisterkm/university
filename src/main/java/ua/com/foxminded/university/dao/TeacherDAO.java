@@ -16,7 +16,7 @@ import ua.com.foxminded.university.domain.entity.Position;
 import ua.com.foxminded.university.domain.entity.Teacher;
 
 public class TeacherDAO implements Dao<Teacher> {
-    public void add(Teacher teacher) {
+    public void create(Teacher teacher) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -41,7 +41,7 @@ public class TeacherDAO implements Dao<Teacher> {
                 person.setLastName(teacher.getLastName());
                 person.setDateOfBirth(teacher.getDateOfBirth());
                 person.setEnrollmentDate(teacher.getEnrollmentDate());
-                personDAO.add(person);
+                personDAO.create(person);
 
                 statementInsert.setInt(1, teacher.getPersonId());
                 statementInsert.setInt(2, teacher.getSalary());
@@ -69,7 +69,7 @@ public class TeacherDAO implements Dao<Teacher> {
         }
     }
 
-    public List<Teacher> getAll() {
+    public List<Teacher> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Teacher> teacherList = new ArrayList<Teacher>();
@@ -129,7 +129,7 @@ public class TeacherDAO implements Dao<Teacher> {
         return teacherList;
     }
 
-    public Teacher getById(Integer teacher_id) {
+    public Teacher readById(Integer teacher_id) {
         Teacher teacher = new Teacher();
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -219,7 +219,7 @@ public class TeacherDAO implements Dao<Teacher> {
         }
     }
 
-    public void remove(Teacher teacher) {
+    public void delete(Teacher teacher) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;

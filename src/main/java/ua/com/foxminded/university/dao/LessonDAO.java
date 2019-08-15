@@ -19,7 +19,7 @@ import ua.com.foxminded.university.domain.entity.Lesson;
 import ua.com.foxminded.university.domain.entity.Subject;
 
 public class LessonDAO implements Dao<Lesson> {
-    public void add(Lesson lesson) {
+    public void create(Lesson lesson) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -62,7 +62,7 @@ public class LessonDAO implements Dao<Lesson> {
         }
     }
 
-    public List<Lesson> getAll() throws SQLException {
+    public List<Lesson> read() throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Lesson> lessonList = new ArrayList<Lesson>();
@@ -96,7 +96,7 @@ public class LessonDAO implements Dao<Lesson> {
                 lesson.setEndTime(calendarEndTime);
 
                 SubjectDAO subjectDAO = (SubjectDAO) factory.create(TypeOfEntity.SUBJECT);
-                Subject subject = subjectDAO.getById(resultSet.getInt("subject_id"));
+                Subject subject = subjectDAO.readById(resultSet.getInt("subject_id"));
                 lesson.setSubject(subject);
 
                 DailyScheduleDAO dailyScheduleDAO = (DailyScheduleDAO) factory.create(TypeOfEntity.DAILYSCHEDULE);
@@ -111,7 +111,7 @@ public class LessonDAO implements Dao<Lesson> {
                 lesson.setMonthlySchedule(monthlySchedule);
 
                 ScheduleDAO scheduleDAO = (ScheduleDAO) factory.create(TypeOfEntity.SCHEDULE);
-                Schedule schedule = scheduleDAO.getById(resultSet.getInt("schedule_id"));
+                Schedule schedule = scheduleDAO.readById(resultSet.getInt("schedule_id"));
                 lesson.setSchedule(schedule);
 
                 lessonList.add(lesson);
@@ -133,7 +133,7 @@ public class LessonDAO implements Dao<Lesson> {
         return lessonList;
     }
 
-    public Lesson getById(Integer lesson_id) throws SQLException {
+    public Lesson readById(Integer lesson_id) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement predStatement = null;
@@ -167,7 +167,7 @@ public class LessonDAO implements Dao<Lesson> {
             lesson.setEndTime(calendarEndTime);
 
             SubjectDAO subjectDAO = (SubjectDAO) factory.create(TypeOfEntity.SUBJECT);
-            Subject subject = subjectDAO.getById(resultSet.getInt("subject_id"));
+            Subject subject = subjectDAO.readById(resultSet.getInt("subject_id"));
             lesson.setSubject(subject);
 
             DailyScheduleDAO dailyScheduleDAO = (DailyScheduleDAO) factory.create(TypeOfEntity.DAILYSCHEDULE);
@@ -181,7 +181,7 @@ public class LessonDAO implements Dao<Lesson> {
             lesson.setMonthlySchedule(monthlySchedule);
 
             ScheduleDAO scheduleDAO = (ScheduleDAO) factory.create(TypeOfEntity.SCHEDULE);
-            Schedule schedule = scheduleDAO.getById(resultSet.getInt("schedule_id"));
+            Schedule schedule = scheduleDAO.readById(resultSet.getInt("schedule_id"));
             lesson.setSchedule(schedule);
 
         } catch (SQLException e) {
@@ -236,7 +236,7 @@ public class LessonDAO implements Dao<Lesson> {
         }
     }
 
-    public void remove(Lesson lesson) throws SQLException {
+    public void delete(Lesson lesson) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;

@@ -11,7 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Subject;
 
 public class SubjectDAO implements Dao<Subject> {
-    public void add(Subject subject) {
+    public void create(Subject subject) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -54,7 +54,7 @@ public class SubjectDAO implements Dao<Subject> {
         }
     }
 
-    public List<Subject> getAll() {
+    public List<Subject> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Subject> subjectList = new ArrayList<Subject>();
@@ -89,7 +89,7 @@ public class SubjectDAO implements Dao<Subject> {
         return subjectList;
     }
 
-    public Subject getById(Integer subject_id) {
+    public Subject readById(Integer subject_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -148,7 +148,7 @@ public class SubjectDAO implements Dao<Subject> {
         }
     }
 
-    public void remove(Subject subject) {
+    public void delete(Subject subject) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;

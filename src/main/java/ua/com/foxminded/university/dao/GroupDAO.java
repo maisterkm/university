@@ -12,7 +12,7 @@ import ua.com.foxminded.university.domain.entity.Faculties;
 import ua.com.foxminded.university.domain.entity.Group;
 
 public class GroupDAO implements Dao<Group> {
-    public void add(Group group) {
+    public void create(Group group) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -56,7 +56,7 @@ public class GroupDAO implements Dao<Group> {
         }
     }
 
-    public List<Group> getAll() {
+    public List<Group> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Group> groupList = new ArrayList<Group>();
@@ -105,7 +105,7 @@ public class GroupDAO implements Dao<Group> {
         return groupList;
     }
 
-    public Group getById(Integer group_id) {
+    public Group readById(Integer group_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -121,7 +121,7 @@ public class GroupDAO implements Dao<Group> {
                 group.setGroupId(resultSet.getInt("group_id"));
                 group.setGroupNumber(resultSet.getString("groupnumber"));
                 FacultiesDAO facultiesDAO = new FacultiesDAO();
-                group.setFaculty(facultiesDAO.getById(resultSet.getInt("faculty_id")));
+                group.setFaculty(facultiesDAO.readById(resultSet.getInt("faculty_id")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -168,7 +168,7 @@ public class GroupDAO implements Dao<Group> {
         }
     }
 
-    public void remove(Group group) {
+    public void delete(Group group) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;

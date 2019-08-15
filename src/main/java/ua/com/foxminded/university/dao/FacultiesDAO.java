@@ -11,7 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Faculties;
 
 public class FacultiesDAO implements Dao<Faculties> {
-    public void add(Faculties faculty) {
+    public void create(Faculties faculty) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement statementInsert = null;
@@ -54,7 +54,7 @@ public class FacultiesDAO implements Dao<Faculties> {
         }
     }
 
-    public List<Faculties> getAll() {
+    public List<Faculties> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Faculties> facultyList = new ArrayList<Faculties>();
@@ -89,7 +89,7 @@ public class FacultiesDAO implements Dao<Faculties> {
         return facultyList;
     }
 
-    public Faculties getById(Integer faculty_id) {
+    public Faculties readById(Integer faculty_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
@@ -148,7 +148,7 @@ public class FacultiesDAO implements Dao<Faculties> {
         }
     }
 
-    public void remove(Faculties faculty) {
+    public void delete(Faculties faculty) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preStatement = null;
