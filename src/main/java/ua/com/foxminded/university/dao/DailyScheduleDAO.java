@@ -10,7 +10,7 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.DailySchedule;
 
-public class DailyScheduleDAO implements DAO<DailySchedule> {
+public class DailyScheduleDAO implements Dao<DailySchedule> {
     public void add(DailySchedule dailySchedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

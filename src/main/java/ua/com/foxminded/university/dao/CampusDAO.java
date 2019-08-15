@@ -9,7 +9,7 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.entity.Campus;
 
-public class CampusDAO implements DAO<Campus> {
+public class CampusDAO implements Dao<Campus> {
 
     public void add(Campus campus) {
         Handler handler = new Handler();

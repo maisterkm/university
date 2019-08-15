@@ -10,7 +10,7 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.entity.Position;
 
-public class PositionDAO implements DAO<Position> {
+public class PositionDAO implements Dao<Position> {
     public void add(Position position) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

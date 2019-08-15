@@ -11,7 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.TypeOfEntity;
 import ua.com.foxminded.university.domain.entity.Classroom;
 
-public class ClassroomDAO implements DAO<Classroom> {
+public class ClassroomDAO implements Dao<Classroom> {
     public void add(Classroom classroom) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

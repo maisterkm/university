@@ -12,7 +12,7 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.entity.Person;
 
-public class PersonDAO implements DAO<Person> {
+public class PersonDAO implements Dao<Person> {
     public void add(Person person) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

@@ -11,7 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Faculties;
 import ua.com.foxminded.university.domain.entity.Group;
 
-public class GroupDAO implements DAO<Group> {
+public class GroupDAO implements Dao<Group> {
     public void add(Group group) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

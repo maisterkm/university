@@ -3,7 +3,7 @@ package ua.com.foxminded.university.dao;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface DAO<Type> {
+public interface Dao<Type> {
 // create
     void add(Type type) throws SQLException;
 

@@ -15,7 +15,7 @@ import ua.com.foxminded.university.domain.entity.Person;
 import ua.com.foxminded.university.domain.entity.Position;
 import ua.com.foxminded.university.domain.entity.Teacher;
 
-public class TeacherDAO implements DAO<Teacher> {
+public class TeacherDAO implements Dao<Teacher> {
     public void add(Teacher teacher) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

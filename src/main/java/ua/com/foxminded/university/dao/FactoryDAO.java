@@ -3,7 +3,7 @@ package ua.com.foxminded.university.dao;
 import ua.com.foxminded.university.TypeOfEntity;
 
 public class FactoryDAO {
-    public DAO<?> create(TypeOfEntity entity) {
+    public Dao<?> create(TypeOfEntity entity) {
         switch (entity) {
         case CAMPUS:
             return new CampusDAO();

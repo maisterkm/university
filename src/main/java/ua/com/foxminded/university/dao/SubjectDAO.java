@@ -10,7 +10,7 @@ import java.util.List;
 
 import ua.com.foxminded.university.domain.entity.Subject;
 
-public class SubjectDAO implements DAO<Subject> {
+public class SubjectDAO implements Dao<Subject> {
     public void add(Subject subject) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
