@@ -3,10 +3,12 @@ package ua.com.foxminded.university.domain.entity;
 import ua.com.foxminded.university.domain.Schedule;
 
 public class Teacher extends Person {
-
     private Position position;
     private int salary;
     private Schedule teacherSchedule;
+
+    public Teacher() {
+    }
 
     public Teacher(int id, String firstName, String lastName, int birthDay, int birthMonth, int birthYear,
             int enrollmentDay, int enrollmentMonth, int enrollmentYear, Position position, int salary) {
@@ -17,25 +19,28 @@ public class Teacher extends Person {
         teacherSchedule = new Schedule();
     }
 
-    public void addClassToSchedule(Class c) {
-        teacherSchedule.addClass(c);
+    public Position getPosition() {
+        return position;
     }
 
-    public void removeClassFromSchedule(Class c) {
-        teacherSchedule.removeClass(c);
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
-    public void displayMonthSchedule(int month) {
-        teacherSchedule.displayMonth(month);
+    public int getSalary() {
+        return salary;
     }
 
-    public void displayDaySchedule(int month, int day) {
-        teacherSchedule.displayDay(month, day);
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
     @Override
     public String toString() {
-        String output = super.toString() + ", position: " + position + ", salary: " + salary;
+        String strPosition = position == null ? "There is no position" : position.toString();
+        String strSchedule = teacherSchedule == null ? "There is no schedule" : teacherSchedule.toString();
+        String output = super.toString() + ", position: " + strPosition + ", salary: " + salary + " teacherSchedule: "
+                + strSchedule;
         return output;
     }
 

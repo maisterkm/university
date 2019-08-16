@@ -1,25 +1,25 @@
 package ua.com.foxminded.university.domain.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Group {
-
+    private int groupId;
     private String groupNumber;
     private Faculties faculty;
-    private List<Student> studentList = new ArrayList<Student>();
 
-    public Group(String groupNumber, Faculties faculty) {
+    public Group() {
+    }
+
+    public Group(int groupId, String groupNumber, Faculties faculty) {
+        this.groupId = groupId;
         this.groupNumber = groupNumber;
         this.faculty = faculty;
     }
 
-    public List<Student> getStudentList() {
-        return studentList;
+    public int getGroupId() {
+        return groupId;
     }
 
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
     }
 
     public String getGroupNumber() {
@@ -30,24 +30,19 @@ public class Group {
         this.groupNumber = groupNumber;
     }
 
-    public void addStudent(Student student) {
-        studentList.add(student);
-        student.setGroup(this);
+    public int getFacultyId() {
+        return faculty.getFacultyId();
     }
 
-    public void removeStudent(Student student) {
-        studentList.remove(student);
+    public void setFaculty(Faculties faculty) {
+        this.faculty = faculty;
     }
 
-    public String displayGroup() {
+    @Override
+    public String toString() {
         String output = "";
-        output += "class name: " + this.getClass().getSimpleName() + ", group number: " + groupNumber + ", faculty: "
-                + faculty + "\n\tlist of students:";
-        int i = 0;
-        for (Student item : studentList) {
-            output += "\t" + Integer.toString(++i) + ": " + item;
-        }
-        System.out.println(output);
+        output += "class name: " + this.getClass().getSimpleName() + ", group_id: " + groupId + ", group number: "
+                + groupNumber + ", faculty: " + faculty.getFaculty() + "\n\tlist of students:";
         return output;
     }
 

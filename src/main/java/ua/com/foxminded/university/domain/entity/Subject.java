@@ -1,28 +1,37 @@
 package ua.com.foxminded.university.domain.entity;
 
 public class Subject {
-    private Subjects subject;
-    private String description;
-    private Teacher teacher;
+    private int subjectId;
+    private String subject;
 
-    public Subject(Subjects subject, Teacher teacher, String description) {
-        this.subject = subject;
-        this.teacher = teacher;
-        this.description = description;
+    public Subject() {
     }
 
-    public Subjects getSubject() {
+    public Subject(int subjectId, String subject) {
+        this.subjectId = subjectId;
+        this.subject = subject;
+    }
+
+    public int getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public String getSubject() {
         return subject;
     }
 
-    public void setSubject(Subjects subject) {
+    public void setSubject(String subject) {
         this.subject = subject;
     }
 
     @Override
     public String toString() {
-        String output = "class name: " + this.getClass().getSimpleName() + ", subject: " + subject + ", teacher: "
-                + teacher + ", description: " + description;
+        String output = "class name: " + this.getClass().getSimpleName() + " subject_id=" + subjectId + ", subject: "
+                + subject;
         return output;
     }
 

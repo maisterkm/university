@@ -1,0 +1,6 @@
+package ua.com.foxminded.university;
+
+public enum TypeOfEntity {
+    CAMPUS, CLASSROOM, FACULTIES, GROUP, LESSON, PERSON, POSITION, STUDENT, SUBJECT, TEACHER, SCHEDULE, DAILYSCHEDULE,
+    MONTHLYSHCEDULE;
+}
