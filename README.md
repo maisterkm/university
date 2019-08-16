@@ -3,3 +3,6 @@ Cделать декомпозицию университета: препода�
 Результат в виде png картинки добавить в отдельный проект на gitlab.
 
 Task 9 - Domain layer Create JAVA project based on University UML class diagram from the previous task. Implement domain logic for University. Write JUnit tests for the created application.
+
+Task 10 - DAO layer
+Create plain JDBC based DAO for decomposed domain objects using DriverManager.
