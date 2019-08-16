@@ -11,6 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.DailySchedule;
 
 public class DailyScheduleDAO implements Dao<DailySchedule> {
+    @Override
     public void create(DailySchedule dailySchedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -18,7 +19,6 @@ public class DailyScheduleDAO implements Dao<DailySchedule> {
         PreparedStatement statementSelect = null;
         String sql_insert = "INSERT INTO DAILYSCHEDULE (dailySchedule_id, monthlyschedule_id, schedule_id, description) VALUES (?, ?, ?, ?)";
         String sql_select = "SELECT * FROM DAILYSCHEDULE WHERE dailySchedule_id=? AND monthlyschedule_id=? AND schedule_id=?";
-
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
@@ -51,6 +51,7 @@ public class DailyScheduleDAO implements Dao<DailySchedule> {
         }
     }
 
+    @Override
     public List<DailySchedule> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -87,6 +88,7 @@ public class DailyScheduleDAO implements Dao<DailySchedule> {
         return dailyScheduleList;
     }
 
+    @Override
     public DailySchedule readById(Integer i) {
         return null;
     }
@@ -128,6 +130,7 @@ public class DailyScheduleDAO implements Dao<DailySchedule> {
         return dailySchedule;
     }
 
+    @Override
     public void update(DailySchedule dailySchedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -157,6 +160,7 @@ public class DailyScheduleDAO implements Dao<DailySchedule> {
         }
     }
 
+    @Override
     public void delete(DailySchedule dailySchedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

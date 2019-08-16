@@ -12,6 +12,7 @@ import ua.com.foxminded.university.domain.entity.Faculties;
 import ua.com.foxminded.university.domain.entity.Group;
 
 public class GroupDAO implements Dao<Group> {
+    @Override
     public void create(Group group) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -56,6 +57,7 @@ public class GroupDAO implements Dao<Group> {
         }
     }
 
+    @Override
     public List<Group> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -105,6 +107,7 @@ public class GroupDAO implements Dao<Group> {
         return groupList;
     }
 
+    @Override
     public Group readById(Integer group_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -140,6 +143,7 @@ public class GroupDAO implements Dao<Group> {
         return group;
     }
 
+    @Override
     public void update(Group group) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -168,6 +172,7 @@ public class GroupDAO implements Dao<Group> {
         }
     }
 
+    @Override
     public void delete(Group group) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

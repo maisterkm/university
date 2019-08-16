@@ -10,13 +10,13 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Campus;
 
 public class CampusDAO implements Dao<Campus> {
-
+    @Override
     public void create(Campus campus) {
         Handler handler = new Handler();
         PreparedStatement statementInsert = null;
         PreparedStatement statementSelect = null;
-        String sql_insert = "INSERT INTO CAMPUS (campus_id, campus) VALUES (?, ?)";
-        String sql_select = "SELECT * FROM CAMPUS WHERE campus_id=?";
+        final String sql_insert = "INSERT INTO CAMPUS (campus_id, campus) VALUES (?, ?)";
+        final String sql_select = "SELECT * FROM CAMPUS WHERE campus_id=?";
         try {
             statementSelect = handler.getPreparedStatement(sql_select);
             statementSelect.setInt(1, campus.getCampusId());
@@ -37,6 +37,7 @@ public class CampusDAO implements Dao<Campus> {
         handler.close();
     }
 
+    @Override
     public List<Campus> read() {
         Handler handler = new Handler();
         List<Campus> campusList = new ArrayList<Campus>();
@@ -60,6 +61,7 @@ public class CampusDAO implements Dao<Campus> {
         return campusList;
     }
 
+    @Override
     public Campus readById(Integer campus_id) {
         Handler handler = new Handler();
         PreparedStatement preparedStatement = null;
@@ -82,6 +84,7 @@ public class CampusDAO implements Dao<Campus> {
         return campus;
     }
 
+    @Override
     public void update(Campus campus) {
         Handler handler = new Handler();
         PreparedStatement preparedStatement = null;
@@ -98,6 +101,7 @@ public class CampusDAO implements Dao<Campus> {
         handler.close();
     }
 
+    @Override
     public void delete(Campus campus) {
         Handler handler = new Handler();
         PreparedStatement preStatement = null;

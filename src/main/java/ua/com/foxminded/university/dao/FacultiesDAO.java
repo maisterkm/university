@@ -11,6 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Faculties;
 
 public class FacultiesDAO implements Dao<Faculties> {
+    @Override
     public void create(Faculties faculty) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -18,7 +19,6 @@ public class FacultiesDAO implements Dao<Faculties> {
         PreparedStatement statementSelect = null;
         String sql_insert = "INSERT INTO FACULTIES (faculty_id, faculty) VALUES (?, ?)";
         String sql_select = "SELECT * FROM FACULTIES WHERE faculty_id=?";
-
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
@@ -54,13 +54,13 @@ public class FacultiesDAO implements Dao<Faculties> {
         }
     }
 
+    @Override
     public List<Faculties> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Faculties> facultyList = new ArrayList<Faculties>();
         String sql = "SELECT faculty_id, faculty FROM FACULTIES";
         Statement statement = null;
-
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -89,13 +89,13 @@ public class FacultiesDAO implements Dao<Faculties> {
         return facultyList;
     }
 
+    @Override
     public Faculties readById(Integer faculty_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
         String sql = "SELECT faculty_id, faculty FROM FACULTIES WHERE faculty_id = ?";
         Faculties faculty = new Faculties();
-
         try {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, faculty_id);
@@ -121,12 +121,12 @@ public class FacultiesDAO implements Dao<Faculties> {
         return faculty;
     }
 
+    @Override
     public void update(Faculties faculty) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement preparedStatement = null;
         String sql_update = "UPDATE FACULTIES SET faculty=? WHERE faculty_id=?";
-
         try {
             preparedStatement = connection.prepareStatement(sql_update);
             preparedStatement.setString(1, faculty.getFaculty());
@@ -148,6 +148,7 @@ public class FacultiesDAO implements Dao<Faculties> {
         }
     }
 
+    @Override
     public void delete(Faculties faculty) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

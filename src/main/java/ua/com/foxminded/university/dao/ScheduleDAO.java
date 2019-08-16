@@ -11,6 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.Schedule;
 
 public class ScheduleDAO implements Dao<Schedule> {
+    @Override
     public void create(Schedule schedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -54,6 +55,7 @@ public class ScheduleDAO implements Dao<Schedule> {
         }
     }
 
+    @Override
     public List<Schedule> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -89,6 +91,7 @@ public class ScheduleDAO implements Dao<Schedule> {
         return scheduleList;
     }
 
+    @Override
     public Schedule readById(Integer schedule_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -121,6 +124,7 @@ public class ScheduleDAO implements Dao<Schedule> {
         return schedule;
     }
 
+    @Override
     public void update(Schedule schedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -148,6 +152,7 @@ public class ScheduleDAO implements Dao<Schedule> {
         }
     }
 
+    @Override
     public void delete(Schedule schedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

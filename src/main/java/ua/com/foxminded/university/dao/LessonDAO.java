@@ -19,6 +19,7 @@ import ua.com.foxminded.university.domain.entity.Lesson;
 import ua.com.foxminded.university.domain.entity.Subject;
 
 public class LessonDAO implements Dao<Lesson> {
+    @Override
     public void create(Lesson lesson) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -26,7 +27,6 @@ public class LessonDAO implements Dao<Lesson> {
         PreparedStatement statementSelect = null;
         String sql_insert = "INSERT INTO LESSON (lesson_id, campus_id, roomnumber, begintime, endtime, subject_id, dailyschedule_id, monthlyschedule_id, schedule_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String sql_select = "SELECT * FROM LESSON WHERE lesson_id=? ";
-
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
@@ -58,17 +58,17 @@ public class LessonDAO implements Dao<Lesson> {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            } 
+            }
         }
     }
 
+    @Override
     public List<Lesson> read() throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         List<Lesson> lessonList = new ArrayList<Lesson>();
         String sql = "SELECT lesson_id, campus_id, roomnumber, begintime, endtime, subject_id, dailyschedule_id, monthlyschedule_id, schedule_id FROM LESSON";
         Statement statement = null;
-
         try {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -133,13 +133,13 @@ public class LessonDAO implements Dao<Lesson> {
         return lessonList;
     }
 
+    @Override
     public Lesson readById(Integer lesson_id) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement predStatement = null;
         String sql = "SELECT lesson_id, campus_id, roomnumber, begintime, endtime, subject_id, dailyschedule_id, monthlyschedule_id, schedule_id FROM LESSON WHERE lesson_id=?";
         Lesson lesson = new Lesson();
-
         try {
             predStatement = connection.prepareStatement(sql);
             predStatement.setInt(1, lesson_id);
@@ -196,17 +196,17 @@ public class LessonDAO implements Dao<Lesson> {
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            } 
+            }
         }
         return lesson;
     }
 
+    @Override
     public void update(Lesson lesson) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
         PreparedStatement predStatement = null;
         String sql_update = "UPDATE LESSON SET campus_id=?, roomnumber=?, begintime=?, endtime=?, subject_id=?, dailyschedule_id=?, monthlyschedule_id=?, schedule_id=? WHERE lesson_id=?";
-
         try {
             predStatement = connection.prepareStatement(sql_update);
             predStatement.setInt(1, lesson.getCampusId());
@@ -236,6 +236,7 @@ public class LessonDAO implements Dao<Lesson> {
         }
     }
 
+    @Override
     public void delete(Lesson lesson) throws SQLException {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

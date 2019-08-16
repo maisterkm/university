@@ -12,6 +12,7 @@ import ua.com.foxminded.university.TypeOfEntity;
 import ua.com.foxminded.university.domain.entity.Classroom;
 
 public class ClassroomDAO implements Dao<Classroom> {
+    @Override
     public void create(Classroom classroom) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -19,7 +20,6 @@ public class ClassroomDAO implements Dao<Classroom> {
         PreparedStatement statementSelect = null;
         String sql_insert = "INSERT INTO CLASSROOM (campus_id, roomnumber, capacity) VALUES (?, ?, ?)";
         String sql_select = "SELECT * FROM CLASSROOM WHERE campus_id=? AND roomnumber=?";
-
         try {
             statementSelect = connection.prepareStatement(sql_select);
             statementInsert = connection.prepareStatement(sql_insert);
@@ -59,6 +59,7 @@ public class ClassroomDAO implements Dao<Classroom> {
         }
     }
 
+    @Override
     public List<Classroom> read() {
         FactoryDAO factory = new FactoryDAO();
         CampusDAO campusDAO = (CampusDAO) factory.create(TypeOfEntity.CAMPUS);
@@ -97,6 +98,7 @@ public class ClassroomDAO implements Dao<Classroom> {
         return classroomList;
     }
 
+    @Override
     public Classroom readById(Integer i) {
         return null;
     }
@@ -138,6 +140,7 @@ public class ClassroomDAO implements Dao<Classroom> {
         return classroom;
     }
 
+    @Override
     public void update(Classroom classroom) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -166,6 +169,7 @@ public class ClassroomDAO implements Dao<Classroom> {
         }
     }
 
+    @Override
     public void delete(Classroom classroom) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

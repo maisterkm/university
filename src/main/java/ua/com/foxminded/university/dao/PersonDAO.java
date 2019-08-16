@@ -13,6 +13,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.entity.Person;
 
 public class PersonDAO implements Dao<Person> {
+    @Override
     public void create(Person person) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -59,6 +60,7 @@ public class PersonDAO implements Dao<Person> {
         }
     }
 
+    @Override
     public List<Person> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -107,6 +109,7 @@ public class PersonDAO implements Dao<Person> {
         return personList;
     }
 
+    @Override
     public Person readById(Integer person_id) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -153,6 +156,7 @@ public class PersonDAO implements Dao<Person> {
         return person;
     }
 
+    @Override
     public void update(Person person) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -184,6 +188,7 @@ public class PersonDAO implements Dao<Person> {
         }
     }
 
+    @Override
     public void delete(Person person) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

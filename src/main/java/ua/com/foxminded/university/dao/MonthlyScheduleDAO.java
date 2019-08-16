@@ -11,6 +11,7 @@ import java.util.List;
 import ua.com.foxminded.university.domain.MonthlySchedule;
 
 public class MonthlyScheduleDAO implements Dao<MonthlySchedule> {
+    @Override
     public void create(MonthlySchedule monthlySchedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -49,6 +50,7 @@ public class MonthlyScheduleDAO implements Dao<MonthlySchedule> {
         }
     }
 
+    @Override
     public List<MonthlySchedule> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -84,6 +86,7 @@ public class MonthlyScheduleDAO implements Dao<MonthlySchedule> {
         return monthlyScheduleList;
     }
 
+    @Override
     public MonthlySchedule readById(Integer i) {
         return null;
     }
@@ -122,6 +125,7 @@ public class MonthlyScheduleDAO implements Dao<MonthlySchedule> {
         return monthlySchedule;
     }
 
+    @Override
     public void update(MonthlySchedule monthlySchedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -150,6 +154,7 @@ public class MonthlyScheduleDAO implements Dao<MonthlySchedule> {
         }
     }
 
+    @Override
     public void delete(MonthlySchedule monthlySchedule) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();

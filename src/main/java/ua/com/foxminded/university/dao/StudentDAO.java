@@ -16,6 +16,7 @@ import ua.com.foxminded.university.domain.entity.Person;
 import ua.com.foxminded.university.domain.entity.Student;
 
 public class StudentDAO implements Dao<Student> {
+    @Override
     public void create(Student student) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -69,6 +70,7 @@ public class StudentDAO implements Dao<Student> {
         }
     }
 
+    @Override
     public List<Student> read() {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -131,6 +133,7 @@ public class StudentDAO implements Dao<Student> {
         return studentList;
     }
 
+    @Override
     public Student readById(Integer student_id) {
         FactoryDAO factory = new FactoryDAO();
         PersonDAO personDAO = (PersonDAO) factory.create(TypeOfEntity.PERSON);
@@ -176,6 +179,7 @@ public class StudentDAO implements Dao<Student> {
         return student;
     }
 
+    @Override
     public void update(Student student) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
@@ -204,6 +208,7 @@ public class StudentDAO implements Dao<Student> {
         }
     }
 
+    @Override
     public void delete(Student student) {
         DBConnector dbConnection = new DBConnector();
         Connection connection = dbConnection.getConnection();
